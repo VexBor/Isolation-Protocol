@@ -1,20 +1,202 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:Isolation_Protocol.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Isolation_Protocol.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="Isolation_Protocol">
+<Window
+    Icon="/Assets/avalonia-logo.ico"
+    Title="Isolation_Protocol"
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
+    mc:Ignorable="d"
+    x:Class="Isolation_Protocol.Views.MainWindow"
+    x:DataType="vm:MainWindowViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Isolation_Protocol.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
+    <Grid RowDefinitions="Auto, *">
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <!--  Top panel  -->
+        <Grid
+            Background="rgba(93, 36, 43, 1)"
+            ColumnDefinitions="Auto, 270, Auto, *, Auto"
+            Grid.Row="0"
+            Height="135"
+            VerticalAlignment="Top">
 
+            <Button
+                BorderThickness="0"
+                CornerRadius="20"
+                Grid.Column="0"
+                Height="100"
+                Margin="15"
+                Width="100">
+                <Image Source="../Assets/settings.png" />
+            </Button>
+
+            <StackPanel
+                Grid.Column="2"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
+
+                <Button
+                    BorderThickness="0"
+                    CornerRadius="20"
+                    Height="100"
+                    Margin="0,0,35,0"
+                    Width="100" />
+                <Button
+                    BorderThickness="0"
+                    CornerRadius="20"
+                    Height="100"
+                    Margin="0,0,35,0"
+                    Width="100" />
+                <Button
+                    BorderThickness="0"
+                    CornerRadius="20"
+                    Height="100"
+                    Margin="0,0,35,0"
+                    Width="100" />
+                <Button
+                    BorderThickness="0"
+                    CornerRadius="20"
+                    Height="100"
+                    Margin="0,0,35,0"
+                    Width="100" />
+                <Button
+                    BorderThickness="0"
+                    CornerRadius="20"
+                    Height="100"
+                    Margin="0,0,35,0"
+                    Width="100" />
+            </StackPanel>
+
+            <Border
+                Background="rgba(217, 217, 217, 1)"
+                CornerRadius="20"
+                Grid.Column="3"
+                Margin="0,15,15,15">
+
+                <TextBlock
+                    FontSize="50"
+                    HorizontalAlignment="Center"
+                    Text="1221$"
+                    VerticalAlignment="Center" />
+            </Border>
+
+            <Button
+                BorderThickness="0"
+                CornerRadius="20"
+                Grid.Column="4"
+                Height="100"
+                Margin="0,15,15,15"
+                Width="100" />
+        </Grid>
+
+        <!--  Base panel  -->
+        <Grid ColumnDefinitions="3*, *" Grid.Row="1">
+            <!--  Left  -->
+            <UniformGrid
+                Background="rgba(160, 153, 137, 1)"
+                Columns="4"
+                Grid.Column="0"
+                Rows="2">
+                <Button
+                    CornerRadius="20"
+                    HorizontalAlignment="Stretch"
+                    Margin="30"
+                    VerticalAlignment="Stretch" />
+                <Button
+                    CornerRadius="20"
+                    HorizontalAlignment="Stretch"
+                    Margin="30"
+                    VerticalAlignment="Stretch" />
+                <Button
+                    CornerRadius="20"
+                    HorizontalAlignment="Stretch"
+                    Margin="30"
+                    VerticalAlignment="Stretch" />
+                <Button
+                    CornerRadius="20"
+                    HorizontalAlignment="Stretch"
+                    Margin="30"
+                    VerticalAlignment="Stretch" />
+                <Button
+                    CornerRadius="20"
+                    HorizontalAlignment="Stretch"
+                    Margin="30"
+                    VerticalAlignment="Stretch" />
+                <Button
+                    CornerRadius="20"
+                    HorizontalAlignment="Stretch"
+                    Margin="30"
+                    VerticalAlignment="Stretch" />
+                <Button
+                    CornerRadius="20"
+                    HorizontalAlignment="Stretch"
+                    Margin="30"
+                    VerticalAlignment="Stretch" />
+                <Button
+                    CornerRadius="20"
+                    HorizontalAlignment="Stretch"
+                    Margin="30"
+                    VerticalAlignment="Stretch" />
+            </UniformGrid>
+
+            <!--  Rigth  -->
+            <Grid
+                Background="rgba(56, 19, 26, 1)"
+                Grid.Column="1"
+                RowDefinitions="Auto, *, Auto, Auto">
+
+                <TextBlock
+                    FontSize="36"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    Margin="0,30,0,0"
+                    Text="Name" />
+
+                <Rectangle
+                    Fill="Salmon"
+                    Grid.Row="1"
+                    Margin="15"
+                    MaxHeight="550"
+                    MaxWidth="350" />
+
+                <UniformGrid
+                    Columns="2"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    Margin="30,15"
+                    Rows="2">
+                    <TextBlock
+                        FontSize="36"
+                        Margin="15"
+                        Text="Stats" />
+                    <TextBlock
+                        FontSize="36"
+                        Margin="15"
+                        Text="Stats" />
+                    <TextBlock
+                        FontSize="36"
+                        Margin="15"
+                        Text="Stats" />
+                    <TextBlock
+                        FontSize="36"
+                        Margin="15"
+                        Text="Stats" />
+                </UniformGrid>
+
+                <Button
+                    CornerRadius="15"
+                    FontSize="50"
+                    Grid.Row="3"
+                    HorizontalAlignment="Center"
+                    Margin="30,0,30,30">
+                    Start
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
 </Window>
