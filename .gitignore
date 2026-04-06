@@ -1,0 +1,28 @@
+## Специфічне для .NET (Build/Data)
+bin/
+obj/
+publish/
+out/
+*.log
+*.swp
+
+## JetBrains Rider
+.idea/
+*.sln.iml
+*.user
+*.suo
+*.sln.docstate
+
+## Користувацькі налаштування та кеш
+.vs/
+UserSecrets/
+.ionide/
+
+## Avalonia та специфічне для ОС
+.DS_Store
+Thumbs.db
+*.db-shm
+*.db-wal
+
+## Файли розгортання
+appsettings.Development.json
