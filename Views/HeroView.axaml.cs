@@ -16,7 +16,7 @@ namespace Isolation_Protocol.Views;
 
 public partial class HeroView : UserControl
 {
-    private string _heroPath = "heroes.json";
+    private string _heroPath = "Data/heroes.json";
     private List<Hero>? heroes = new List<Hero>();
     private string? _assemblyName;
 

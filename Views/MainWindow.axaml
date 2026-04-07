@@ -125,7 +125,7 @@
                     <TextBlock
                         FontSize="50"
                         Foreground="#EAEAF0"
-                        Text="1221$"
+                        Text="67$"
                         VerticalAlignment="Center" />
                 </StackPanel>
 
@@ -134,6 +134,7 @@
             <Button
                 Background="#2E2E48"
                 BorderThickness="0"
+                Click="Exit_Click"
                 CornerRadius="20"
                 Grid.Column="4"
                 Height="100"

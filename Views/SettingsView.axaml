@@ -1,5 +1,5 @@
 <UserControl
-    d:DesignHeight="450"
+    d:DesignHeight="1080"
     d:DesignWidth="800"
     mc:Ignorable="d"
     x:Class="Isolation_Protocol.Views.SettingsView"
@@ -8,15 +8,135 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <StackPanel Background="#23233A">
-        <Border
-            Background="Blue"
-            CornerRadius="20"
-            Height="50"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Width="200">
-            <TextBlock FontSize="36" Text="123" />
-        </Border>
-    </StackPanel>
+    <Grid Background="#181825" RowDefinitions="Auto, *, Auto">
+
+        <TextBlock
+            FontSize="40"
+            FontWeight="Bold"
+            Foreground="#EAEAF0"
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            Margin="0,30,0,20"
+            Text="НАЛАШТУВАННЯ" />
+
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            Spacing="20"
+            Width="600">
+
+            <Border
+                Background="#1F1F35"
+                BorderBrush="#3F3F64"
+                BorderThickness="2"
+                CornerRadius="12"
+                Padding="20">
+                <StackPanel Spacing="15">
+                    <TextBlock
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        Foreground="#7C5CFF"
+                        Margin="0,0,0,10"
+                        Text="Аудіо" />
+
+                    <Grid ColumnDefinitions="200, *, 50">
+                        <TextBlock
+                            FontSize="20"
+                            Foreground="#EAEAF0"
+                            Grid.Column="0"
+                            Text="Загальна гучність"
+                            VerticalAlignment="Center" />
+
+                        <Slider
+                            Foreground="#7C5CFF"
+                            Grid.Column="1"
+                            Margin="10,0"
+                            Maximum="100"
+                            Minimum="0"
+                            Value="80"
+                            x:Name="volumeSlider" />
+
+                        <TextBlock
+                            FontSize="20"
+                            Foreground="#EAEAF0"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            Text="{Binding #volumeSlider.Value, StringFormat='{}{0:0}%'}"
+                            VerticalAlignment="Center" />
+                    </Grid>
+
+                    <Grid ColumnDefinitions="200, *, 50">
+                        <TextBlock
+                            FontSize="20"
+                            Foreground="#EAEAF0"
+                            Grid.Column="0"
+                            Text="Музика"
+                            VerticalAlignment="Center" />
+                        <Slider
+                            Foreground="#7C5CFF"
+                            Grid.Column="1"
+                            Margin="10,0"
+                            Maximum="100"
+                            Minimum="0"
+                            Value="60"
+                            x:Name="musicSlider" />
+                        <TextBlock
+                            FontSize="20"
+                            Foreground="#EAEAF0"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            Text="{Binding #musicSlider.Value, StringFormat='{}{0:0}%'}"
+                            VerticalAlignment="Center" />
+                    </Grid>
+                    <TextBlock
+                        FontSize="28"
+                        FontWeight="SemiBold"
+                        Foreground="#7C5CFF"
+                        Margin="0,0,0,10"
+                        Text="Інше" />
+
+                    <Grid ColumnDefinitions="200, *">
+                        <TextBlock
+                            FontSize="20"
+                            Foreground="#EAEAF0"
+                            Grid.Column="0"
+                            Text="Мова"
+                            VerticalAlignment="Center" />
+                        <ComboBox
+                            Grid.Column="1"
+                            SelectedIndex="0"
+                            x:Name="languageComboBox">
+                            <ComboBoxItem Content="Українська" Tag="uk" />
+                            <ComboBoxItem Content="English" Tag="en" />
+                            <ComboBoxItem Content="Китайська" Tag="zh" />
+                            <ComboBoxItem Content="Японська" Tag="ja" />
+                            <ComboBoxItem Content="Німецька" Tag="de" />
+                            <ComboBoxItem Content="Словацька" Tag="sk" />
+                            <ComboBoxItem Content="Польська" Tag="pl" />
+                            <ComboBoxItem Content="Чеська" Tag="cs" />
+                            <ComboBoxItem Content="Португальська" Tag="pt" />
+                            <ComboBoxItem Content="Корейська" Tag="ko" />
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Center"
+            Margin="0,20,0,40"
+            Orientation="Horizontal"
+            Spacing="30">
+            <Button
+                Background="#22C55E"
+                Click="Save"
+                Content="Зберегти"
+                CornerRadius="8"
+                FontSize="24"
+                Foreground="#EAEAF0"
+                Padding="30,10" />
+        </StackPanel>
+    </Grid>
 </UserControl>
