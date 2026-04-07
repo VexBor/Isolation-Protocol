@@ -1,0 +1,128 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="Isolation_Protocol.Views.HeroView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid ColumnDefinitions="3*, *">
+        <!--  Left  -->
+        <UniformGrid
+            Background="#23233A"
+            Columns="4"
+            Grid.Column="0"
+            Rows="2">
+            <Button
+                Background="#2E2E48"
+                CornerRadius="20"
+                HorizontalAlignment="Stretch"
+                Margin="30"
+                VerticalAlignment="Stretch" />
+            <Button
+                Background="#2E2E48"
+                CornerRadius="20"
+                HorizontalAlignment="Stretch"
+                Margin="30"
+                VerticalAlignment="Stretch" />
+            <Button
+                Background="#2E2E48"
+                CornerRadius="20"
+                HorizontalAlignment="Stretch"
+                Margin="30"
+                VerticalAlignment="Stretch" />
+            <Button
+                Background="#2E2E48"
+                CornerRadius="20"
+                HorizontalAlignment="Stretch"
+                Margin="30"
+                VerticalAlignment="Stretch" />
+            <Button
+                Background="#2E2E48"
+                CornerRadius="20"
+                HorizontalAlignment="Stretch"
+                Margin="30"
+                VerticalAlignment="Stretch" />
+            <Button
+                Background="#2E2E48"
+                CornerRadius="20"
+                HorizontalAlignment="Stretch"
+                Margin="30"
+                VerticalAlignment="Stretch" />
+            <Button
+                Background="#2E2E48"
+                CornerRadius="20"
+                HorizontalAlignment="Stretch"
+                Margin="30"
+                VerticalAlignment="Stretch" />
+            <Button
+                Background="#2E2E48"
+                CornerRadius="20"
+                HorizontalAlignment="Stretch"
+                Margin="30"
+                VerticalAlignment="Stretch" />
+        </UniformGrid>
+
+        <!--  Rigth  -->
+        <Grid
+            Background="#1F1F35"
+            Grid.Column="1"
+            RowDefinitions="Auto, *, Auto, Auto">
+
+            <TextBlock
+                FontSize="36"
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                Margin="0,30,0,0"
+                Text="Name" />
+
+            <Border
+                Background="#7C5CFF"
+                BorderBrush="#3F3F64"
+                BorderThickness="10"
+                CornerRadius="20"
+                Grid.Row="1"
+                Margin="15"
+                MaxHeight="550"
+                MaxWidth="350" />
+            <UniformGrid
+                Columns="2"
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                Margin="30,15"
+                Rows="2">
+                <TextBlock
+                    FontSize="36"
+                    Foreground="#EAEAF0"
+                    Margin="15"
+                    Text="Stats" />
+                <TextBlock
+                    FontSize="36"
+                    Foreground="#EAEAF0"
+                    Margin="15"
+                    Text="Stats" />
+                <TextBlock
+                    FontSize="36"
+                    Foreground="#EAEAF0"
+                    Margin="15"
+                    Text="Stats" />
+                <TextBlock
+                    FontSize="36"
+                    Foreground="#EAEAF0"
+                    Margin="15"
+                    Text="Stats" />
+            </UniformGrid>
+            <Button
+                Background="#22C55E"
+                CornerRadius="15"
+                FontSize="50"
+                Foreground="#EAEAF0"
+                Grid.Row="3"
+                HorizontalAlignment="Center"
+                Margin="30,0,30,30">
+                Start
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>
