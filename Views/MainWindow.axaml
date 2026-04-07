@@ -124,6 +124,7 @@
                     </Border>
                     <TextBlock
                         FontSize="50"
+                        Foreground="#EAEAF0"
                         Text="1221$"
                         VerticalAlignment="Center" />
                 </StackPanel>

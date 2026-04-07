@@ -16,67 +16,140 @@
             Rows="2">
             <Button
                 Background="#2E2E48"
+                Click="Select_Button"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch">
-                <Image Source="../Assets/Hero/Elira.png" />
+                VerticalAlignment="Stretch"
+                x:Name="EliraButton">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="30"
+                        Foreground="#EAEAF0"
+                        HorizontalAlignment="Center"
+                        Text="Еліра" />
+                    <Image Source="../Assets/Hero/Elira.png" />
+                </StackPanel>
             </Button>
             <Button
                 Background="#2E2E48"
+                Click="Select_Button"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch">
-                <Image Source="../Assets/Hero/Torin.png" />
+                VerticalAlignment="Stretch"
+                x:Name="TorinButton">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="30"
+                        Foreground="#EAEAF0"
+                        HorizontalAlignment="Center"
+                        Text="Торін" />
+                    <Image Source="../Assets/Hero/Torin.png" />
+                </StackPanel>
             </Button>
             <Button
                 Background="#2E2E48"
+                Click="Select_Button"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch">
-                <Image Source="../Assets/Hero/Luchiuc.png" />
+                VerticalAlignment="Stretch"
+                x:Name="LuciusButton">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="30"
+                        Foreground="#EAEAF0"
+                        HorizontalAlignment="Center"
+                        Text="Люціус" />
+                    <Image Source="../Assets/Hero/Lucius.png" />
+                </StackPanel>
             </Button>
             <Button
                 Background="#2E2E48"
+                Click="Select_Button"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch">
-                <Image Source="../Assets/Hero/Aria.png" />
+                VerticalAlignment="Stretch"
+                x:Name="AriaButton">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="30"
+                        Foreground="#EAEAF0"
+                        HorizontalAlignment="Center"
+                        Text="Арія" />
+                    <Image Source="../Assets/Hero/Aria.png" />
+                </StackPanel>
             </Button>
             <Button
                 Background="#2E2E48"
+                Click="Select_Button"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch">
-                <Image Source="../Assets/Hero/Grim.png" />
+                VerticalAlignment="Stretch"
+                x:Name="GrimButton">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="30"
+                        Foreground="#EAEAF0"
+                        HorizontalAlignment="Center"
+                        Text="Грим" />
+                    <Image Source="../Assets/Hero/Grim.png" />
+                </StackPanel>
             </Button>
             <Button
                 Background="#2E2E48"
+                Click="Select_Button"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch">
-                <Image Source="../Assets/Hero/Lira.png" />
+                VerticalAlignment="Stretch"
+                x:Name="LiraButton">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="30"
+                        Foreground="#EAEAF0"
+                        HorizontalAlignment="Center"
+                        Text="Ліра" />
+                    <Image Source="../Assets/Hero/Lira.png" />
+                </StackPanel>
             </Button>
             <Button
                 Background="#2E2E48"
+                Click="Select_Button"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch">
-                <Image Source="../Assets/Hero/Selin.png" />
+                VerticalAlignment="Stretch"
+                x:Name="SelinButton">
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="30"
+                        Foreground="#EAEAF0"
+                        HorizontalAlignment="Center"
+                        Text="Селін" />
+                    <Image Source="../Assets/Hero/Selin.png" />
+                </StackPanel>
             </Button>
             <Button
                 Background="#2E2E48"
+                Click="Select_Button"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch">
-                <Image Source="../Assets/Hero/Kael.png" />
+                VerticalAlignment="Stretch"
+                x:Name="KaelButton">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="30"
+                        Foreground="#EAEAF0"
+                        HorizontalAlignment="Center"
+                        Text="Каел" />
+                    <Image Source="../Assets/Hero/Kael.png" />
+                </StackPanel>
             </Button>
         </UniformGrid>
 
@@ -88,10 +161,12 @@
 
             <TextBlock
                 FontSize="36"
+                Foreground="#EAEAF0"
                 Grid.Row="0"
                 HorizontalAlignment="Center"
                 Margin="0,30,0,0"
-                Text="Name" />
+                Text="Оберіть героя"
+                x:Name="heroNameText" />
 
             <Border
                 Background="#7C5CFF"
@@ -101,33 +176,41 @@
                 Grid.Row="1"
                 Margin="15"
                 MaxHeight="550"
-                MaxWidth="350" />
+                MaxWidth="350">
+                <Image x:Name="selectedHeroImage" />
+            </Border>
             <UniformGrid
                 Columns="2"
                 Grid.Row="2"
                 HorizontalAlignment="Center"
                 Margin="30,15"
                 Rows="2">
+
                 <TextBlock
-                    FontSize="36"
+                    FontSize="20"
                     Foreground="#EAEAF0"
                     Margin="15"
-                    Text="Stats" />
+                    Text="HP: 0"
+                    x:Name="heroHealthText" />
                 <TextBlock
-                    FontSize="36"
+                    FontSize="20"
                     Foreground="#EAEAF0"
                     Margin="15"
-                    Text="Stats" />
+                    Text="Stamina: 0"
+                    x:Name="heroStaminaText" />
                 <TextBlock
-                    FontSize="36"
+                    FontSize="20"
                     Foreground="#EAEAF0"
                     Margin="15"
-                    Text="Stats" />
+                    Text="Armor: 0"
+                    x:Name="heroArmorText" />
                 <TextBlock
-                    FontSize="36"
+                    FontSize="20"
                     Foreground="#EAEAF0"
                     Margin="15"
-                    Text="Stats" />
+                    Text="Str: 0"
+                    x:Name="heroStrengthText" />
+
             </UniformGrid>
             <Button
                 Background="#22C55E"
