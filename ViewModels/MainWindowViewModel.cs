@@ -10,7 +10,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        CurrentPage = new InventoryViewModel();
+        CurrentPage = new HeroViewModel();
     }
 
     [RelayCommand]

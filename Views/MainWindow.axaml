@@ -73,7 +73,9 @@
                     CornerRadius="20"
                     Height="100"
                     Margin="0,0,35,0"
-                    Width="100" />
+                    Width="100">
+                    <Image Source="../Assets/inventory.png" />
+                </Button>
                 <Button
                     Background="#2E2E48"
                     BorderThickness="0"
@@ -104,16 +106,28 @@
             </StackPanel>
 
             <Border
-                Background="#2E2E48"
+                Background="#3F3F64"
+                BorderBrush="#2E2E48"
+                BorderThickness="10"
                 CornerRadius="20"
                 Grid.Column="3"
                 Margin="0,15,15,15">
-
-                <TextBlock
-                    FontSize="50"
+                <StackPanel
                     HorizontalAlignment="Center"
-                    Text="1221$"
-                    VerticalAlignment="Center" />
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center">
+                    <Border
+                        Margin="0,0,20,0"
+                        MaxHeight="75"
+                        MaxWidth="75">
+                        <Image Source="../Assets/coin.png" />
+                    </Border>
+                    <TextBlock
+                        FontSize="50"
+                        Text="1221$"
+                        VerticalAlignment="Center" />
+                </StackPanel>
+
             </Border>
 
             <Button

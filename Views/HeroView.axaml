@@ -19,49 +19,65 @@
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch">
+                <Image Source="../Assets/Hero/Elira.png" />
+            </Button>
             <Button
                 Background="#2E2E48"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch">
+                <Image Source="../Assets/Hero/Torin.png" />
+            </Button>
             <Button
                 Background="#2E2E48"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch">
+                <Image Source="../Assets/Hero/Luchiuc.png" />
+            </Button>
             <Button
                 Background="#2E2E48"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch">
+                <Image Source="../Assets/Hero/Aria.png" />
+            </Button>
             <Button
                 Background="#2E2E48"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch">
+                <Image Source="../Assets/Hero/Grim.png" />
+            </Button>
             <Button
                 Background="#2E2E48"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch">
+                <Image Source="../Assets/Hero/Lira.png" />
+            </Button>
             <Button
                 Background="#2E2E48"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch">
+                <Image Source="../Assets/Hero/Selin.png" />
+            </Button>
             <Button
                 Background="#2E2E48"
                 CornerRadius="20"
                 HorizontalAlignment="Stretch"
                 Margin="30"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch">
+                <Image Source="../Assets/Hero/Kael.png" />
+            </Button>
         </UniformGrid>
 
         <!--  Rigth  -->
