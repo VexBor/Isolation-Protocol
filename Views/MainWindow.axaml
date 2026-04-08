@@ -33,126 +33,129 @@
         </DataTemplate>
     </Window.DataTemplates>
 
+    <Grid>
+        <!--
+        <ContentControl Content="{Binding CurrentPage}" />-->
+        <Grid RowDefinitions="Auto, *">
 
-    <Grid RowDefinitions="Auto, *">
-
-        <!--  Top panel  -->
-        <Grid
-            Background="#181825"
-            ColumnDefinitions="Auto, 270, Auto, *, Auto"
-            Grid.Row="0"
-            Height="135"
-            VerticalAlignment="Top">
-
-            <Button
-                Background="#2E2E48"
-                BorderThickness="0"
-                Command="{Binding OpenSettingsCommand}"
-                CornerRadius="20"
-                Grid.Column="0"
-                Height="100"
-                Margin="15"
-                Width="100">
-                <Image Source="../Assets/settings.png" />
-            </Button>
-
-            <StackPanel
-                Grid.Column="2"
-                Orientation="Horizontal"
-                VerticalAlignment="Center">
+            <!--  Top panel  -->
+            <Grid
+                Background="#181825"
+                ColumnDefinitions="Auto, 270, Auto, *, Auto"
+                Grid.Row="0"
+                Height="135"
+                VerticalAlignment="Top">
 
                 <Button
                     Background="#2E2E48"
                     BorderThickness="0"
-                    Command="{Binding OpenHeroMenuCommand}"
+                    Command="{Binding OpenSettingsCommand}"
                     CornerRadius="20"
-                    FontSize="40"
+                    Grid.Column="0"
                     Height="100"
-                    Margin="0,0,35,0"
+                    Margin="15"
                     Width="100">
-                    <Image Source="../Assets/heroIcon.png" />
+                    <Image Source="../Assets/settings.png" />
                 </Button>
-                <Button
-                    Background="#2E2E48"
-                    BorderThickness="0"
-                    Command="{Binding OpenInventoryCommand}"
-                    CornerRadius="20"
-                    Height="100"
-                    Margin="0,0,35,0"
-                    Width="100">
-                    <Image Source="../Assets/inventory.png" />
-                </Button>
-                <Button
-                    Background="#2E2E48"
-                    BorderThickness="0"
-                    Command="{Binding StartGameCommand}"
-                    CornerRadius="20"
-                    Height="100"
-                    Margin="0,0,35,0"
-                    Width="100">
-                    <Image Source="../Assets/shop.png" />
-                </Button>
-                <Button
-                    Background="#2E2E48"
-                    BorderThickness="0"
-                    CornerRadius="20"
-                    Height="100"
-                    Margin="0,0,35,0"
-                    Width="100">
-                    <Image Source="../Assets/info.png" />
-                </Button>
-                <Button
-                    Background="#2E2E48"
-                    BorderThickness="0"
-                    Command="{Binding OpenInfoCommand}"
-                    CornerRadius="20"
-                    Height="100"
-                    Margin="0,0,35,0"
-                    Width="100">
-                    <Image Source="../Assets/question.png" />
-                </Button>
-            </StackPanel>
 
-            <Border
-                Background="#3F3F64"
-                BorderBrush="#2E2E48"
-                BorderThickness="10"
-                CornerRadius="20"
-                Grid.Column="3"
-                Margin="0,15,15,15">
                 <StackPanel
-                    HorizontalAlignment="Center"
+                    Grid.Column="2"
                     Orientation="Horizontal"
                     VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="50"
-                        Foreground="#EAEAF0"
-                        Text="67"
-                        VerticalAlignment="Center" />
-                    <TextBlock
-                        FontSize="50"
-                        Foreground="BlueViolet"
-                        Margin="15,0,0,0"
-                        Text="CR"
-                        VerticalAlignment="Center" />
+
+                    <Button
+                        Background="#2E2E48"
+                        BorderThickness="0"
+                        Command="{Binding OpenHeroMenuCommand}"
+                        CornerRadius="20"
+                        FontSize="40"
+                        Height="100"
+                        Margin="0,0,35,0"
+                        Width="100">
+                        <Image Source="../Assets/heroIcon.png" />
+                    </Button>
+                    <Button
+                        Background="#2E2E48"
+                        BorderThickness="0"
+                        Command="{Binding OpenInventoryCommand}"
+                        CornerRadius="20"
+                        Height="100"
+                        Margin="0,0,35,0"
+                        Width="100">
+                        <Image Source="../Assets/inventory.png" />
+                    </Button>
+                    <Button
+                        Background="#2E2E48"
+                        BorderThickness="0"
+                        Command="{Binding StartGameCommand}"
+                        CornerRadius="20"
+                        Height="100"
+                        Margin="0,0,35,0"
+                        Width="100">
+                        <Image Source="../Assets/shop.png" />
+                    </Button>
+                    <Button
+                        Background="#2E2E48"
+                        BorderThickness="0"
+                        CornerRadius="20"
+                        Height="100"
+                        Margin="0,0,35,0"
+                        Width="100">
+                        <Image Source="../Assets/info.png" />
+                    </Button>
+                    <Button
+                        Background="#2E2E48"
+                        BorderThickness="0"
+                        Command="{Binding OpenInfoCommand}"
+                        CornerRadius="20"
+                        Height="100"
+                        Margin="0,0,35,0"
+                        Width="100">
+                        <Image Source="../Assets/question.png" />
+                    </Button>
                 </StackPanel>
 
-            </Border>
+                <Border
+                    Background="#3F3F64"
+                    BorderBrush="#2E2E48"
+                    BorderThickness="10"
+                    CornerRadius="20"
+                    Grid.Column="3"
+                    Margin="0,15,15,15">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            FontSize="50"
+                            Foreground="#EAEAF0"
+                            Text="67"
+                            VerticalAlignment="Center" />
+                        <TextBlock
+                            FontSize="50"
+                            Foreground="BlueViolet"
+                            Margin="15,0,0,0"
+                            Text="CR"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
 
-            <Button
-                Background="#2E2E48"
-                BorderThickness="0"
-                Click="Exit_Click"
-                CornerRadius="20"
-                Grid.Column="4"
-                Height="100"
-                Margin="0,15,15,15"
-                Width="100">
-                <Image Source="../Assets/leave.png" />
-            </Button>
+                </Border>
+
+                <Button
+                    Background="#2E2E48"
+                    BorderThickness="0"
+                    Click="Exit_Click"
+                    CornerRadius="20"
+                    Grid.Column="4"
+                    Height="100"
+                    Margin="0,15,15,15"
+                    Width="100">
+                    <Image Source="../Assets/leave.png" />
+                </Button>
+            </Grid>
+
+            <!--  Base panel  -->
+            <ContentControl Content="{Binding CurrentPage}" Grid.Row="1" />
         </Grid>
-
-        <!--  Base panel  -->
-        <ContentControl Content="{Binding CurrentPage}" Grid.Row="1" />
     </Grid>
 </Window>
