@@ -11,6 +11,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Isolation_Protocol.Models;
+using Isolation_Protocol.ViewModels;
 
 namespace Isolation_Protocol.Views;
 
@@ -59,5 +60,4 @@ public partial class HeroView : UserControl
         heroArmorText.Text = $"Armor: {targetHero.Armor}";
         heroStrengthText.Text = $"Strength: {targetHero.Strength}";
     }
-    
 }

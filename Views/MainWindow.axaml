@@ -28,6 +28,9 @@
         <DataTemplate DataType="{x:Type vm:InfoViewModel}">
             <views:InfoView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PlayerViewModel}">
+            <views:MapView />
+        </DataTemplate>
     </Window.DataTemplates>
 
 
@@ -82,6 +85,7 @@
                 <Button
                     Background="#2E2E48"
                     BorderThickness="0"
+                    Command="{Binding StartGameCommand}"
                     CornerRadius="20"
                     Height="100"
                     Margin="0,0,35,0"
@@ -120,16 +124,16 @@
                     HorizontalAlignment="Center"
                     Orientation="Horizontal"
                     VerticalAlignment="Center">
-                    <Border
-                        Margin="0,0,20,0"
-                        MaxHeight="75"
-                        MaxWidth="75">
-                        <Image Source="../Assets/coin.png" />
-                    </Border>
                     <TextBlock
                         FontSize="50"
                         Foreground="#EAEAF0"
-                        Text="67$"
+                        Text="67"
+                        VerticalAlignment="Center" />
+                    <TextBlock
+                        FontSize="50"
+                        Foreground="BlueViolet"
+                        Margin="15,0,0,0"
+                        Text="CR"
                         VerticalAlignment="Center" />
                 </StackPanel>
 

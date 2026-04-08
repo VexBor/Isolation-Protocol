@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Isolation_Protocol.Views;
 
 namespace Isolation_Protocol.ViewModels;
 
@@ -30,10 +31,16 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         CurrentPage = new HeroViewModel();
     }
-
+    
     [RelayCommand]
     private void OpenInfo()
     {
         CurrentPage = new InfoViewModel();
+    }
+
+    [RelayCommand]
+    private void StartGame()
+    {
+        CurrentPage = new PlayerViewModel();
     }
 }
