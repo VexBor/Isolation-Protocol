@@ -30,4 +30,10 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         CurrentPage = new HeroViewModel();
     }
+
+    [RelayCommand]
+    private void OpenInfo()
+    {
+        CurrentPage = new InfoViewModel();
+    }
 }

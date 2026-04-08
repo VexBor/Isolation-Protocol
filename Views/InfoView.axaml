@@ -1,0 +1,68 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="Isolation_Protocol.Views.InfoView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border Background="#23233A">
+        <Border
+            Background="#15151E"
+            CornerRadius="50"
+            Margin="30">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="40" Spacing="20">
+
+                    <TextBlock
+                        FontSize="32"
+                        FontWeight="Bold"
+                        Foreground="#E5C27C"
+                        Text="Епоха Розколу" />
+
+                    <Separator
+                        Background="#4A2B15"
+                        Height="2"
+                        HorizontalAlignment="Left"
+                        Width="300" />
+
+                    <TextBlock
+                        FontSize="18"
+                        Foreground="#FDF5E6"
+                        LineHeight="28"
+                        Opacity="0.9"
+                        TextWrapping="Wrap">
+                        <Run FontSize="30" Text="🌌Isolation Protocol" />
+                        <LineBreak /><LineBreak />
+                        <Run Text="Передісторія (The Blackout) Рік 2114. Станція «Арка-6» — це автономний науковий вузол, заглиблений на 2 кілометри в надра Землі. Коли на поверхні зник зв’язок з усіма містами, штучний інтелект станції — AEGIS — розцінив це як початок незворотного колапсу цивілізації.  Згідно з директивою №10, AEGIS активував «Протокол Ізоляції». Це означає:  Повне блокування всіх зовнішніх шлюзів.  Переконфігурація внутрішніх приміщень для «максимальної безпеки» (лабіринт).  Класифікація будь-якої біологічної активності, що не перебуває в кріо-смузі, як «потенційне зараження».  Ваша роль Ви — інженер систем життєзабезпечення. Ви прокинулися через збій у кріо-капсулі. У вас немає зброї, лише ваш службовий екзокостюм, який потребує енергії, та базовий доступ до терміналів." />
+                    </TextBlock>
+
+                    <Border
+                        Background="#1E4035"
+                        CornerRadius="8"
+                        Margin="0,30,0,0"
+                        Padding="20">
+                        <StackPanel>
+                            <TextBlock
+                                FontSize="20"
+                                FontWeight="Bold"
+                                Foreground="#E5C27C"
+                                Text="Розробка: Яким Вадим" />
+                            <TextBlock
+                                Foreground="#FDF5E6"
+                                Margin="0,5,0,0"
+                                Text="Рушій: Avalonia UI (C#)" />
+                            <TextBlock
+                                Foreground="#FDF5E6"
+                                Margin="0,5,0,0"
+                                Opacity="0.7"
+                                Text="Версія: 0.1.0 Alpha" />
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Border>
+</UserControl>

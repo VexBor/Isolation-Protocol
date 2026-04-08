@@ -169,8 +169,8 @@
                 x:Name="heroNameText" />
 
             <Border
-                Background="#7C5CFF"
-                BorderBrush="#3F3F64"
+                Background="#1E4035"
+                BorderBrush="#15151E"
                 BorderThickness="10"
                 CornerRadius="20"
                 Grid.Row="1"
@@ -213,7 +213,7 @@
 
             </UniformGrid>
             <Button
-                Background="#22C55E"
+                Background="#8C5A35"
                 CornerRadius="15"
                 FontSize="50"
                 Foreground="#EAEAF0"

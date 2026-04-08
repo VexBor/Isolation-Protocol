@@ -31,6 +31,8 @@ public partial class HeroView : UserControl
             var str = File.ReadAllText(_heroPath);
             heroes = JsonSerializer.Deserialize<List<Hero>>(str);
         }
+        
+        Select(heroes[0]);
     }
 
     private void Select_Button(object? sender, RoutedEventArgs e)
@@ -41,15 +43,21 @@ public partial class HeroView : UserControl
 
             if (targetHero != null)
             {
-                var uri = new Uri($"avares://{_assemblyName}/{targetHero.ImagePath}");
-                
-                selectedHeroImage.Source = new Bitmap(AssetLoader.Open(uri));
-                heroNameText.Text = targetHero.Name;
-                heroHealthText.Text = $"HP: {targetHero.Health}";
-                heroStaminaText.Text = $"Stamina: {targetHero.Stamina}";
-                heroArmorText.Text = $"Armor: {targetHero.Armor}";
-                heroStrengthText.Text = $"Strength: {targetHero.Strength}";
+                Select(targetHero);
             }
         }
     }
+
+    private void Select(Hero targetHero)
+    {
+        var uri = new Uri($"avares://{_assemblyName}/{targetHero.ImagePath}");
+                
+        selectedHeroImage.Source = new Bitmap(AssetLoader.Open(uri));
+        heroNameText.Text = targetHero.Name;
+        heroHealthText.Text = $"HP: {targetHero.Health}";
+        heroStaminaText.Text = $"Stamina: {targetHero.Stamina}";
+        heroArmorText.Text = $"Armor: {targetHero.Armor}";
+        heroStrengthText.Text = $"Strength: {targetHero.Strength}";
+    }
+    
 }

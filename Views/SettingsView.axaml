@@ -106,16 +106,16 @@
                             Grid.Column="1"
                             SelectedIndex="0"
                             x:Name="languageComboBox">
-                            <ComboBoxItem Content="Українська" Tag="uk" />
+                            <ComboBoxItem Content="Čeština" Tag="cs" />
+                            <ComboBoxItem Content="Deutsch" Tag="de" />
                             <ComboBoxItem Content="English" Tag="en" />
-                            <ComboBoxItem Content="Китайська" Tag="zh" />
-                            <ComboBoxItem Content="Японська" Tag="ja" />
-                            <ComboBoxItem Content="Німецька" Tag="de" />
-                            <ComboBoxItem Content="Словацька" Tag="sk" />
-                            <ComboBoxItem Content="Польська" Tag="pl" />
-                            <ComboBoxItem Content="Чеська" Tag="cs" />
-                            <ComboBoxItem Content="Португальська" Tag="pt" />
-                            <ComboBoxItem Content="Корейська" Tag="ko" />
+                            <ComboBoxItem Content="Polski" Tag="pl" />
+                            <ComboBoxItem Content="Português" Tag="pt" />
+                            <ComboBoxItem Content="Slovenčina" Tag="sk" />
+                            <ComboBoxItem Content="Українська" Tag="uk" />
+                            <ComboBoxItem Content="中文" Tag="zh" />
+                            <ComboBoxItem Content="日本語" Tag="ja" />
+                            <ComboBoxItem Content="한국어" Tag="ko" />
                         </ComboBox>
                     </Grid>
                 </StackPanel>

@@ -48,7 +48,7 @@ public partial class SettingsView : UserControl
         {
             Volume = (int)volumeSlider.Value,
             MusicVolume = (int)musicSlider.Value,
-            Language = selectedItemdd
+            Language = selectedItem
         };
 
         string json = JsonSerializer.Serialize(newSettings);
