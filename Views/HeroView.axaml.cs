@@ -40,7 +40,7 @@ public partial class HeroView : UserControl
     {
         if (sender is Button clickedButton)
         {
-            var targetHero = heroes.FirstOrDefault(hero => hero.Name + "Button" == clickedButton.Name);
+            var targetHero = heroes.FirstOrDefault(hero => hero.Name == (string)clickedButton.Tag!);
 
             if (targetHero != null)
             {

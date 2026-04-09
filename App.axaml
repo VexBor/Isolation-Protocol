@@ -1,14 +1,18 @@
-<Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="Isolation_Protocol.App"
-             xmlns:local="using:Isolation_Protocol"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+<Application
+    RequestedThemeVariant="Default"
+    x:Class="Isolation_Protocol.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:local="using:Isolation_Protocol"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Application.Styles>
+        <StyleInclude Source="/Styles/Menu.axaml" />
+    </Application.Styles>
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-  
+
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>

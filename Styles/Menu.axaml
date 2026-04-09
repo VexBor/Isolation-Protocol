@@ -1,0 +1,77 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="Button.Slot">
+        <Setter Property="Background" Value="#2E2E48" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="30" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+
+        <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="#00ff41" />
+            <Setter Property="Foreground" Value="#EAEAF0" />
+            <Setter Property="FontSize" Value="55" />
+        </Style>
+    </Style>
+
+    <Style Selector="Button.Slot.Menu">
+        <Setter Property="Margin" Value="15" />
+        <Setter Property="Height" Value="100" />
+        <Setter Property="Width" Value="100" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <Style Selector="Button.Slot TextBlock">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="Foreground" Value="#EAEAF0" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="TextBlock.Title">
+        <Setter Property="FontSize" Value="36" />
+        <Setter Property="Foreground" Value="#EAEAF0" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,30,0,0" />
+    </Style>
+
+    <Style Selector="TextBlock.Title.Balance">
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="FontSize" Value="50" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="TextBlock.BaseText">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Foreground" Value="#EAEAF0" />
+        <Setter Property="Margin" Value="15" />
+    </Style>
+
+    <Style Selector="Button.BaseButon">
+        <Setter Property="Background" Value="#8C5A35" />
+        <Setter Property="CornerRadius" Value="15" />
+        <Setter Property="FontSize" Value="50" />
+        <Setter Property="Foreground" Value="#EAEAF0" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="30,0,30,30" />
+
+        <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="BorderBrush" Value="#00ff41" />
+            <Setter Property="Background" Value="#8C5A35" />
+            <Setter Property="Foreground" Value="#EAEAF0" />
+            <Setter Property="FontSize" Value="55" />
+        </Style>
+    </Style>
+
+    <Style Selector="Border.BalanceBg">
+        <Setter Property="Background" Value="#3F3F64" />
+        <Setter Property="BorderBrush" Value="#2E2E48" />
+        <Setter Property="BorderThickness" Value="10" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="Margin" Value="0,15,15,15" />
+    </Style>
+
+    <Style Selector="Border.BalanceBg StackPanel">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+</Styles>

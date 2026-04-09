@@ -46,14 +46,9 @@
                 VerticalAlignment="Top">
 
                 <Button
-                    Background="#2E2E48"
-                    BorderThickness="0"
+                    Classes="Slot Menu"
                     Command="{Binding OpenSettingsCommand}"
-                    CornerRadius="20"
-                    Grid.Column="0"
-                    Height="100"
-                    Margin="15"
-                    Width="100">
+                    Grid.Column="0">
                     <Image Source="../Assets/settings.png" />
                 </Button>
 
@@ -63,91 +58,46 @@
                     VerticalAlignment="Center">
 
                     <Button
-                        Background="#2E2E48"
-                        BorderThickness="0"
+                        Classes="Slot Menu"
                         Command="{Binding OpenHeroMenuCommand}"
-                        CornerRadius="20"
-                        FontSize="40"
-                        Height="100"
-                        Margin="0,0,35,0"
-                        Width="100">
+                        Margin="0,0,35,0">
                         <Image Source="../Assets/heroIcon.png" />
                     </Button>
                     <Button
-                        Background="#2E2E48"
-                        BorderThickness="0"
+                        Classes="Slot Menu"
                         Command="{Binding OpenInventoryCommand}"
-                        CornerRadius="20"
-                        Height="100"
-                        Margin="0,0,35,0"
-                        Width="100">
+                        Margin="0,0,35,0">
                         <Image Source="../Assets/inventory.png" />
                     </Button>
-                    <Button
-                        Background="#2E2E48"
-                        BorderThickness="0"
-                        CornerRadius="20"
-                        Height="100"
-                        Margin="0,0,35,0"
-                        Width="100">
+                    <Button Classes="Slot Menu" Margin="0,0,35,0">
                         <Image Source="../Assets/shop.png" />
                     </Button>
-                    <Button
-                        Background="#2E2E48"
-                        BorderThickness="0"
-                        CornerRadius="20"
-                        Height="100"
-                        Margin="0,0,35,0"
-                        Width="100">
+                    <Button Classes="Slot Menu" Margin="0,0,35,0">
                         <Image Source="../Assets/info.png" />
                     </Button>
                     <Button
-                        Background="#2E2E48"
-                        BorderThickness="0"
+                        Classes="Slot Menu"
                         Command="{Binding OpenInfoCommand}"
-                        CornerRadius="20"
-                        Height="100"
-                        Margin="0,0,35,0"
-                        Width="100">
+                        Margin="0,0,35,0">
                         <Image Source="../Assets/question.png" />
                     </Button>
                 </StackPanel>
 
-                <Border
-                    Background="#3F3F64"
-                    BorderBrush="#2E2E48"
-                    BorderThickness="10"
-                    CornerRadius="20"
-                    Grid.Column="3"
-                    Margin="0,15,15,15">
-                    <StackPanel
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal"
-                        VerticalAlignment="Center">
+                <Border Classes="BalanceBg" Grid.Column="3">
+                    <StackPanel>
+                        <TextBlock Classes="Title Balance" Text="67" />
                         <TextBlock
-                            FontSize="50"
-                            Foreground="#EAEAF0"
-                            Text="67"
-                            VerticalAlignment="Center" />
-                        <TextBlock
-                            FontSize="50"
+                            Classes="Title Balance"
                             Foreground="BlueViolet"
-                            Margin="15,0,0,0"
-                            Text="CR"
-                            VerticalAlignment="Center" />
+                            Text="CR" />
                     </StackPanel>
 
                 </Border>
 
                 <Button
-                    Background="#2E2E48"
-                    BorderThickness="0"
+                    Classes="Slot Menu"
                     Click="Exit_Click"
-                    CornerRadius="20"
-                    Grid.Column="4"
-                    Height="100"
-                    Margin="0,15,15,15"
-                    Width="100">
+                    Grid.Column="4">
                     <Image Source="../Assets/leave.png" />
                 </Button>
             </Grid>

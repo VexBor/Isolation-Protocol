@@ -16,139 +16,75 @@
             Grid.Column="0"
             Rows="2">
             <Button
-                Background="#2E2E48"
+                Classes="Slot"
                 Click="Select_Button"
-                CornerRadius="20"
-                HorizontalAlignment="Stretch"
-                Margin="30"
-                VerticalAlignment="Stretch"
-                x:Name="EliraButton">
+                Tag="Elira">
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="30"
-                        Foreground="#EAEAF0"
-                        HorizontalAlignment="Center"
-                        Text="Еліра" />
+                    <TextBlock Text="Еліра" />
                     <Image Source="../Assets/Hero/Elira.png" />
                 </StackPanel>
             </Button>
             <Button
-                Background="#2E2E48"
+                Classes="Slot"
                 Click="Select_Button"
-                CornerRadius="20"
-                HorizontalAlignment="Stretch"
-                Margin="30"
-                VerticalAlignment="Stretch"
-                x:Name="TorinButton">
+                Tag="Torin">
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="30"
-                        Foreground="#EAEAF0"
-                        HorizontalAlignment="Center"
-                        Text="Торін" />
+                    <TextBlock Text="Торін" />
                     <Image Source="../Assets/Hero/Torin.png" />
                 </StackPanel>
             </Button>
             <Button
-                Background="#2E2E48"
+                Classes="Slot"
                 Click="Select_Button"
-                CornerRadius="20"
-                HorizontalAlignment="Stretch"
-                Margin="30"
-                VerticalAlignment="Stretch"
-                x:Name="LuciusButton">
+                Tag="Lucius">
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="30"
-                        Foreground="#EAEAF0"
-                        HorizontalAlignment="Center"
-                        Text="Люціус" />
+                    <TextBlock Text="Люціус" />
                     <Image Source="../Assets/Hero/Lucius.png" />
                 </StackPanel>
             </Button>
             <Button
-                Background="#2E2E48"
+                Classes="Slot"
                 Click="Select_Button"
-                CornerRadius="20"
-                HorizontalAlignment="Stretch"
-                Margin="30"
-                VerticalAlignment="Stretch"
-                x:Name="AriaButton">
+                Tag="Aria">
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="30"
-                        Foreground="#EAEAF0"
-                        HorizontalAlignment="Center"
-                        Text="Арія" />
+                    <TextBlock Text="Арія" />
                     <Image Source="../Assets/Hero/Aria.png" />
                 </StackPanel>
             </Button>
             <Button
-                Background="#2E2E48"
+                Classes="Slot"
                 Click="Select_Button"
-                CornerRadius="20"
-                HorizontalAlignment="Stretch"
-                Margin="30"
-                VerticalAlignment="Stretch"
-                x:Name="GrimButton">
+                Tag="Grim">
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="30"
-                        Foreground="#EAEAF0"
-                        HorizontalAlignment="Center"
-                        Text="Грим" />
+                    <TextBlock Text="Грим" />
                     <Image Source="../Assets/Hero/Grim.png" />
                 </StackPanel>
             </Button>
             <Button
-                Background="#2E2E48"
+                Classes="Slot"
                 Click="Select_Button"
-                CornerRadius="20"
-                HorizontalAlignment="Stretch"
-                Margin="30"
-                VerticalAlignment="Stretch"
-                x:Name="LiraButton">
+                Tag="Lira">
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="30"
-                        Foreground="#EAEAF0"
-                        HorizontalAlignment="Center"
-                        Text="Ліра" />
+                    <TextBlock Text="Ліра" />
                     <Image Source="../Assets/Hero/Lira.png" />
                 </StackPanel>
             </Button>
             <Button
-                Background="#2E2E48"
+                Classes="Slot"
                 Click="Select_Button"
-                CornerRadius="20"
-                HorizontalAlignment="Stretch"
-                Margin="30"
-                VerticalAlignment="Stretch"
-                x:Name="SelinButton">
+                Tag="Selin">
 
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="30"
-                        Foreground="#EAEAF0"
-                        HorizontalAlignment="Center"
-                        Text="Селін" />
+                    <TextBlock Text="Селін" />
                     <Image Source="../Assets/Hero/Selin.png" />
                 </StackPanel>
             </Button>
             <Button
-                Background="#2E2E48"
+                Classes="Slot"
                 Click="Select_Button"
-                CornerRadius="20"
-                HorizontalAlignment="Stretch"
-                Margin="30"
-                VerticalAlignment="Stretch"
-                x:Name="KaelButton">
+                Tag="Kael">
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="30"
-                        Foreground="#EAEAF0"
-                        HorizontalAlignment="Center"
-                        Text="Каел" />
+                    <TextBlock Text="Каел" />
                     <Image Source="../Assets/Hero/Kael.png" />
                 </StackPanel>
             </Button>
@@ -161,11 +97,8 @@
             RowDefinitions="Auto, *, Auto, Auto">
 
             <TextBlock
-                FontSize="36"
-                Foreground="#EAEAF0"
+                Classes="Title"
                 Grid.Row="0"
-                HorizontalAlignment="Center"
-                Margin="0,30,0,0"
                 Text="Оберіть героя"
                 x:Name="heroNameText" />
 
@@ -188,40 +121,27 @@
                 Rows="2">
 
                 <TextBlock
-                    FontSize="20"
-                    Foreground="#EAEAF0"
-                    Margin="15"
+                    Classes="BaseText"
                     Text="HP: 0"
                     x:Name="heroHealthText" />
                 <TextBlock
-                    FontSize="20"
-                    Foreground="#EAEAF0"
-                    Margin="15"
+                    Classes="BaseText"
                     Text="Stamina: 0"
                     x:Name="heroStaminaText" />
                 <TextBlock
-                    FontSize="20"
-                    Foreground="#EAEAF0"
-                    Margin="15"
+                    Classes="BaseText"
                     Text="Armor: 0"
                     x:Name="heroArmorText" />
                 <TextBlock
-                    FontSize="20"
-                    Foreground="#EAEAF0"
-                    Margin="15"
+                    Classes="BaseText"
                     Text="Str: 0"
                     x:Name="heroStrengthText" />
 
             </UniformGrid>
             <Button
-                Background="#8C5A35"
+                Classes="BaseButon"
                 Command="{Binding $parent[Window].DataContext.StartGameCommand}"
-                CornerRadius="15"
-                FontSize="50"
-                Foreground="#EAEAF0"
                 Grid.Row="3"
-                HorizontalAlignment="Center"
-                Margin="30,0,30,30"
                 x:CompileBindings="False">
                 Start
             </Button>
