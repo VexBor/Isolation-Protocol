@@ -6,10 +6,10 @@ public partial class PlayerViewModel : ViewModelBase
 {
     // Позиція
     [ObservableProperty]
-    private double _x = 100;
+    private double _x = 50;
 
     [ObservableProperty]
-    private double _y = 100;
+    private double _y = 50;
 
     public double Width { get; } = 32;
     public double Height { get; } = 32;

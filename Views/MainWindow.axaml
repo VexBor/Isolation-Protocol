@@ -34,8 +34,6 @@
     </Window.DataTemplates>
 
     <Grid>
-        <!--
-        <ContentControl Content="{Binding CurrentPage}" />-->
         <Grid RowDefinitions="Auto, *">
 
             <!--  Top panel  -->
@@ -44,6 +42,7 @@
                 ColumnDefinitions="Auto, 270, Auto, *, Auto"
                 Grid.Row="0"
                 Height="135"
+                IsVisible="{Binding !IsGameStarted}"
                 VerticalAlignment="Top">
 
                 <Button
@@ -87,7 +86,6 @@
                     <Button
                         Background="#2E2E48"
                         BorderThickness="0"
-                        Command="{Binding StartGameCommand}"
                         CornerRadius="20"
                         Height="100"
                         Margin="0,0,35,0"

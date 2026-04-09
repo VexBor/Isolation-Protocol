@@ -8,7 +8,14 @@ public partial class MainWindowViewModel : ViewModelBase
 {
     [ObservableProperty]
     private ViewModelBase _currentPage;
+    
+    [ObservableProperty]
+    private bool _isTopPanelVisible = true;
 
+    [ObservableProperty]
+    private bool _isGameStarted = false;
+    
+    
     public MainWindowViewModel()
     {
         CurrentPage = new HeroViewModel();
@@ -42,5 +49,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private void StartGame()
     {
         CurrentPage = new PlayerViewModel();
+        IsTopPanelVisible = false;
+        IsGameStarted = true;
     }
 }

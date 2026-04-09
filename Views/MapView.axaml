@@ -14,7 +14,11 @@
     </Design.DataContext>
 
     <Grid Background="#1a1a1a">
-        <Canvas Background="#050505" Name="GameCanvas">
+        <Canvas
+            Background="#050505"
+            Height="900"
+            Name="GameCanvas"
+            Width="900">
 
             <Border
                 Background="#00ff41"

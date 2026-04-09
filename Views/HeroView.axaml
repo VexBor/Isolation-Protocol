@@ -6,6 +6,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Isolation_Protocol.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid ColumnDefinitions="3*, *">
         <!--  Left  -->
@@ -214,12 +215,14 @@
             </UniformGrid>
             <Button
                 Background="#8C5A35"
+                Command="{Binding $parent[Window].DataContext.StartGameCommand}"
                 CornerRadius="15"
                 FontSize="50"
                 Foreground="#EAEAF0"
                 Grid.Row="3"
                 HorizontalAlignment="Center"
-                Margin="30,0,30,30">
+                Margin="30,0,30,30"
+                x:CompileBindings="False">
                 Start
             </Button>
         </Grid>

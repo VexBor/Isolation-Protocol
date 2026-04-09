@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Intrinsics.X86;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -53,6 +54,11 @@ public partial class MapView : UserControl
         {
             vm.X += direction.X * vm.Speed * dt;
             vm.Y += direction.Y * vm.Speed * dt;
+            
+            if(vm.X < 0) vm.X = 0;
+            if (vm.X > GameCanvas.Width - vm.Width) vm.X = GameCanvas.Width - vm.Width;
+            if (vm.Y < 0) vm.Y = 0;
+            if( vm.Y > GameCanvas.Height - vm.Height) vm.Y = GameCanvas.Height - vm.Height;
         }
     }
 }
