@@ -14,12 +14,9 @@
     </Design.DataContext>
 
     <Grid Background="#1a1a1a">
-        <Canvas
-            Background="#050505"
-            Height="900"
-            Name="GameCanvas"
-            Width="900">
+        <Canvas Background="#050505" Name="GameCanvas">
 
+            <!--  Гравець  -->
             <Border
                 Background="#00ff41"
                 Canvas.Left="{Binding X}"
@@ -34,7 +31,252 @@
                         Opacity="0.5" />
                 </Border.Effect>
             </Border>
-
         </Canvas>
+
+        <!--  Інший візуал  -->
+
+        <Border
+            Background="#111111"
+            BorderBrush="#333333"
+            BorderThickness="0,2,0,0"
+            CornerRadius="8,8,0,0"
+            Height="140"
+            Margin="10,0,10,0"
+            VerticalAlignment="Bottom">
+            <Grid ColumnDefinitions="200, *, 250" Margin="10">
+
+                <!--  Герой (Стати)  -->
+                <Grid
+                    Grid.Column="0"
+                    Margin="0,0,10,0"
+                    RowDefinitions="*, Auto, Auto">
+                    <Border
+                        Background="#1a1a1a"
+                        BorderBrush="#444444"
+                        BorderThickness="2"
+                        CornerRadius="4"
+                        Grid.Row="0">
+                        <TextBlock
+                            FontSize="20"
+                            Foreground="#444444"
+                            HorizontalAlignment="Center"
+                            Text="HERO"
+                            VerticalAlignment="Center" />
+                    </Border>
+
+                    <ProgressBar
+                        Background="#331111"
+                        CornerRadius="2"
+                        Foreground="#ff3b3b"
+                        Grid.Row="1"
+                        Height="20"
+                        Margin="0,5,0,0"
+                        Maximum="100"
+                        Value="80" />
+
+                    <ProgressBar
+                        Background="#112233"
+                        CornerRadius="2"
+                        Foreground="#00d2ff"
+                        Grid.Row="2"
+                        Height="15"
+                        Margin="0,3,0,0"
+                        Maximum="100"
+                        Value="60" />
+                </Grid>
+
+                <!--  Скіли  -->
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center">
+
+                    <Grid
+                        Height="60"
+                        Margin="5,0"
+                        Width="60">
+                        <Border
+                            Background="#1a1a1a"
+                            BorderBrush="#00ff41"
+                            BorderThickness="1"
+                            CornerRadius="4">
+                            <TextBlock
+                                FontSize="24"
+                                Foreground="#00ff41"
+                                HorizontalAlignment="Center"
+                                Opacity="0.3"
+                                Text="1"
+                                VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="#00d2ff"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,3,1"
+                            Text="50"
+                            VerticalAlignment="Bottom" />
+                    </Grid>
+
+                    <Grid
+                        Height="60"
+                        Margin="5,0"
+                        Width="60">
+                        <Border
+                            Background="#1a1a1a"
+                            BorderBrush="#00ff41"
+                            BorderThickness="1"
+                            CornerRadius="4">
+                            <TextBlock
+                                FontSize="24"
+                                Foreground="#00ff41"
+                                HorizontalAlignment="Center"
+                                Opacity="0.3"
+                                Text="2"
+                                VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+
+                    <Grid
+                        Height="60"
+                        Margin="5,0"
+                        Width="60">
+                        <Border
+                            Background="#1a1a1a"
+                            BorderBrush="#00ff41"
+                            BorderThickness="1"
+                            CornerRadius="4">
+                            <TextBlock
+                                FontSize="24"
+                                Foreground="#00ff41"
+                                HorizontalAlignment="Center"
+                                Opacity="0.3"
+                                Text="3"
+                                VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+
+                    <Grid
+                        Height="70"
+                        Margin="10,0,5,0"
+                        VerticalAlignment="Bottom"
+                        Width="70">
+                        <Border
+                            Background="#1a1a1a"
+                            BorderBrush="#ffac00"
+                            BorderThickness="2"
+                            CornerRadius="4">
+                            <TextBlock
+                                FontSize="28"
+                                FontWeight="Bold"
+                                Foreground="#ffac00"
+                                HorizontalAlignment="Center"
+                                Opacity="0.5"
+                                Text="4"
+                                VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+
+                </StackPanel>
+
+                <!--  Інвентарь  -->
+                <UniformGrid
+                    Columns="3"
+                    Grid.Column="2"
+                    Margin="10,0,0,0"
+                    Rows="2">
+
+                    <Border
+                        Background="#151515"
+                        BorderBrush="#333333"
+                        BorderThickness="1"
+                        CornerRadius="2"
+                        Margin="2">
+                        <TextBlock
+                            FontSize="10"
+                            Foreground="#333333"
+                            HorizontalAlignment="Left"
+                            Margin="2"
+                            Text="1"
+                            VerticalAlignment="Top" />
+                    </Border>
+
+                    <Border
+                        Background="#151515"
+                        BorderBrush="#333333"
+                        BorderThickness="1"
+                        CornerRadius="2"
+                        Margin="2">
+                        <TextBlock
+                            FontSize="10"
+                            Foreground="#333333"
+                            HorizontalAlignment="Left"
+                            Margin="2"
+                            Text="2"
+                            VerticalAlignment="Top" />
+                    </Border>
+
+                    <Border
+                        Background="#151515"
+                        BorderBrush="#333333"
+                        BorderThickness="1"
+                        CornerRadius="2"
+                        Margin="2">
+                        <TextBlock
+                            FontSize="10"
+                            Foreground="#333333"
+                            HorizontalAlignment="Left"
+                            Margin="2"
+                            Text="3"
+                            VerticalAlignment="Top" />
+                    </Border>
+
+                    <Border
+                        Background="#151515"
+                        BorderBrush="#333333"
+                        BorderThickness="1"
+                        CornerRadius="2"
+                        Margin="2">
+                        <TextBlock
+                            FontSize="10"
+                            Foreground="#333333"
+                            HorizontalAlignment="Left"
+                            Margin="2"
+                            Text="4"
+                            VerticalAlignment="Top" />
+                    </Border>
+
+                    <Border
+                        Background="#151515"
+                        BorderBrush="#333333"
+                        BorderThickness="1"
+                        CornerRadius="2"
+                        Margin="2">
+                        <TextBlock
+                            FontSize="10"
+                            Foreground="#333333"
+                            HorizontalAlignment="Left"
+                            Margin="2"
+                            Text="5"
+                            VerticalAlignment="Top" />
+                    </Border>
+
+                    <Border
+                        Background="#151515"
+                        BorderBrush="#333333"
+                        BorderThickness="1"
+                        CornerRadius="2"
+                        Margin="2">
+                        <TextBlock
+                            FontSize="10"
+                            Foreground="#333333"
+                            HorizontalAlignment="Left"
+                            Margin="2"
+                            Text="6"
+                            VerticalAlignment="Top" />
+                    </Border>
+                </UniformGrid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
