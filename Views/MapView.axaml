@@ -12,7 +12,9 @@
     <Design.DataContext>
         <viewModels1:PlayerViewModel />
     </Design.DataContext>
-
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/GameHud.axaml" />
+    </UserControl.Styles>
     <Grid Background="#1a1a1a">
         <Canvas Background="#050505" Name="GameCanvas">
 
@@ -36,14 +38,12 @@
         <!--  Інший візуал  -->
 
         <Border
-            Background="#111111"
-            BorderBrush="#333333"
             BorderThickness="0,2,0,0"
             CornerRadius="8,8,0,0"
-            Height="140"
+            Height="200"
             Margin="10,0,10,0"
             VerticalAlignment="Bottom">
-            <Grid ColumnDefinitions="200, *, 250" Margin="10">
+            <Grid ColumnDefinitions="200, *, 300" Margin="10">
 
                 <!--  Герой (Стати)  -->
                 <Grid
@@ -65,23 +65,13 @@
                     </Border>
 
                     <ProgressBar
-                        Background="#331111"
-                        CornerRadius="2"
-                        Foreground="#ff3b3b"
+                        Classes="HpBar"
                         Grid.Row="1"
-                        Height="20"
-                        Margin="0,5,0,0"
-                        Maximum="100"
                         Value="80" />
 
                     <ProgressBar
-                        Background="#112233"
-                        CornerRadius="2"
-                        Foreground="#00d2ff"
+                        Classes="StaminaBar"
                         Grid.Row="2"
-                        Height="15"
-                        Margin="0,3,0,0"
-                        Maximum="100"
                         Value="60" />
                 </Grid>
 
@@ -90,90 +80,30 @@
                     Grid.Column="1"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Bottom">
 
-                    <Grid
-                        Height="60"
-                        Margin="5,0"
-                        Width="60">
-                        <Border
-                            Background="#1a1a1a"
-                            BorderBrush="#00ff41"
-                            BorderThickness="1"
-                            CornerRadius="4">
-                            <TextBlock
-                                FontSize="24"
-                                Foreground="#00ff41"
-                                HorizontalAlignment="Center"
-                                Opacity="0.3"
-                                Text="1"
-                                VerticalAlignment="Center" />
+                    <Grid Classes="SkillPanel">
+                        <Border Classes="Ability">
+                            <TextBlock Text="1" />
                         </Border>
-                        <TextBlock
-                            FontSize="12"
-                            Foreground="#00d2ff"
-                            HorizontalAlignment="Right"
-                            Margin="0,0,3,1"
-                            Text="50"
-                            VerticalAlignment="Bottom" />
+                        <TextBlock Classes="StaminaCost" Text="50" />
                     </Grid>
 
-                    <Grid
-                        Height="60"
-                        Margin="5,0"
-                        Width="60">
-                        <Border
-                            Background="#1a1a1a"
-                            BorderBrush="#00ff41"
-                            BorderThickness="1"
-                            CornerRadius="4">
-                            <TextBlock
-                                FontSize="24"
-                                Foreground="#00ff41"
-                                HorizontalAlignment="Center"
-                                Opacity="0.3"
-                                Text="2"
-                                VerticalAlignment="Center" />
+                    <Grid Classes="SkillPanel">
+                        <Border Classes="Ability">
+                            <TextBlock Text="2" />
                         </Border>
                     </Grid>
 
-                    <Grid
-                        Height="60"
-                        Margin="5,0"
-                        Width="60">
-                        <Border
-                            Background="#1a1a1a"
-                            BorderBrush="#00ff41"
-                            BorderThickness="1"
-                            CornerRadius="4">
-                            <TextBlock
-                                FontSize="24"
-                                Foreground="#00ff41"
-                                HorizontalAlignment="Center"
-                                Opacity="0.3"
-                                Text="3"
-                                VerticalAlignment="Center" />
+                    <Grid Classes="SkillPanel">
+                        <Border Classes="Ability">
+                            <TextBlock Text="3" />
                         </Border>
                     </Grid>
 
-                    <Grid
-                        Height="70"
-                        Margin="10,0,5,0"
-                        VerticalAlignment="Bottom"
-                        Width="70">
-                        <Border
-                            Background="#1a1a1a"
-                            BorderBrush="#ffac00"
-                            BorderThickness="2"
-                            CornerRadius="4">
-                            <TextBlock
-                                FontSize="28"
-                                FontWeight="Bold"
-                                Foreground="#ffac00"
-                                HorizontalAlignment="Center"
-                                Opacity="0.5"
-                                Text="4"
-                                VerticalAlignment="Center" />
+                    <Grid Classes="SkillPanel">
+                        <Border Classes="Ability Ultimate">
+                            <TextBlock Text="4" />
                         </Border>
                     </Grid>
 
@@ -186,94 +116,28 @@
                     Margin="10,0,0,0"
                     Rows="2">
 
-                    <Border
-                        Background="#151515"
-                        BorderBrush="#333333"
-                        BorderThickness="1"
-                        CornerRadius="2"
-                        Margin="2">
-                        <TextBlock
-                            FontSize="10"
-                            Foreground="#333333"
-                            HorizontalAlignment="Left"
-                            Margin="2"
-                            Text="1"
-                            VerticalAlignment="Top" />
+                    <Border Classes="Slot">
+                        <TextBlock Text="1" />
                     </Border>
 
-                    <Border
-                        Background="#151515"
-                        BorderBrush="#333333"
-                        BorderThickness="1"
-                        CornerRadius="2"
-                        Margin="2">
-                        <TextBlock
-                            FontSize="10"
-                            Foreground="#333333"
-                            HorizontalAlignment="Left"
-                            Margin="2"
-                            Text="2"
-                            VerticalAlignment="Top" />
+                    <Border Classes="Slot">
+                        <TextBlock Text="2" />
                     </Border>
 
-                    <Border
-                        Background="#151515"
-                        BorderBrush="#333333"
-                        BorderThickness="1"
-                        CornerRadius="2"
-                        Margin="2">
-                        <TextBlock
-                            FontSize="10"
-                            Foreground="#333333"
-                            HorizontalAlignment="Left"
-                            Margin="2"
-                            Text="3"
-                            VerticalAlignment="Top" />
+                    <Border Classes="Slot">
+                        <TextBlock Text="3" />
                     </Border>
 
-                    <Border
-                        Background="#151515"
-                        BorderBrush="#333333"
-                        BorderThickness="1"
-                        CornerRadius="2"
-                        Margin="2">
-                        <TextBlock
-                            FontSize="10"
-                            Foreground="#333333"
-                            HorizontalAlignment="Left"
-                            Margin="2"
-                            Text="4"
-                            VerticalAlignment="Top" />
+                    <Border Classes="Slot">
+                        <TextBlock Text="4" />
                     </Border>
 
-                    <Border
-                        Background="#151515"
-                        BorderBrush="#333333"
-                        BorderThickness="1"
-                        CornerRadius="2"
-                        Margin="2">
-                        <TextBlock
-                            FontSize="10"
-                            Foreground="#333333"
-                            HorizontalAlignment="Left"
-                            Margin="2"
-                            Text="5"
-                            VerticalAlignment="Top" />
+                    <Border Classes="Slot">
+                        <TextBlock Text="5" />
                     </Border>
 
-                    <Border
-                        Background="#151515"
-                        BorderBrush="#333333"
-                        BorderThickness="1"
-                        CornerRadius="2"
-                        Margin="2">
-                        <TextBlock
-                            FontSize="10"
-                            Foreground="#333333"
-                            HorizontalAlignment="Left"
-                            Margin="2"
-                            Text="6"
-                            VerticalAlignment="Top" />
+                    <Border Classes="Slot">
+                        <TextBlock Text="6" />
                     </Border>
                 </UniformGrid>
             </Grid>
