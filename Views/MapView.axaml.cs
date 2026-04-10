@@ -8,7 +8,7 @@ public partial class MapView : UserControl
     public MapView()
     {
         InitializeComponent();
-        this.AttachedToVisualTree += (s, e) => 
+        AttachedToVisualTree += (s, e) => 
         {
             if (DataContext is MapViewModel vm)
             {
