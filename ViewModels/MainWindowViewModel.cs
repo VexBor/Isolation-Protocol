@@ -10,9 +10,6 @@ public partial class MainWindowViewModel : ViewModelBase
     private ViewModelBase _currentPage;
     
     [ObservableProperty]
-    private bool _isTopPanelVisible = true;
-
-    [ObservableProperty]
     private bool _isGameStarted = false;
     
     
@@ -48,8 +45,7 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand]
     private void StartGame()
     {
-        CurrentPage = new PlayerViewModel();
-        IsTopPanelVisible = false;
+        CurrentPage = new MapViewModel();
         IsGameStarted = true;
     }
 }

@@ -7,11 +7,11 @@ public class GameMap(int width, int height)
     public int Height { get; } = height;
     public MapCell[,] Map { get; } = new MapCell[width, height];
 
-    private void InitializeMap()
+    public void InitializeMap()
     {
         for (int x = 0; x < Width; x++)
         for (int y = 0; y < Height; y++)
-            Map[x, y] = new MapCell(CellType.Wall);
+            Map[x, y] = new MapCell(CellType.Floor);
     }
     
     public MapCell GetCell(int x, int y)

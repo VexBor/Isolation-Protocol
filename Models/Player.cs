@@ -1,10 +1,27 @@
+using ReactiveUI;
+
 namespace Isolation_Protocol.Models;
 
-public class Player
+public class Player : ReactiveObject
 {
-    public double X { get; set; }
-    public double Y { get; set; }
+    private double _x = 100;
+    private double _y = 100;
+
+    public double X
+    {
+        get => _x;
+        set => this.RaiseAndSetIfChanged(ref _x, value); 
+    }
+
+    public double Y
+    {
+        get => _y;
+        set => this.RaiseAndSetIfChanged(ref _y, value);
+    }
+    public int Height { get; set; } = 32;
+    public int Width { get; set; } = 32;
     
+    public int Speed { get; set; } = 200;
     public int Health { get; set; }
     public int Stamina { get; set; }
     public int Armor { get; set; }

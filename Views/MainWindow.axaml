@@ -28,7 +28,7 @@
         <DataTemplate DataType="{x:Type vm:InfoViewModel}">
             <views:InfoView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:PlayerViewModel}">
+        <DataTemplate DataType="{x:Type vm:MapViewModel}">
             <views:MapView />
         </DataTemplate>
     </Window.DataTemplates>

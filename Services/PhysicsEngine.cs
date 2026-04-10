@@ -1,35 +1,32 @@
-using Avalonia;
 using Isolation_Protocol.Models;
 
 namespace Isolation_Protocol.Services;
 
 public class PhysicsEngine
 {
-    private readonly double _playerSize = 30;
-    private readonly double _speed = 200;    // Пікселів на секунду
 
-    public void Update(Player player, GameMap map, Vector inputDirection, double deltaTime)
+    public void Update(Player player, GameMap map, Vector2 inputDirection, double deltaTime)
     {
         // Зміщення
-        double moveX = inputDirection.X * _speed * deltaTime;
-        double moveY = inputDirection.Y * _speed * deltaTime;
+        double moveX = inputDirection.X * player.Speed * deltaTime;
+        double moveY = inputDirection.Y * player.Speed * deltaTime;
 
         // Перевірка
-        if (!IsColliding(player.X + moveX, player.Y, map))
+        if (!IsColliding(player.X + moveX, player.Y, map, player.Height, player.Width))
         {
             player.X += moveX;
         }
         
-        if (!IsColliding(player.X, player.Y + moveY, map))
+        if (!IsColliding(player.X, player.Y + moveY, map, player.Height, player.Width))
         {
             player.Y += moveY;
         }
     }
 
-    private bool IsColliding(double newX, double newY, GameMap map)
+    private bool IsColliding(double newX, double newY, GameMap map, int playerHeight, int playerWidth)
     {
-        double[] checkX = { newX, newX + _playerSize };
-        double[] checkY = { newY, newY + _playerSize };
+        double[] checkX = { newX, newX + playerWidth };
+        double[] checkY = { newY, newY + playerHeight };
 
         foreach (var x in checkX)
         {
