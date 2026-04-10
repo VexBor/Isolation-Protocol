@@ -4,8 +4,8 @@ namespace Isolation_Protocol.Models;
 
 public class Player : ReactiveObject
 {
-    private double _x = 100;
-    private double _y = 100;
+    private double _x = 50;
+    private double _y = 50;
 
     public double X
     {

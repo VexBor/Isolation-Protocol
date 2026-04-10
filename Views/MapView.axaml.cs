@@ -8,6 +8,12 @@ public partial class MapView : UserControl
     public MapView()
     {
         InitializeComponent();
+        this.AttachedToVisualTree += (s, e) => 
+        {
+            if (DataContext is MapViewModel vm)
+            {
+                vm.Renderer.Render(this.GameCanvas);
+            }
+        };
     }
-    
 }

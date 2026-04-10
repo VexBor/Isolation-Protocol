@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Avalonia.Controls;
 using Avalonia.Threading;
 using Isolation_Protocol.Models;
 using Isolation_Protocol.Services;
@@ -9,7 +10,8 @@ namespace Isolation_Protocol.ViewModels;
 public class MapViewModel : ViewModelBase
 {
     public Player Player { get; set; } = new();
-    public GameMap Map { get; set; } = new(500,500);
+    public GameMap Map { get; set; } = new(100,100);
+    public MapRenderer Renderer { get; set; }
 
     private PhysicsEngine _physicsEngine = new PhysicsEngine();
     private Stopwatch _stopwatch = new Stopwatch();
@@ -19,10 +21,11 @@ public class MapViewModel : ViewModelBase
     {
         _stopwatch.Start();
         Map.InitializeMap();
+        Renderer = new MapRenderer(Map);
         
         var timer = new DispatcherTimer(DispatcherPriority.Render)
         {
-            Interval = TimeSpan.FromMilliseconds(1)
+            Interval = TimeSpan.FromMilliseconds(16)
         };
         timer.Tick += (s, e) => OnRender();
         timer.Start();
