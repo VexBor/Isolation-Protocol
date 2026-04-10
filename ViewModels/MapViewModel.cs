@@ -1,8 +1,6 @@
 using System;
 using System.Diagnostics;
 using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Media;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Isolation_Protocol.Models;
@@ -12,16 +10,16 @@ namespace Isolation_Protocol.ViewModels;
 
 public partial class MapViewModel : ViewModelBase
 {
-    public Player Player { get; set; } = new();
-    public GameMap Map { get; set; } = new(100,100);
-    public MapRenderer Renderer { get; set; }
-    private double _viewWidth = 1920;
-    private double _viewHeight = 1080;
-    
     [ObservableProperty]
     private Vector _scrollPos;
     
+    public Player Player { get; set; } = new();
+    public MapRenderer Renderer { get; set; }
+    private double _viewWidth = 1920;
+    private double _viewHeight = 1080;
+
     private PhysicsEngine _physicsEngine = new PhysicsEngine();
+    private GameMap _map { get; set; } = new(100,100);
     private Camera _camera = new Camera();
     private Stopwatch _stopwatch = new Stopwatch();
     private double _lastTickElapsed;
@@ -29,8 +27,8 @@ public partial class MapViewModel : ViewModelBase
     public MapViewModel()
     {
         _stopwatch.Start();
-        Map.InitializeMap();
-        Renderer = new MapRenderer(Map);
+        _map.InitializeMap();
+        Renderer = new MapRenderer(_map);
         
         var timer = new DispatcherTimer(DispatcherPriority.Render)
         {
@@ -51,7 +49,7 @@ public partial class MapViewModel : ViewModelBase
         
         Vector2 vector = InputHandler.GetMovementDirection().Normalize();
         
-        _physicsEngine.Update(Player, Map, vector,deltaTime);
-        ScrollPos = _camera.Update(Player.X, Player.Y, _viewWidth, _viewHeight, Map.Width, Map.Height, Map.TileSize);
+        _physicsEngine.Update(Player, _map, vector,deltaTime);
+        ScrollPos = _camera.Update(Player.X, Player.Y, _viewWidth, _viewHeight, _map.Width, _map.Height, _map.TileSize);
     }
 }

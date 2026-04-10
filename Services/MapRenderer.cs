@@ -3,36 +3,30 @@ using Isolation_Protocol.Models;
 
 namespace Isolation_Protocol.Services;
 
-public class MapRenderer
+public class MapRenderer(GameMap map)
 {
-    private readonly GameMap _map;
-
-    public MapRenderer(GameMap map)
-    {
-        _map = map;
-    }
-
-    public void Render(Canvas canvas)
+    public void Render(Canvas? canvas)
     {
         if (canvas == null) return;
         
 
-        for (int x = 0; x < _map.Width; x++)
+        for (int x = 0; x < map.Width; x++)
         {
-            for (int y = 0; y < _map.Height; y++)
+            for (int y = 0; y < map.Height; y++)
             {
-                var cell = _map.Map[x, y];
+                var cell = map.Map[x, y];
+                
                 var rect = new Border
                 {
-                    Width = _map.TileSize,
-                    Height = _map.TileSize,
+                    Width = map.TileSize,
+                    Height = map.TileSize,
                     Classes = { "MapCell", cell.Type.ToString() },
                     IsHitTestVisible = false,
                     Focusable =  false
                 };
 
-                Canvas.SetLeft(rect, x * _map.TileSize);
-                Canvas.SetTop(rect, y * _map.TileSize);
+                Canvas.SetLeft(rect, x * map.TileSize);
+                Canvas.SetTop(rect, y * map.TileSize);
                 canvas.Children.Add(rect);
             }
         }

@@ -25,13 +25,13 @@
         </Style>
 
         <Style Selector="Border.Wall">
-            <Setter Property="Background" Value="#222222" />
+            <Setter Property="Background" Value="#415A77" />
             <Setter Property="BorderBrush" Value="#444444" />
             <Setter Property="BorderThickness" Value="1" />
         </Style>
 
         <Style Selector="Border.Floor">
-            <Setter Property="Background" Value="#050505" />
+            <Setter Property="Background" Value="#3A5A40" />
         </Style>
 
         <Style Selector="Border.Trap">
@@ -43,6 +43,13 @@
             <Setter Property="Background" Value="#003300" />
             <Setter Property="BorderBrush" Value="#00ff41" />
             <Setter Property="BorderThickness" Value="2" />
+        </Style>
+        <Style Selector="Border.Sand">
+            <Setter Property="Background" Value="#C2B280" />
+
+        </Style>
+        <Style Selector="Border.Water">
+            <Setter Property="Background" Value="#1B4965" />
         </Style>
     </UserControl.Styles>
 
@@ -58,7 +65,6 @@
                 Height="4000"
                 Name="GameCanvas"
                 Width="4000">
-
                 <!--  Гравець  -->
                 <Border
                     Background="#00ff41"
