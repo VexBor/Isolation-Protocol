@@ -73,7 +73,7 @@
                     CornerRadius="4"
                     Height="{Binding Player.Height}"
                     Width="{Binding Player.Width}"
-                    ZIndex="10">
+                    ZIndex="5">
                     <Border.Effect>
                         <DropShadowEffect
                             BlurRadius="10"

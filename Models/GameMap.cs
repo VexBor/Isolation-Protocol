@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 namespace Isolation_Protocol.Models;
 
@@ -11,33 +12,9 @@ public class GameMap(int width, int height)
 
     public void InitializeMap()
     {
-        /*Random rand = new Random();
-        double wallChance = 0.2; // 20% шансу, що клітинка буде стіною
-
-        for (int x = 0; x < Width; x++)
-        {
-            for (int y = 0; y < Height; y++)
-            {
-                if (x == 0 || y == 0 || x == Width - 1 || y == Height - 1)
-                {
-                    Map[x, y] = new MapCell(CellType.Wall);
-                }
-                else
-                {
-                    if (rand.NextDouble() < wallChance)
-                        Map[x, y] = new MapCell(CellType.Wall);
-                    else
-                        Map[x, y] = new MapCell(CellType.Floor);
-                }
-            }
-        }
-        
-        Map[1, 1].Type = CellType.Floor;
-        Map[1, 2].Type = CellType.Floor;
-        Map[2, 1].Type = CellType.Floor; */
         Random rand = new Random();
         double seed = rand.NextDouble() * 1000;
-        double scale = 0.1; // Масштаб шуму (чим менше, тим більші острови)
+        double scale = 0.07; // Масштаб шуму (чим менше, тим більші острови)
 
         for (int x = 0; x < width; x++)
         {
@@ -60,7 +37,15 @@ public class GameMap(int width, int height)
                 // 3. Перетворюємо висоту в типи тайлів
                 if (finalHeight < 0.1) Map[x, y].Type = CellType.Water;      // Глибока вода
                 else if (finalHeight < 0.2) Map[x, y].Type = CellType.Sand;   // Пляж
-                else if (finalHeight < 0.7) Map[x, y].Type = CellType.Floor;  // Трава/земля
+                else if (finalHeight < 0.7)
+                {
+                    double temp = rand.NextDouble();
+                    Map[x, y].Type = CellType.Floor; // Трава/земля
+                    Map[x, y].X = x;
+                    Map[x, y].Y = y;
+                    
+                    if (temp < 0.1) Map[x, y].Object = new Tree();
+                }
                 else Map[x, y].Type = CellType.Wall;                         // Скелі/гори
             }
         }
@@ -76,5 +61,4 @@ public class GameMap(int width, int height)
     {
         return (Math.Sin(x) + Math.Cos(y) + Math.Sin(x + y)) / 3; 
     }
-    
 }

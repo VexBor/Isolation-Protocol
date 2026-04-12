@@ -24,5 +24,6 @@
         <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.3.0.6" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
         <PackageReference Include="ReactiveUI" Version="23.2.1" />
+        <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 </Project>

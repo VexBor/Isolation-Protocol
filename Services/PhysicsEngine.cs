@@ -39,6 +39,8 @@ public class PhysicsEngine
                 var cell = map.GetCell(gridX, gridY);
                 if (cell == null || !cell.IsWalkable) 
                     return true; // Пройти не можна
+                else if(cell.Object != null &&  !cell.Object.IsPassable)
+                    return true;
             }
         }
         return false;

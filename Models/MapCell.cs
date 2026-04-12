@@ -8,7 +8,9 @@ public class MapCell
 {
     public CellType Type { get; set; }
     public bool IsWalkable => Type != CellType.Wall;
-    public List<string> Items { get; set; } = new();
+    public MapObject? Object { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
 
     public MapCell(CellType type)
     {
