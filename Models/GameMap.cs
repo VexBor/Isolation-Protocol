@@ -61,4 +61,27 @@ public class GameMap(int width, int height)
     {
         return (Math.Sin(x) + Math.Cos(y) + Math.Sin(x + y)) / 3; 
     }
+    
+    public Vector2 GetRandomSafeSpawnPoint()
+    {
+        Random rand = new Random();
+        int safeX = 0;
+        int safeY = 0;
+        bool found = false;
+
+        while (!found)
+        {
+            int x = rand.Next(0, Width);
+            int y = rand.Next(0, Height);
+
+            if (Map[x, y].Type == CellType.Floor && Map[x, y].Object == null)
+            {
+                safeX = x * TileSize;
+                safeY = y * TileSize;
+                found = true;
+            }
+        }
+
+        return new Vector2(safeX, safeY);
+    }
 }

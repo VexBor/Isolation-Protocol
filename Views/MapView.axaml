@@ -14,9 +14,6 @@
         <viewModels1:MapViewModel />
     </Design.DataContext>
 
-    <UserControl.Styles>
-        <StyleInclude Source="/Styles/GameHud.axaml" />
-    </UserControl.Styles>
 
     <UserControl.Styles>
         <Style Selector="Border.MapCell">
@@ -39,11 +36,6 @@
             <Setter Property="BorderBrush" Value="Red" />
         </Style>
 
-        <Style Selector="Border.Exit">
-            <Setter Property="Background" Value="#003300" />
-            <Setter Property="BorderBrush" Value="#00ff41" />
-            <Setter Property="BorderThickness" Value="2" />
-        </Style>
         <Style Selector="Border.Sand">
             <Setter Property="Background" Value="#C2B280" />
 
@@ -52,7 +44,6 @@
             <Setter Property="Background" Value="#1B4965" />
         </Style>
     </UserControl.Styles>
-
     <Grid Background="#1a1a1a">
 
         <ScrollViewer
@@ -98,71 +89,28 @@
                 <Grid
                     Grid.Column="0"
                     Margin="0,0,10,0"
-                    RowDefinitions="*, Auto, Auto">
-                    <Border
-                        Background="#1a1a1a"
-                        BorderBrush="#444444"
-                        BorderThickness="2"
-                        CornerRadius="4"
-                        Grid.Row="0">
-                        <TextBlock
-                            FontSize="20"
-                            Foreground="#444444"
-                            HorizontalAlignment="Center"
-                            Text="HERO"
-                            VerticalAlignment="Center" />
-                    </Border>
-
+                    RowDefinitions="*, Auto, Auto, Auto">
                     <ProgressBar
                         Classes="HpBar"
                         Grid.Row="1"
-                        Value="80" />
+                        Value="{Binding Player.Health}" />
+
+                    <ProgressBar
+                        Classes="HungerBar"
+                        Grid.Row="2"
+                        Value="{Binding Player.Hunger}" />
 
                     <ProgressBar
                         Classes="StaminaBar"
-                        Grid.Row="2"
-                        Value="60" />
+                        Grid.Row="3"
+                        Value="{Binding Player.Stamina}" />
                 </Grid>
-
-                <!--  Скіли  -->
-                <StackPanel
-                    Grid.Column="1"
-                    HorizontalAlignment="Center"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Bottom">
-
-                    <Grid Classes="SkillPanel">
-                        <Border Classes="Ability">
-                            <TextBlock Text="1" />
-                        </Border>
-                        <TextBlock Classes="StaminaCost" Text="50" />
-                    </Grid>
-
-                    <Grid Classes="SkillPanel">
-                        <Border Classes="Ability">
-                            <TextBlock Text="2" />
-                        </Border>
-                    </Grid>
-
-                    <Grid Classes="SkillPanel">
-                        <Border Classes="Ability">
-                            <TextBlock Text="3" />
-                        </Border>
-                    </Grid>
-
-                    <Grid Classes="SkillPanel">
-                        <Border Classes="Ability Ultimate">
-                            <TextBlock Text="4" />
-                        </Border>
-                    </Grid>
-
-                </StackPanel>
 
                 <!--  Інвентарь  -->
                 <UniformGrid
                     Columns="3"
                     Grid.Column="2"
-                    Margin="10,0,0,0"
+                    Margin="10,10,10,10"
                     Rows="2">
 
                     <Border Classes="Slot">

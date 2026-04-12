@@ -11,7 +11,6 @@ public class Tree : MapObject
         Name = "Tree";
         IsPassable = false;
         Health = 100;
-        Image = new Bitmap(AssetLoader.Open(
-            new Uri($"avares://{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}/Assets/tree.png")));
+        Image = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/tree.png")));
     }
 }

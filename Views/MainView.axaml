@@ -1,0 +1,55 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="Isolation_Protocol.Views.MainView"
+    x:DataType="vm:MenuViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Isolation_Protocol.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Panel>
+        <Image Source="{Binding Image}" Stretch="UniformToFill" />
+
+        <Border HorizontalAlignment="Left" Width="800">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="100%,50%" StartPoint="0%,50%">
+                    <GradientStop Color="#E6000000" Offset="0" />
+                    <GradientStop Color="#99000000" Offset="0.5" />
+                    <GradientStop Color="#00000000" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <StackPanel
+            HorizontalAlignment="Left"
+            Margin="100,0,0,0"
+            Spacing="20"
+            VerticalAlignment="Center">
+            <TextBlock
+                FontSize="72"
+                FontWeight="Black"
+                Foreground="#DDD"
+                LetterSpacing="10"
+                Text="ISOLATION PROTOCOL" />
+
+            <Button
+                Classes="MenuBtn"
+                Command="{Binding StartGameCommand}"
+                Content="START MISSION" />
+            <Button
+                Classes="MenuBtn"
+                Command="{Binding OpenSettingsCommand}"
+                Content="SETTINGS" />
+            <Button
+                Classes="MenuBtn"
+                Command="{Binding OpenInfoCommand}"
+                Content="INFO" />
+            <Button
+                Classes="MenuBtn"
+                Command="{Binding ExitCommand}"
+                Content="EXIT" />
+        </StackPanel>
+    </Panel>
+</UserControl>

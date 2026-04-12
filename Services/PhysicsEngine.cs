@@ -11,6 +11,18 @@ public class PhysicsEngine
         double moveX = inputDirection.X * player.Speed * deltaTime;
         double moveY = inputDirection.Y * player.Speed * deltaTime;
 
+        if (InputHandler.IsSprint() && (moveY != 0 || moveX != 0) && player.Speed > 0)
+        {
+            moveX *= 1.3;
+            moveY *= 1.3;
+            player.Stamina -= 0.2;
+        }
+        else if(player.Stamina < 100 && player.Hunger > 20 && !InputHandler.IsSprint())
+        {
+            player.Stamina += 0.2;
+            player.Hunger -= 0.05;
+        }
+        
         // Перевірка
         if (!IsColliding(player.X + moveX, player.Y, map, player.Height, player.Width))
         {

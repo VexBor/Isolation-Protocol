@@ -26,4 +26,9 @@ public static class InputHandler
 
         return new Vector2(x, y);
     }
+
+    public static bool IsSprint()
+    {
+        return IsKeyDown(Key.LeftShift ) || IsKeyDown(Key.RightShift);
+    }
 }

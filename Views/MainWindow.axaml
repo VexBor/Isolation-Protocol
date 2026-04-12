@@ -1,6 +1,5 @@
 <Window
     CanResize="False"
-    Icon="/Assets/avalonia-logo.ico"
     Title="Isolation_Protocol"
     WindowState="FullScreen"
     d:DesignHeight="1080"
@@ -16,94 +15,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Window.DataTemplates>
-        <DataTemplate DataType="{x:Type vm:InventoryViewModel}">
-            <views:InventoryView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
-            <views:SettingsView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:HeroViewModel}">
-            <views:HeroView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:InfoViewModel}">
-            <views:InfoView />
+        <DataTemplate DataType="{x:Type vm:MenuViewModel}">
+            <views:MainView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:MapViewModel}">
             <views:MapView />
         </DataTemplate>
     </Window.DataTemplates>
 
-    <Grid>
-        <Grid RowDefinitions="Auto, *">
-
-            <!--  Top panel  -->
-            <Grid
-                Background="#181825"
-                ColumnDefinitions="Auto, 270, Auto, *, Auto"
-                Grid.Row="0"
-                Height="135"
-                IsVisible="{Binding !IsGameStarted}"
-                VerticalAlignment="Top">
-
-                <Button
-                    Classes="Slot Menu"
-                    Command="{Binding OpenSettingsCommand}"
-                    Grid.Column="0">
-                    <Image Source="../Assets/settings.png" />
-                </Button>
-
-                <StackPanel
-                    Grid.Column="2"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center">
-
-                    <Button
-                        Classes="Slot Menu"
-                        Command="{Binding OpenHeroMenuCommand}"
-                        Margin="0,0,35,0">
-                        <Image Source="../Assets/heroIcon.png" />
-                    </Button>
-                    <Button
-                        Classes="Slot Menu"
-                        Command="{Binding OpenInventoryCommand}"
-                        Margin="0,0,35,0">
-                        <Image Source="../Assets/inventory.png" />
-                    </Button>
-                    <Button Classes="Slot Menu" Margin="0,0,35,0">
-                        <Image Source="../Assets/shop.png" />
-                    </Button>
-                    <Button Classes="Slot Menu" Margin="0,0,35,0">
-                        <Image Source="../Assets/info.png" />
-                    </Button>
-                    <Button
-                        Classes="Slot Menu"
-                        Command="{Binding OpenInfoCommand}"
-                        Margin="0,0,35,0">
-                        <Image Source="../Assets/question.png" />
-                    </Button>
-                </StackPanel>
-
-                <Border Classes="BalanceBg" Grid.Column="3">
-                    <StackPanel>
-                        <TextBlock Classes="Title Balance" Text="67" />
-                        <TextBlock
-                            Classes="Title Balance"
-                            Foreground="BlueViolet"
-                            Text="CR" />
-                    </StackPanel>
-
-                </Border>
-
-                <Button
-                    Classes="Slot Menu"
-                    Click="Exit_Click"
-                    Grid.Column="4">
-                    <Image Source="../Assets/leave.png" />
-                </Button>
-            </Grid>
-
-            <!--  Base panel  -->
-            <ContentControl Content="{Binding CurrentPage}" Grid.Row="1" />
-        </Grid>
-    </Grid>
+    <ContentControl Content="{Binding CurrentPage}" />
 </Window>

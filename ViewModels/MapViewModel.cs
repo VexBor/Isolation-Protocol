@@ -29,6 +29,10 @@ public partial class MapViewModel : ViewModelBase
         _stopwatch.Start();
         _map.InitializeMap();
         Renderer = new MapRenderer(_map);
+
+        Vector2 spawnPos = _map.GetRandomSafeSpawnPoint();
+        Player.X = spawnPos.X;
+        Player.Y = spawnPos.Y;
         
         var timer = new DispatcherTimer(DispatcherPriority.Render)
         {

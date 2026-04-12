@@ -5,10 +5,20 @@
     xmlns:local="using:Isolation_Protocol"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://Isolation Protocol/Styles/Colors.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
     <Application.Styles>
         <StyleInclude Source="/Styles/Menu.axaml" />
     </Application.Styles>
-
+    <Application.Styles>
+        <StyleInclude Source="/Styles/Hud.axaml" />
+    </Application.Styles>
     <Application.DataTemplates>
         <local:ViewLocator />
     </Application.DataTemplates>
