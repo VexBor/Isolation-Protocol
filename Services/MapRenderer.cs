@@ -36,15 +36,18 @@ public class MapRenderer(GameMap map)
         var objectsToDraw = GetObjectsOrderedByY();
     
         foreach (MapObject obj in objectsToDraw) {
-            if (obj is Tree) DrawTree(canvas, obj);
+            if (obj is Tree) DrawObject(canvas, obj);
+            if (obj is Stone) DrawObject(canvas, obj);
         }
     }
-    private void DrawTree(Canvas canvas, MapObject treeObj)
+    private void DrawObject(Canvas canvas, MapObject obj)
     {
-        var image = new Image { Source = treeObj.Image, Width = map.TileSize * 1.5, Height = map.TileSize * 2, ZIndex = 10};
-        Canvas.SetLeft(image, treeObj.X * map.TileSize - map.TileSize * 0.25); // Центруємо
-        Canvas.SetTop(image, treeObj.Y * map.TileSize - map.TileSize);      // Зміщуємо крону вгору
-        
+        var image = new Image { Source = obj.Image, Width = map.TileSize * 1.5, Height = map.TileSize * 2, ZIndex = 10};
+        Canvas.SetLeft(image, obj.X * map.TileSize - map.TileSize * 0.25);
+        if(obj is Tree) Canvas.SetTop(image, obj.Y * map.TileSize - map.TileSize);
+        else Canvas.SetTop(image, obj.Y * map.TileSize - 0.5 * map.TileSize);
+
+        obj.VisualElement = image;
         canvas.Children.Add(image);
     }
     

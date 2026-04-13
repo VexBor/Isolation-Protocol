@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Isolation_Protocol.ViewModels;
+using Isolation_Protocol.View;
 
 namespace Isolation_Protocol;
 

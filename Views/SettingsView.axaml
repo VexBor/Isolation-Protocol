@@ -2,7 +2,7 @@
     x:Class="Isolation_Protocol.Views.SettingsView"
     x:DataType="vm:SettingsViewModel"
     xmlns="https://github.com/avaloniaui"
-    xmlns:vm="clr-namespace:Isolation_Protocol.ViewModels"
+    xmlns:vm="clr-namespace:Isolation_Protocol.View"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Grid Background="{DynamicResource GlobalBackground}" RowDefinitions="Auto, *, Auto">
@@ -36,14 +36,13 @@
                                 Margin="10,0"
                                 Maximum="100"
                                 Minimum="0"
-                                Value="80"
-                                x:Name="volSlider" />
+                                Value="{Binding Settings.Volume}" />
                             <TextBlock
                                 Classes="BodyText"
                                 Foreground="{DynamicResource AccentRed}"
                                 Grid.Column="2"
                                 HorizontalAlignment="Right"
-                                Text="{Binding #volSlider.Value, StringFormat='{}{0:0}'}"
+                                Text="{Binding Settings.Volume, StringFormat='{}{0:0}%'}"
                                 VerticalAlignment="Center" />
                         </Grid>
 
@@ -51,21 +50,20 @@
                             <TextBlock
                                 Classes="BodyText"
                                 Grid.Column="0"
-                                Text="ЕФЕКТИ ТА ЕМБІЄНТ"
+                                Text="ЕФЕКТИ ТА МУЗИКА"
                                 VerticalAlignment="Center" />
                             <Slider
                                 Grid.Column="1"
                                 Margin="10,0"
                                 Maximum="100"
                                 Minimum="0"
-                                Value="60"
-                                x:Name="musSlider" />
+                                Value="{Binding Settings.MusicVolume}" />
                             <TextBlock
                                 Classes="BodyText"
                                 Foreground="{DynamicResource AccentRed}"
                                 Grid.Column="2"
                                 HorizontalAlignment="Right"
-                                Text="{Binding #musSlider.Value, StringFormat='{}{0:0}'}"
+                                Text="{Binding Settings.MusicVolume, StringFormat='{}{0:0}%'}"
                                 VerticalAlignment="Center" />
                         </Grid>
                     </StackPanel>
@@ -83,10 +81,14 @@
                             <ComboBox
                                 Grid.Column="1"
                                 HorizontalAlignment="Stretch"
-                                SelectedIndex="0">
-                                <ComboBoxItem Content="Українська" />
+                                SelectedIndex="{Binding Settings.LanguageId}">
+                                <ComboBoxItem Content="Čeština" />
+                                <ComboBoxItem Content="Deutsch" />
                                 <ComboBoxItem Content="English" />
                                 <ComboBoxItem Content="Polski" />
+                                <ComboBoxItem Content="Português" />
+                                <ComboBoxItem Content="Slovenčina" />
+                                <ComboBoxItem Content="Українська" />
                             </ComboBox>
                         </Grid>
                     </StackPanel>
@@ -100,7 +102,10 @@
                 HorizontalAlignment="Center"
                 Orientation="Horizontal"
                 Spacing="20">
-                <Button Classes="ActionBtn" Content="ЗБЕРЕГТИ ЗМІНИ" />
+                <Button
+                    Classes="ActionBtn"
+                    Command="{Binding SaveSettingsCommand}"
+                    Content="ЗБЕРЕГТИ ЗМІНИ" />
                 <Button
                     Classes="GhostBtn"
                     Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).OpenMenuCommand}"

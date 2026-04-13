@@ -1,5 +1,5 @@
 using Avalonia.Controls;
-using Isolation_Protocol.ViewModels;
+using Isolation_Protocol.View;
 
 namespace Isolation_Protocol.Views;
 

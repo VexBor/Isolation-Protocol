@@ -7,7 +7,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:Isolation_Protocol.ViewModels"
+    xmlns:vm="clr-namespace:Isolation_Protocol.View"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Panel>
         <Image Source="{Binding Image}" Stretch="UniformToFill" />
@@ -37,19 +37,19 @@
             <Button
                 Classes="MenuBtn"
                 Command="{Binding StartGameCommand}"
-                Content="START MISSION" />
+                Content="ПОЧАТИ" />
             <Button
                 Classes="MenuBtn"
                 Command="{Binding OpenSettingsCommand}"
-                Content="SETTINGS" />
+                Content="НАЛАШТУВАННЯ" />
             <Button
                 Classes="MenuBtn"
                 Command="{Binding OpenInfoCommand}"
-                Content="INFO" />
+                Content="ІНФОРМАЦІЯ" />
             <Button
                 Classes="MenuBtn"
                 Command="{Binding ExitCommand}"
-                Content="EXIT" />
+                Content="ВИХІД" />
         </StackPanel>
     </Panel>
 </UserControl>

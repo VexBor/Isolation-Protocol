@@ -2,7 +2,7 @@
     x:Class="Isolation_Protocol.Views.InfoView"
     x:DataType="vm:InfoViewModel"
     xmlns="https://github.com/avaloniaui"
-    xmlns:vm="clr-namespace:Isolation_Protocol.ViewModels"
+    xmlns:vm="clr-namespace:Isolation_Protocol.View"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Grid Background="{DynamicResource GlobalBackground}" RowDefinitions="Auto, *, Auto">

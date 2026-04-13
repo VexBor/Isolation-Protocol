@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Isolation_Protocol.Views;
 
-namespace Isolation_Protocol.ViewModels;
+namespace Isolation_Protocol.View;
 
 public partial class MainWindowViewModel : ViewModelBase
 {

@@ -45,6 +45,7 @@ public class GameMap(int width, int height)
                     Map[x, y].Y = y;
                     
                     if (temp < 0.1) Map[x, y].Object = new Tree();
+                    else if (temp < 0.12) Map[x, y].Object = new Stone();
                 }
                 else Map[x, y].Type = CellType.Wall;                         // Скелі/гори
             }

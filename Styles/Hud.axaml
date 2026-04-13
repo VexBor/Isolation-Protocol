@@ -36,9 +36,9 @@
         <Setter Property="Foreground" Value="#3E5C76" />
     </Style>
 
-    <Style Selector="Border.Slot">
-        <Setter Property="Width" Value="80" />
-        <Setter Property="Height" Value="80" />
+    <Style Selector="Grid.Slot Border">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Height" Value="90" />
         <Setter Property="Margin" Value="2" />
         <Setter Property="Background" Value="#CC0D0D0D" />
         <Setter Property="BorderBrush" Value="#333333" />
@@ -51,16 +51,23 @@
         </Setter>
     </Style>
 
-    <Style Selector="Border.Slot:pointerover">
+    <Style Selector="Grid.Slot:pointerover Border">
         <Setter Property="Background" Value="#CC1A1A1A" />
         <Setter Property="BorderBrush" Value="#BC4749" />
     </Style>
 
-    <Style Selector="Border.Slot TextBlock">
-        <Setter Property="FontSize" Value="10" />
-        <Setter Property="Foreground" Value="#555555" />
+    <Style Selector="Grid.Slot TextBlock">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
-        <Setter Property="Margin" Value="0,0,3,1" />
+        <Setter Property="Margin" Value="0,0,5,1" />
+    </Style>
+
+    <Style Selector="Grid.Slot Border.Selected">
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentRed}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Background" Value="#44BC4749" />
+        <Setter Property="BoxShadow" Value="0 0 10 0 #AA0000" />
     </Style>
 </Styles>

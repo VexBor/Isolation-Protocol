@@ -1,0 +1,91 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="Isolation_Protocol.View.InventoryView"
+    x:DataType="viewModels1:InventoryViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels1="clr-namespace:Isolation_Protocol.View"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border
+        BorderThickness="0,2,0,0"
+        CornerRadius="8,8,0,0"
+        Height="200"
+        Margin="10,0,10,0"
+        VerticalAlignment="Bottom">
+        <Grid ColumnDefinitions="200, *, 300" Margin="10">
+
+            <Grid
+                Grid.Column="0"
+                Margin="0,0,10,0"
+                RowDefinitions="*, Auto, Auto, Auto">
+                <ProgressBar
+                    Classes="HpBar"
+                    Grid.Row="1"
+                    Value="{Binding Player.Health}" />
+
+                <ProgressBar
+                    Classes="HungerBar"
+                    Grid.Row="2"
+                    Value="{Binding Player.Hunger}" />
+
+                <ProgressBar
+                    Classes="StaminaBar"
+                    Grid.Row="3"
+                    Value="{Binding Player.Stamina}" />
+            </Grid>
+
+            <UniformGrid
+                ColumnSpacing="5"
+                Columns="3"
+                Grid.Column="2"
+                RowSpacing="5"
+                Rows="2">
+
+                <Grid Classes="Slot">
+                    <Border Classes.Selected="{Binding Slots[0].IsSelected}">
+                        <Image Source="{Binding Slots[0].Image}" />
+                    </Border>
+                    <TextBlock Text="{Binding Slots[0].Count}" />
+                </Grid>
+
+                <Grid Classes="Slot">
+                    <Border Classes.Selected="{Binding Slots[1].IsSelected}">
+                        <Image Source="{Binding Slots[1].Image}" />
+                    </Border>
+                    <TextBlock Text="{Binding Slots[1].Count}" />
+                </Grid>
+
+                <Grid Classes="Slot">
+                    <Border Classes.Selected="{Binding Slots[2].IsSelected}">
+                        <Image Source="{Binding Slots[2].Image}" />
+                    </Border>
+                    <TextBlock Text="{Binding Slots[2].Count}" />
+                </Grid>
+
+                <Grid Classes="Slot">
+                    <Border Classes.Selected="{Binding Slots[3].IsSelected}">
+                        <Image Source="{Binding Slots[3].Image}" />
+                    </Border>
+                    <TextBlock Text="{Binding Slots[3].Count}" />
+                </Grid>
+
+                <Grid Classes="Slot">
+                    <Border Classes.Selected="{Binding Slots[4].IsSelected}">
+                        <Image Source="{Binding Slots[4].Image}" />
+                    </Border>
+                    <TextBlock Text="{Binding Slots[4].Count}" />
+                </Grid>
+
+                <Grid Classes="Slot">
+                    <Border Classes.Selected="{Binding Slots[5].IsSelected}">
+                        <Image Source="{Binding Slots[5].Image}" />
+                    </Border>
+                    <TextBlock Text="{Binding Slots[5].Count}" />
+                </Grid>
+            </UniformGrid>
+        </Grid>
+    </Border>
+</UserControl>

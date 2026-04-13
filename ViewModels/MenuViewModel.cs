@@ -5,7 +5,7 @@ using Avalonia.Platform;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Isolation_Protocol.ViewModels;
+namespace Isolation_Protocol.View;
 
 public partial class MenuViewModel : ViewModelBase
 {
