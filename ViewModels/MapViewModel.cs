@@ -23,9 +23,13 @@ public partial class MapViewModel : ViewModelBase
     
     [ObservableProperty]
     private static InventoryViewModel _inventory = new(Player);
+    
+    [ObservableProperty]
+    private CraftViewModel _craftOpened;
 
     private PhysicsEngine _physicsEngine = new PhysicsEngine();
     private GameMap _map { get; set; } = new(100,100);
+    private CraftViewModel _craft = new CraftViewModel();
     private Camera _camera = new Camera();
     private Stopwatch _stopwatch = new Stopwatch();
     private DropLogic _drop = new(_inventory);
@@ -101,6 +105,12 @@ public partial class MapViewModel : ViewModelBase
             }
             
             _inventory.Slots[_inventory.SelectedSlot].IsSelected = true;
+        }
+
+        if (InputHandler.OpenCraftMenu())
+        {
+            if (CraftOpened == null) CraftOpened = _craft;
+            else CraftOpened = null;
         }
     }
     

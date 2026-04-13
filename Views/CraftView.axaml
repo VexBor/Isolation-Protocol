@@ -1,0 +1,95 @@
+<UserControl
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
+    mc:Ignorable="d"
+    x:Class="Isolation_Protocol.Views.CraftView"
+    x:DataType="vm:CraftViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Isolation_Protocol.Models.Craft"
+    xmlns:vm="clr-namespace:Isolation_Protocol.View"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="{DynamicResource GlobalBackground}" ColumnDefinitions="400, *">
+
+        <ListBox
+            Background="{DynamicResource PanelDark}"
+            BorderBrush="{DynamicResource BorderMain}"
+            BorderThickness="0,0,1,0"
+            Grid.Column="0"
+            ItemsSource="{Binding Recipes}"
+            SelectedItem="{Binding SelectedRecipe}">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:CraftRecipe">
+                    <TextBlock
+                        Classes="BodyText"
+                        Margin="10,5"
+                        Text="{Binding ResultItemId}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Border
+            Classes="ContentPanel"
+            Grid.Column="1"
+            IsVisible="{Binding SelectedRecipe, Converter={x:Static ObjectConverters.IsNotNull}}"
+            Margin="40">
+
+            <StackPanel Margin="40" Spacing="20">
+                <TextBlock
+                    Classes="H1"
+                    FontSize="42"
+                    Text="{Binding SelectedRecipe.ResultItemId}" />
+
+                <TextBlock
+                    Classes="BodyText"
+                    Opacity="0.7"
+                    Text="{Binding SelectedRecipe.Description}"
+                    TextWrapping="Wrap" />
+
+                <Separator />
+
+                <TextBlock
+                    Classes="SystemText"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource AccentRed}"
+                    Text="НЕОБХІДНІ КОМПОНЕНТИ ДЛЯ СИНТЕЗУ:" />
+
+                <ItemsControl ItemsSource="{Binding SelectedRecipe.Ingredients}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="models:CraftIngredient">
+                            <Grid ColumnDefinitions="50, *" Margin="0,5">
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Foreground="{DynamicResource AccentRed}"
+                                    Grid.Column="0"
+                                    Text="{Binding Amount}" />
+                                <TextBlock
+                                    Classes="BodyText"
+                                    Grid.Column="1"
+                                    Text="{Binding ItemId}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button
+                    Classes="ActionBtn"
+                    Command="{Binding CraftItemCommand}"
+                    Content="ЗАПУСТИТИ ПРОТОКОЛ СИНТЕЗУ"
+                    Height="60"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,40,0,0" />
+            </StackPanel>
+        </Border>
+
+        <TextBlock
+            Classes="SystemText"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            IsVisible="{Binding SelectedRecipe, Converter={x:Static ObjectConverters.IsNull}}"
+            Text="ВИБЕРІТЬ РЕЦЕПТ У ТЕРМІНАЛІ"
+            VerticalAlignment="Center" />
+    </Grid>
+</UserControl>

@@ -50,4 +50,14 @@ public static class InputHandler
         
         return _slot;
     }
+
+    public static bool OpenCraftMenu()
+    {
+        if (IsKeyDown(Key.R))
+        {
+            RegisterKeyUp(Key.R);
+            return true;
+        }
+        return false;
+    }
 }

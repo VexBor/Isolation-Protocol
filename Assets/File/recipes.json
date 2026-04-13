@@ -1,0 +1,22 @@
+[
+  {
+    "ResultItemId": "axe",
+    "Description": "Примітивна сокира для видобутку деревини.",
+    "NeedWorkBench": false,
+    "Amount": 1,
+    "CraftTime": 5,
+    "Ingredients": [
+      { "ItemId": "Wood", "Amount": 3 }
+    ]
+  },
+  {
+    "ResultItemId": "pickaxe",
+    "Description": "Примітивне кайло для видобутку камня.",
+    "NeedWorkBench": false,
+    "CraftTime": 5,
+    "Amount": 1,
+    "Ingredients": [
+      { "ItemId": "Wood", "Amount": 3 }
+    ]
+  }
+]
