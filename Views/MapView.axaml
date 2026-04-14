@@ -38,6 +38,8 @@
                 Background="#050505"
                 Height="4000"
                 Name="GameCanvas"
+                PointerMoved="GameCanvas_OnPointerMoved"
+                PointerPressed="GameCanvas_OnPointerPressed"
                 Width="4000">
                 <!--  Гравець  -->
                 <Border
@@ -55,6 +57,15 @@
                             Opacity="0.5" />
                     </Border.Effect>
                 </Border>
+                <Image
+                    Canvas.Left="{Binding PlacementManager.PreviewX}"
+                    Canvas.Top="{Binding PlacementManager.PreviewY}"
+                    IsVisible="{Binding PlacementManager.IsPlacing}"
+                    MaxHeight="80"
+                    MaxWidth="60"
+                    Opacity="{Binding PlacementManager.Opacity}"
+                    Source="{Binding PlacementManager.PreviewIcon}"
+                    ZIndex="20" />
             </Canvas>
         </ScrollViewer>
 

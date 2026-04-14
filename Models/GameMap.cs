@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Isolation_Protocol.Models;
 
-public class GameMap(int width, int height)
+public class GameMap(int width, int height, Player player)
 {
     public int TileSize { get; } = 40;
     public int Width { get; } = width;
@@ -84,5 +84,19 @@ public class GameMap(int width, int height)
         }
 
         return new Vector2(safeX, safeY);
+    }
+
+    public bool CanPlaceAt(int x, int y)
+    {
+        if (GetCell(x, y).Object != null) return false;
+        if((int)(player.X / TileSize) ==  x && (int) (player.Y / TileSize) == y) return false;
+        if((int)(player.X / TileSize) >=  x + 3 || (int) (player.Y / TileSize) >= y + 3) return false;
+        if((int)(player.X / TileSize) <=  x - 3 || (int) (player.Y / TileSize) <= y - 3) return false;
+        return true;
+    }
+
+    public void AddObject(MapObject obj,  int x, int y)
+    {
+        Map[x, y].Object = obj;
     }
 }

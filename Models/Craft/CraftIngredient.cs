@@ -1,7 +1,7 @@
 namespace Isolation_Protocol.Models.Craft;
 
-public class CraftIngredient(string itemId, int amount)
+public class CraftIngredient(string itemTag, int amount)
 {
-    public string ItemId { get; set; } = itemId;
+    public string ItemTag { get; set; } = itemTag;
     public int Amount { get; set; } = amount;
 }

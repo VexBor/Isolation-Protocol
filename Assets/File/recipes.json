@@ -1,22 +1,33 @@
 [
   {
-    "ResultItemId": "axe",
+    "ResultItemTag": "axe",
     "Description": "Примітивна сокира для видобутку деревини.",
     "NeedWorkBench": false,
     "Amount": 1,
     "CraftTime": 5,
     "Ingredients": [
-      { "ItemId": "Wood", "Amount": 3 }
+      { "ItemTag": "wood", "Amount": 3 }
     ]
   },
   {
-    "ResultItemId": "pickaxe",
+    "ResultItemTag": "pickaxe",
     "Description": "Примітивне кайло для видобутку камня.",
     "NeedWorkBench": false,
     "CraftTime": 5,
     "Amount": 1,
     "Ingredients": [
-      { "ItemId": "Wood", "Amount": 3 }
+      { "ItemTag": "wood", "Amount": 3 }
+    ]
+  },
+  {
+    "ResultItemTag": "workbench",
+    "Description": "Верстат, кажуть відкриває більше можливостей.",
+    "NeedWorkBench": false,
+    "CraftTime": 5,
+    "Amount": 1,
+    "Ingredients": [
+      { "ItemTag": "wood", "Amount": 10 },
+      { "ItemTag": "stone", "Amount": 10 }
     ]
   }
 ]

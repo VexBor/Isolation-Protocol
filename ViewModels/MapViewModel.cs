@@ -16,6 +16,9 @@ public partial class MapViewModel : ViewModelBase
     [ObservableProperty]
     private Vector _scrollPos;
     
+    [ObservableProperty]
+    private PlacementManager _placementManager;
+    
     public static Player Player { get; set; } = new();
     public MapRenderer Renderer { get; set; }
     private double _viewWidth = 1920;
@@ -28,20 +31,25 @@ public partial class MapViewModel : ViewModelBase
     private CraftViewModel _craftOpened;
 
     private PhysicsEngine _physicsEngine = new PhysicsEngine();
-    private GameMap _map { get; set; } = new(100,100);
-    private CraftViewModel _craft = new CraftViewModel();
+    private GameMap _map { get; set; }
+    private CraftViewModel _craft;
     private Camera _camera = new Camera();
     private Stopwatch _stopwatch = new Stopwatch();
-    private DropLogic _drop = new(_inventory);
+    private DropLogic _drop;
     private double _lastTickElapsed;
     private bool _isReloadet = true;
     private double _reloadTime = 1;
 
     public MapViewModel()
     {
+        ItemRegistry.Initialize();
         _stopwatch.Start();
+        _map = new GameMap(100,100, Player);
         _map.InitializeMap();
         Renderer = new MapRenderer(_map);
+        _craft = new CraftViewModel(_inventory);
+        _drop = new DropLogic(_inventory);
+        _placementManager = new PlacementManager(_inventory, _map, Renderer);
 
         Vector2 spawnPos = _map.GetRandomSafeSpawnPoint();
         Player.X = spawnPos.X;
@@ -53,6 +61,7 @@ public partial class MapViewModel : ViewModelBase
         };
         timer.Tick += (s, e) => OnRender();
         timer.Start();
+
     }
     
     private void OnRender()
@@ -103,8 +112,15 @@ public partial class MapViewModel : ViewModelBase
             {
                 slot.IsSelected = false;
             }
-            
-            _inventory.Slots[_inventory.SelectedSlot].IsSelected = true;
+
+            InventorySlot selectedSlot = _inventory.Slots[_inventory.SelectedSlot];
+            selectedSlot.IsSelected = true;
+            if (selectedSlot.Item != null &&  selectedSlot.Item.Object != null)
+            {
+                _placementManager.StartPlacement(ItemRegistry.CreateItem(selectedSlot.Item.Tag));
+                return;
+            } 
+            _placementManager.StopPlacement();
         }
 
         if (InputHandler.OpenCraftMenu())

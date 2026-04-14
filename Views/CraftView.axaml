@@ -25,7 +25,7 @@
                     <TextBlock
                         Classes="BodyText"
                         Margin="10,5"
-                        Text="{Binding ResultItemId}" />
+                        Text="{Binding ResultItemTag}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -40,7 +40,7 @@
                 <TextBlock
                     Classes="H1"
                     FontSize="42"
-                    Text="{Binding SelectedRecipe.ResultItemId}" />
+                    Text="{Binding SelectedRecipe.ResultItemTag}" />
 
                 <TextBlock
                     Classes="BodyText"
@@ -68,12 +68,17 @@
                                 <TextBlock
                                     Classes="BodyText"
                                     Grid.Column="1"
-                                    Text="{Binding ItemId}" />
+                                    Text="{Binding ItemTag}" />
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
+                <TextBlock
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource AccentRed}"
+                    Margin="0,40,0,0"
+                    Text="{Binding ErrorMessage}" />
                 <Button
                     Classes="ActionBtn"
                     Command="{Binding CraftItemCommand}"

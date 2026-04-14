@@ -15,7 +15,7 @@ public class Tree : MapObject, IInteractable
         Tag = "tree";
         Health = 100;
         Image = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/tree.png")));
-        Drop = new ResourceDrop(new Wood(), 2, 5);
+        Drop = new ResourceDrop(ItemRegistry.CreateItem("wood"), 2, 5);
     }
     
     public bool OnInteract(Item? tool)

@@ -13,7 +13,7 @@ public class Stone : MapObject,  IInteractable
         IsPassable = false;
         Tag = "stone";
         Health = 100;
-        Drop = new ResourceDrop(new StoneItem(), 2, 5);
+        Drop = new ResourceDrop(ItemRegistry.CreateItem("stone"), 2, 5);
         Image = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/Stone1.png")));
     }
     

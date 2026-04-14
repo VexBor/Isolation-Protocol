@@ -7,10 +7,12 @@ namespace Isolation_Protocol.Services;
 
 public class MapRenderer(GameMap map)
 {
+    private Canvas _canvas;
+    
     public void Render(Canvas? canvas)
     {
         if (canvas == null) return;
-        
+        _canvas = canvas;
 
         for (int x = 0; x < map.Width; x++)
         {
@@ -36,19 +38,20 @@ public class MapRenderer(GameMap map)
         var objectsToDraw = GetObjectsOrderedByY();
     
         foreach (MapObject obj in objectsToDraw) {
-            if (obj is Tree) DrawObject(canvas, obj);
-            if (obj is Stone) DrawObject(canvas, obj);
+            if (obj is Tree) DrawObject(obj);
+            if (obj is Stone) DrawObject(obj);
         }
     }
-    private void DrawObject(Canvas canvas, MapObject obj)
+    public void DrawObject(MapObject obj)
     {
         var image = new Image { Source = obj.Image, Width = map.TileSize * 1.5, Height = map.TileSize * 2, ZIndex = 10};
+        
         Canvas.SetLeft(image, obj.X * map.TileSize - map.TileSize * 0.25);
         if(obj is Tree) Canvas.SetTop(image, obj.Y * map.TileSize - map.TileSize);
         else Canvas.SetTop(image, obj.Y * map.TileSize - 0.5 * map.TileSize);
 
         obj.VisualElement = image;
-        canvas.Children.Add(image);
+        _canvas.Children.Add(image);
     }
     
     private List<MapObject> GetObjectsOrderedByY()
