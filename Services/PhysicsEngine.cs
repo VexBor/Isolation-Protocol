@@ -19,13 +19,13 @@ public class PhysicsEngine
             player.Stamina -= 0.2;
         }
         
-        if (InputHandler.IsSprint() && (moveY != 0 || moveX != 0) && player.Speed > 0)
+        if (InputHandler.IsShiftPressed() && (moveY != 0 || moveX != 0) && player.Speed > 0)
         {
             moveX *= 1.3;
             moveY *= 1.3;
             player.Stamina -= 0.2;
         }
-        else if(player.Stamina < 100 && player.Hunger > 20 && !InputHandler.IsSprint() && !_isWater)
+        else if(player.Stamina < 100 && player.Hunger > 20 && !InputHandler.IsShiftPressed() && !_isWater)
         {
             player.Stamina += 0.2;
             player.Hunger -= 0.05;

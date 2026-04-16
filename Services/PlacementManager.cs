@@ -51,8 +51,8 @@ public partial class PlacementManager(InventoryViewModel inventory, GameMap map,
 
     private void Place(int x, int y)
     {
-        if(_currentItemToPlace.Object == null) return;
-        MapObject mapObject = _currentItemToPlace.Object;
+        if(ObjectFactory.CreateWorldObject(_currentItemToPlace.Tag) == null) return;
+        MapObject mapObject = ObjectFactory.CreateWorldObject(_currentItemToPlace.Tag);
         mapObject.X = x;
         mapObject.Y = y;
         
@@ -76,8 +76,9 @@ public partial class PlacementManager(InventoryViewModel inventory, GameMap map,
     {
         int tileX = (x / _map.TileSize);
         int tileY = (y / _map.TileSize);
-        PreviewX = tileX * _map.TileSize;
-        PreviewY = tileY * _map.TileSize;
+        
+        PreviewX = x - (int)(0.5 * _map.TileSize);
+        PreviewY = y - (int)(0.5 * _map.TileSize);
 
         if (_map.CanPlaceAt(tileX, tileY)) Opacity = 0.5;
         else Opacity = 0;

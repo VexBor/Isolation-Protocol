@@ -61,8 +61,8 @@
                     Canvas.Left="{Binding PlacementManager.PreviewX}"
                     Canvas.Top="{Binding PlacementManager.PreviewY}"
                     IsVisible="{Binding PlacementManager.IsPlacing}"
-                    MaxHeight="80"
-                    MaxWidth="60"
+                    MaxHeight="40"
+                    MaxWidth="40"
                     Opacity="{Binding PlacementManager.Opacity}"
                     Source="{Binding PlacementManager.PreviewIcon}"
                     ZIndex="20" />
@@ -70,6 +70,7 @@
         </ScrollViewer>
 
         <!--  Інший візуал  -->
+        <views:ChestView DataContext="{Binding CurrentChestInventory}" IsVisible="{Binding !!$parent[UserControl].((viewModels1:MapViewModel)DataContext).CurrentChestInventory}" />
         <ContentControl Content="{Binding CraftOpened}" />
         <ContentControl Content="{Binding Inventory}" />
     </Grid>

@@ -25,10 +25,12 @@ public partial class CraftViewModel : ViewModelBase
     private string? _errorMessage;
     
     private InventoryViewModel _inventory;
+    private GameMap _map;
 
-    public CraftViewModel(InventoryViewModel inventoryViewModel)
+    public CraftViewModel(InventoryViewModel inventoryViewModel, GameMap map)
     {
         _inventory = inventoryViewModel;
+        _map = map;
         LoadRecipes();
     }
 
@@ -44,11 +46,7 @@ public partial class CraftViewModel : ViewModelBase
 
             var data = JsonSerializer.Deserialize<List<CraftRecipe>>(json);
 
-            if (data != null)
-            {
-                Recipes = data;
-                Console.Write(data);
-            }
+            if (data != null) Recipes = data;
         }
         catch (Exception ex)
         {
@@ -60,15 +58,24 @@ public partial class CraftViewModel : ViewModelBase
     private void CraftItem()
     {
         if (SelectedRecipe == null) return;
-        if(!_inventory.EmptySlots())
+        if(!_inventory.EmptySlots(_selectedRecipe.ResultItemTag))
         {
             ErrorMessage = "НЕ ВИСТАЧАЄ МІСЦЯ";
             return;
         }
 
+        if (SelectedRecipe.NeedWorkBench)
+        {
+            if (!_map.ObjectInVision("workbench"))
+            {
+                 ErrorMessage = "ПОТРІБЕН ВЕРСТАТ";
+                 return;
+            }
+        }
+
         foreach (CraftIngredient ingredient in _selectedRecipe.Ingredients)
         {
-            if (_inventory.GetItemCount(ingredient.ItemTag) <= ingredient.Amount)
+            if (_inventory.GetItemCount(ingredient.ItemTag) < ingredient.Amount)
             {
                ErrorMessage = "НЕ ВИСТАЧАЄ РЕСУРСІВ";
                 return;

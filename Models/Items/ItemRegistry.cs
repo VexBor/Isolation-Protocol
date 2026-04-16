@@ -53,8 +53,15 @@ public static class ItemRegistry
             Name = "Верстат",
             Tag = "workbench",
             MaxStack = 32,
-            Object = new Workbench(),
             Image = LoadBitmap("avares://Isolation Protocol/Assets/workbench.png")
+        };
+        _items["chest"] = new Item
+        {
+            ItemType = ItemType.Resource,
+            Name = "Скриня",
+            Tag = "chest",
+            MaxStack = 32,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/chest.png")
         };
     }
 

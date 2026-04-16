@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -15,7 +16,9 @@ public partial class InventorySlot : ObservableObject
     private bool _isSelected;
     
     [ObservableProperty]
-    private IImage? _image;
+    private bool _isEmpty = true;
     
-    public bool IsEmpty = true;
+    [ObservableProperty]
+    private IImage? _image;
+
 }

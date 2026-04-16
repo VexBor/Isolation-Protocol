@@ -3,35 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using Avalonia.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Isolation_Protocol.Models;
+using Isolation_Protocol.Services;
 
 namespace Isolation_Protocol.View;
 
-public class InventoryViewModel: ViewModelBase
+public partial class InventoryViewModel: ViewModelBase
 {
-    public Player Player { get; set; }
+    [ObservableProperty]
+    private InventoryViewModel? _targetInventory;
+    
     public List<InventorySlot> Slots { get; set; } = new List<InventorySlot>();
     public int SelectedSlot { get; set; }
     
-    public InventoryViewModel(Player player)
+    public InventoryViewModel(int capacity)
     {
-        Player = player;
-        
-        Slots.Add(new InventorySlot());
-        Slots.Add(new InventorySlot());
-        Slots.Add(new InventorySlot());
-        Slots.Add(new InventorySlot());
-        Slots.Add(new InventorySlot());
-        Slots.Add(new InventorySlot());
+        for (int i = 0; i < capacity; i++)
+        {
+            Slots.Add(new InventorySlot());
+        }
         
         Slots[0].IsSelected = true;
-        AddItem(ItemRegistry.CreateItem("axe"), 1);
-        AddItem(ItemRegistry.CreateItem("pickaxe"), 1);
-        AddItem(ItemRegistry.CreateItem("workbench"), 20);
     }
     
     public bool AddItem(Item newItem, int amount)
     {
+        if(newItem == null) return false;
+        
         var existingSlot = Slots.FirstOrDefault(s => 
             s.Item != null &&
             s.Item.Tag == newItem.Tag && 
@@ -76,6 +76,7 @@ public class InventoryViewModel: ViewModelBase
 
             if (slot.Count == 0)
             {
+                slot.Item = null;
                 slot.IsEmpty = true;
                 slot.Image = null;
             }
@@ -84,9 +85,9 @@ public class InventoryViewModel: ViewModelBase
         return false;
     }
 
-    public bool EmptySlots()
+    public bool EmptySlots(string tag)
     {
-        var slot = Slots.FirstOrDefault(s => s.IsEmpty);
+        var slot = Slots.FirstOrDefault(s => s.Item != null && s.Item.Tag == tag && s.Count < s.Item.MaxStack || s.IsEmpty);
         if (slot != null) return true;
         return false;
     }
@@ -102,5 +103,38 @@ public class InventoryViewModel: ViewModelBase
         return count;
     }
     
+    [RelayCommand]
+    public void SelectSlot(InventorySlot clickedSlot)
+    {
+        if (InputHandler.IsShiftPressed())
+        {
+            TransferItem(clickedSlot);
+            return;
+        }
+        if (clickedSlot == null) return;
+
+        foreach (var slot in Slots)
+        {
+            slot.IsSelected = false;
+        }
+
+        clickedSlot.IsSelected = true;
+    
+        SelectedSlot = Slots.IndexOf(clickedSlot);
+    
+        System.Diagnostics.Debug.WriteLine($"Вибрано слот: {SelectedSlot}, Предмет: {clickedSlot.Item?.Tag ?? "Пусто"}");
+    }
+    
+    public void TransferItem(InventorySlot slot)
+    {
+        if (TargetInventory == null || slot.IsEmpty || slot.Item == null) return;
+
+        bool success = TargetInventory.AddItem(slot.Item, slot.Count);
+        
+        if (success)
+        {
+            RemoveItem(slot.Item.Tag, slot.Count);
+        }
+    }
 }
 

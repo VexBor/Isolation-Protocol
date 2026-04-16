@@ -1,6 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Isolation_Protocol.Services;
 using Isolation_Protocol.View;
 
 namespace Isolation_Protocol.Views;

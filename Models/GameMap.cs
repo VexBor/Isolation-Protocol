@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Isolation_Protocol.Models;
 
@@ -9,6 +11,8 @@ public class GameMap(int width, int height, Player player)
     public int Width { get; } = width;
     public int Height { get; } = height;
     public MapCell[,] Map { get; } = new MapCell[width, height];
+
+    private Player _player = player;
 
     public void InitializeMap()
     {
@@ -95,6 +99,28 @@ public class GameMap(int width, int height, Player player)
         return true;
     }
 
+    public bool ObjectInVision(string objectTag)
+    {
+        int gridX = (int)_player.X / TileSize;
+        int gridY = (int)_player.Y / TileSize;
+        
+        List<MapCell> cells = new List<MapCell>();
+        
+        cells.Add(Map[gridX + 1, gridY]);
+        cells.Add(Map[gridX - 1, gridY]);
+        cells.Add(Map[gridX, gridY + 1]);
+        cells.Add(Map[gridX, gridY - 1]);
+        
+        cells.Add(Map[gridX + 1, gridY + 1]);
+        cells.Add(Map[gridX - 1, gridY + 1]);
+        cells.Add(Map[gridX - 1, gridY - 1]);
+        cells.Add(Map[gridX + 1, gridY - 1]);
+        
+        if(cells.FirstOrDefault(o => o.Object != null && o.Object.Tag == objectTag) != null) return true;
+        
+        return false;
+    }
+    
     public void AddObject(MapObject obj,  int x, int y)
     {
         Map[x, y].Object = obj;

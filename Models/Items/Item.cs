@@ -18,7 +18,6 @@ public class Item
     public int Damage { get; set; }
     public int Durability { get; set; }
     public int MaxStack { get; set; }
-    public MapObject? Object { get; set; }
     
     public Item Clone() => (Item)this.MemberwiseClone();
 }

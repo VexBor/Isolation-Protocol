@@ -38,17 +38,28 @@ public class MapRenderer(GameMap map)
         var objectsToDraw = GetObjectsOrderedByY();
     
         foreach (MapObject obj in objectsToDraw) {
-            if (obj is Tree) DrawObject(obj);
-            if (obj is Stone) DrawObject(obj);
+            if (obj is Tree) DrawOre(obj);
+            if (obj is Stone) DrawOre(obj);
         }
     }
-    public void DrawObject(MapObject obj)
+    public void DrawOre(MapObject obj)
     {
         var image = new Image { Source = obj.Image, Width = map.TileSize * 1.5, Height = map.TileSize * 2, ZIndex = 10};
         
         Canvas.SetLeft(image, obj.X * map.TileSize - map.TileSize * 0.25);
         if(obj is Tree) Canvas.SetTop(image, obj.Y * map.TileSize - map.TileSize);
         else Canvas.SetTop(image, obj.Y * map.TileSize - 0.5 * map.TileSize);
+
+        obj.VisualElement = image;
+        _canvas.Children.Add(image);
+    }
+    
+    public void DrawObject(MapObject obj)
+    {
+        var image = new Image { Source = obj.Image, Width = map.TileSize, Height = map.TileSize, ZIndex = 8};
+        
+        Canvas.SetLeft(image, obj.X * map.TileSize);
+        Canvas.SetTop(image, obj.Y * map.TileSize);
 
         obj.VisualElement = image;
         _canvas.Children.Add(image);

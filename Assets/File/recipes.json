@@ -29,5 +29,16 @@
       { "ItemTag": "wood", "Amount": 10 },
       { "ItemTag": "stone", "Amount": 10 }
     ]
+  },
+  {
+    "ResultItemTag": "chest",
+    "Description": "Скриня, якщо не вистачає місця.",
+    "NeedWorkBench": true,
+    "CraftTime": 5,
+    "Amount": 1,
+    "Ingredients": [
+      { "ItemTag": "wood", "Amount": 1 },
+      { "ItemTag": "stone", "Amount": 1 }
+    ]
   }
 ]

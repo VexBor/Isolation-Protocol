@@ -14,8 +14,6 @@ public static class InputHandler
 
     private static bool IsKeyDown(Key key) => _keys.Contains(key);
 
-    private static int _slot = 0;
-    
     public static Vector2 GetMovementDirection()
     {
         double x = 0;
@@ -29,7 +27,7 @@ public static class InputHandler
         return new Vector2(x, y);
     }
 
-    public static bool IsSprint()
+    public static bool IsShiftPressed()
     {
         return IsKeyDown(Key.LeftShift ) || IsKeyDown(Key.RightShift);
     }
@@ -39,8 +37,9 @@ public static class InputHandler
         return IsKeyDown(Key.Space);
     }
 
-    public static int SelectedSlot()
+    public static int? SelectedSlot()
     {
+        int? _slot = null;
         if (IsKeyDown(Key.D1)) _slot = 0;
         if (IsKeyDown(Key.D2)) _slot = 1;
         if (IsKeyDown(Key.D3)) _slot = 2;
@@ -56,6 +55,16 @@ public static class InputHandler
         if (IsKeyDown(Key.R))
         {
             RegisterKeyUp(Key.R);
+            return true;
+        }
+        return false;
+    }
+
+    public static bool OpenChest()
+    {
+        if (IsKeyDown(Key.E))
+        {
+            RegisterKeyUp(Key.E);
             return true;
         }
         return false;

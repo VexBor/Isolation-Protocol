@@ -2,19 +2,24 @@ using System;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Isolation_Protocol.Interfaces;
+using Isolation_Protocol.Services;
+using Isolation_Protocol.View;
 
 namespace Isolation_Protocol.Models;
 
-public class Workbench : MapObject, IInteractable
+public class Chest : MapObject, IInteractable
 {
-    public Workbench()
+    public InventoryViewModel ChestInventory { get; }
+    
+    public Chest()
     {
-        Name = "Workbench";
+        Name = "Скриня";
         IsPassable = false;
-        Tag = "workbench";
+        Tag = "chest";
         Health = 500;
-        Drop = new ResourceDrop(ItemRegistry.CreateItem("workbench"), 1, 1);
-        Image = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/workbench.png")));
+        Drop = new ResourceDrop(ItemRegistry.CreateItem("chest")!, 1, 1);
+        Image = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/chest.png")));
+        ChestInventory = new InventoryViewModel(9);
     }
     
     public bool OnInteract(Item? tool)
