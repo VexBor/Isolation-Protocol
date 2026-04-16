@@ -22,6 +22,9 @@
         <DataTemplate DataType="{x:Type viewModels1:CraftViewModel}">
             <views:CraftView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels1:EscapeMenuViewModel}">
+            <views:EscapeMenuView />
+        </DataTemplate>
     </UserControl.DataTemplates>
 
     <UserControl.Styles>
@@ -72,6 +75,7 @@
         <!--  Інший візуал  -->
         <views:ChestView DataContext="{Binding CurrentChestInventory}" IsVisible="{Binding !!$parent[UserControl].((viewModels1:MapViewModel)DataContext).CurrentChestInventory}" />
         <ContentControl Content="{Binding CraftOpened}" />
-        <ContentControl Content="{Binding Inventory}" />
+        <ContentControl Content="{Binding EscapeMenu}" IsVisible="{Binding EscapeMenu.IsPaused}" />
+        <ContentControl Content="{Binding OpenInventory}" />
     </Grid>
 </UserControl>

@@ -12,7 +12,7 @@ public partial class MenuViewModel : ViewModelBase
     [ObservableProperty] private IImage _image = new Bitmap(AssetLoader.Open(
         new Uri(@"avares://Isolation Protocol/Assets/background.png")));
     
-    private readonly MainWindowViewModel _mainVM;
+    private MainWindowViewModel _mainVM;
 
     public MenuViewModel(MainWindowViewModel mainVM)
     {

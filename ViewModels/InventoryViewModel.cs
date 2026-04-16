@@ -117,12 +117,9 @@ public partial class InventoryViewModel: ViewModelBase
         {
             slot.IsSelected = false;
         }
-
         clickedSlot.IsSelected = true;
     
         SelectedSlot = Slots.IndexOf(clickedSlot);
-    
-        System.Diagnostics.Debug.WriteLine($"Вибрано слот: {SelectedSlot}, Предмет: {clickedSlot.Item?.Tag ?? "Пусто"}");
     }
     
     public void TransferItem(InventorySlot slot)

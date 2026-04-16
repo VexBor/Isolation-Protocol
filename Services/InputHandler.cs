@@ -69,4 +69,14 @@ public static class InputHandler
         }
         return false;
     }
+
+    public static bool Escape()
+    {
+        if (IsKeyDown(Key.Escape))
+        {
+            RegisterKeyUp(Key.Escape);
+            return true;
+        }
+        return false;
+    }
 }

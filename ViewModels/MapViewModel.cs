@@ -19,16 +19,21 @@ public partial class MapViewModel : ViewModelBase
     [ObservableProperty]
     private PlacementManager _placementManager;
     
-    public static Player Player { get; set; } = new();
+    public Player Player { get; set; } = new();
     public MapRenderer Renderer { get; set; }
     private double _viewWidth = 1920;
     private double _viewHeight = 1080;
     
+    private InventoryViewModel _inventory = new(6);
+    
     [ObservableProperty]
-    private static InventoryViewModel _inventory = new(6);
+    private  InventoryViewModel _openInventory;
     
     [ObservableProperty]
     private CraftViewModel _craftOpened;
+    
+    [ObservableProperty]
+    private EscapeMenuViewModel  _escapeMenu = new();
     
     [ObservableProperty]
     private InventoryViewModel? _currentChestInventory;
@@ -53,7 +58,8 @@ public partial class MapViewModel : ViewModelBase
         _craft = new CraftViewModel(_inventory, _map);
         _drop = new DropLogic(_inventory);
         _placementManager = new PlacementManager(_inventory, _map, Renderer);
-
+        OpenInventory = _inventory;
+        
         _inventory.AddItem(ItemRegistry.CreateItem("axe"), 1);
         _inventory.AddItem(ItemRegistry.CreateItem("pickaxe"), 1);
         _inventory.AddItem(ItemRegistry.CreateItem("workbench"), 20);
@@ -130,15 +136,39 @@ public partial class MapViewModel : ViewModelBase
             _placementManager.StopPlacement();
         }
         
-        if (_inventory.Slots[_inventory.SelectedSlot].Item != null &&  ObjectFactory.CreateWorldObject(_inventory.Slots[_inventory.SelectedSlot].Item.Tag)!= null && _placementManager.IsPlacing == false)
+        if (_inventory.Slots[_inventory.SelectedSlot].Item != null &&  ObjectFactory.CreateWorldObject(_inventory.Slots[_inventory.SelectedSlot].Item.Tag) != null && _placementManager.IsPlacing == false)
         {
             _placementManager.StartPlacement(ItemRegistry.CreateItem(_inventory.Slots[_inventory.SelectedSlot].Item.Tag));
         } 
         
         if (InputHandler.OpenCraftMenu())
         {
-            if (CraftOpened == null) CraftOpened = _craft;
-            else CraftOpened = null;
+            if (CraftOpened == null)
+            {
+                CraftOpened = _craft;
+                OpenInventory = null;
+            }
+            else
+            {
+                OpenInventory = _inventory;
+                CraftOpened = null;
+            }
+        }
+
+        if (InputHandler.Escape())
+        {
+            _escapeMenu.TogglePause();
+
+            if (_escapeMenu.IsPaused)
+            {
+                _stopwatch.Stop();
+                OpenInventory = null;
+            }
+            else
+            {
+                _stopwatch.Start();
+                OpenInventory = _inventory;
+            }
         }
     }
     

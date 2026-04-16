@@ -1,44 +1,48 @@
 [
   {
     "ResultItemTag": "axe",
+    "ResultItemName": "Сокира",
     "Description": "Примітивна сокира для видобутку деревини.",
     "NeedWorkBench": false,
     "Amount": 1,
     "CraftTime": 5,
     "Ingredients": [
-      { "ItemTag": "wood", "Amount": 3 }
+      { "ItemTag": "wood", "ItemName": "Древисина","Amount": 3 }
     ]
   },
   {
     "ResultItemTag": "pickaxe",
+    "ResultItemName": "Кайло",
     "Description": "Примітивне кайло для видобутку камня.",
     "NeedWorkBench": false,
     "CraftTime": 5,
     "Amount": 1,
     "Ingredients": [
-      { "ItemTag": "wood", "Amount": 3 }
+      { "ItemTag": "wood", "ItemName": "Древисина","Amount": 3 }
     ]
   },
   {
     "ResultItemTag": "workbench",
-    "Description": "Верстат, кажуть відкриває більше можливостей.",
+    "ResultItemName": "Верстат",
+    "Description": "Верстат, використовується для крафтів.",
     "NeedWorkBench": false,
     "CraftTime": 5,
     "Amount": 1,
     "Ingredients": [
-      { "ItemTag": "wood", "Amount": 10 },
-      { "ItemTag": "stone", "Amount": 10 }
+      { "ItemTag": "wood","ItemName": "Древисина", "Amount": 10 },
+      { "ItemTag": "stone", "ItemName": "Камінь","Amount": 10 }
     ]
   },
   {
     "ResultItemTag": "chest",
-    "Description": "Скриня, якщо не вистачає місця.",
+    "ResultItemName": "Скриня",
+    "Description": "Скриня, корисна якщо не вистачає місця.",
     "NeedWorkBench": true,
     "CraftTime": 5,
     "Amount": 1,
     "Ingredients": [
-      { "ItemTag": "wood", "Amount": 1 },
-      { "ItemTag": "stone", "Amount": 1 }
+      { "ItemTag": "wood", "ItemName": "Древисина", "Amount": 1 },
+      { "ItemTag": "stone", "ItemName": "Камінь", "Amount": 1 }
     ]
   }
 ]

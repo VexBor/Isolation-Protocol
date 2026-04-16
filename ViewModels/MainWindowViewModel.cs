@@ -20,4 +20,10 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         CurrentPage = new MenuViewModel(this);
     }
+    
+    [RelayCommand]
+    public void ExitToMenu()
+    {
+        CurrentPage = new MenuViewModel(this);
+    }
 }

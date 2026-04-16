@@ -25,17 +25,17 @@
                 <ProgressBar
                     Classes="HpBar"
                     Grid.Row="1"
-                    Value="{Binding $parent[UserControl].((viewModels1:MapViewModel)DataContext).Player.Health}" />
+                    Value="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).Player.Health}" />
 
                 <ProgressBar
                     Classes="HungerBar"
                     Grid.Row="2"
-                    Value="{Binding $parent[UserControl].((viewModels1:MapViewModel)DataContext).Player.Hunger}" />
+                    Value="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).Player.Hunger}" />
 
                 <ProgressBar
                     Classes="StaminaBar"
                     Grid.Row="3"
-                    Value="{Binding $parent[UserControl].((viewModels1:MapViewModel)DataContext).Player.Stamina}" />
+                    Value="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).Player.Stamina}" />
             </Grid>
 
             <ItemsControl Grid.Column="2" ItemsSource="{Binding Slots}">

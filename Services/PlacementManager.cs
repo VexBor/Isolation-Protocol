@@ -27,13 +27,23 @@ public partial class PlacementManager(InventoryViewModel inventory, GameMap map,
         _currentItemToPlace = item;
         IsPlacing = true;
         
-        PreviewIcon = item.Image;
+        PreviewIcon = _currentItemToPlace.Image;
     }
     
     public void ExecutePlacement(double mouseX, double mouseY)
     {
+        var slotItemTag = _inventory.Slots[_inventory.SelectedSlot].Item.Tag;
+        
+        if(_currentItemToPlace == null) return;
+        
+        if (_currentItemToPlace.Tag != slotItemTag)
+        {
+            _currentItemToPlace = ItemRegistry.CreateItem(slotItemTag);
+            PreviewIcon = _currentItemToPlace!.Image;
+        }
+        
         if (!IsPlacing || _currentItemToPlace == null) return;
-
+        
         int gx = (int)(mouseX / _map.TileSize); 
         int gy = (int)(mouseY / _map.TileSize);
 
@@ -61,8 +71,7 @@ public partial class PlacementManager(InventoryViewModel inventory, GameMap map,
         
         _inventory.RemoveItem(_currentItemToPlace.Tag, 1);
 
-        if (_inventory.GetItemCount(_currentItemToPlace.Tag) <= 0)
-            StopPlacement();
+        if (_inventory.GetItemCount(_currentItemToPlace.Tag) <= 0) StopPlacement();
     }
 
     public void StopPlacement()
