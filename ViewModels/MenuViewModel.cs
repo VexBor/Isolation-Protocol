@@ -13,6 +13,9 @@ public partial class MenuViewModel : ViewModelBase
 {
     [ObservableProperty] private IImage _image = new Bitmap(AssetLoader.Open(
         new Uri(@"avares://Isolation Protocol/Assets/background.png")));
+
+    [ObservableProperty] private string _agentName = Authorize.CurrentUser.Username;
+    [ObservableProperty] private string _agentId = "ID: " + Authorize.CurrentUser.Id;
     
     private MainWindowViewModel _mainVM;
     private SettingsViewModel _settingsVM = new();

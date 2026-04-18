@@ -1,6 +1,6 @@
 <UserControl
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
     mc:Ignorable="d"
     x:Class="Isolation_Protocol.Views.MainView"
     x:DataType="vm:MenuViewModel"
@@ -9,9 +9,38 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Isolation_Protocol.View"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:services="clr-namespace:Isolation_Protocol.Services"> <Panel>
+    xmlns:services="clr-namespace:Isolation_Protocol.Services">
+     <Panel>
         <Image Source="{Binding Image}" Stretch="UniformToFill" />
-
+        
+        <Border 
+            Classes="AgentCard" 
+            HorizontalAlignment="Right" 
+            VerticalAlignment="Top" 
+            MinHeight="90"
+            MinWidth="270"
+            Margin="30">
+            <StackPanel Orientation="Horizontal" Spacing="15" HorizontalAlignment="Right">
+                <StackPanel VerticalAlignment="Center" Spacing="5">
+                    <TextBlock Classes="AgentName" 
+                               Text="{Binding AgentName}"/>
+                    <TextBlock Classes="StatusText" Text="{Binding AgentId}" Margin="10,0,0,0"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Spacing="2" HorizontalAlignment="Right">
+                        <Ellipse Classes="StatusDot" Width="6" Height="6" Fill="#00FF00"/>
+                        <TextBlock Classes="StatusText" Text="{Binding [Menu_ActiveTxt], Source={x:Static services:Localization.Instance}}"/>
+                    </StackPanel>
+                </StackPanel>
+                <Border 
+                    Width="60" Height="60" 
+                    BorderBrush="#BC4749" 
+                    BorderThickness="1.5" 
+                    CornerRadius="20"
+                    ClipToBounds="True">
+                    <Image Source="avares://Isolation Protocol/Assets/agent_icon.png" Stretch="UniformToFill"/>
+                </Border>
+            </StackPanel>
+        </Border>
+        
         <Border HorizontalAlignment="Left" Width="800">
             <Border.Background>
                 <LinearGradientBrush EndPoint="100%,50%" StartPoint="0%,50%">

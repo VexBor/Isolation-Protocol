@@ -14,7 +14,7 @@
             VerticalAlignment="Center" HorizontalAlignment="Center" 
             Padding="30" Width="350" Background="#0F0F0F">
         <StackPanel Spacing="20">
-            <TextBlock Text="{Binding [Register_LoginTitleв ], Source={x:Static services:Localization.Instance}}" Foreground="#BC4749" 
+            <TextBlock Text="{Binding [Register_LoginTitle], Source={x:Static services:Localization.Instance}}" Foreground="#BC4749" 
                        FontSize="18" FontWeight="Black" HorizontalAlignment="Center"/>
 
             <StackPanel Spacing="12">

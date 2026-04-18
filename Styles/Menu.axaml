@@ -55,6 +55,7 @@
         <Setter Property="Background" Value="#33BC4749" />
         <Setter Property="BorderBrush" Value="{DynamicResource AccentRed}" />
         <Setter Property="TextBlock.Foreground" Value="White" />
+        <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
     <Style Selector="Button.ActionBtn">
@@ -67,6 +68,7 @@
     </Style>
     <Style Selector="Button.ActionBtn:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="{DynamicResource AccentRedHover}" />
+        <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
     <Style Selector="Button.GhostBtn">
@@ -81,6 +83,7 @@
         <Setter Property="Background" Value="{DynamicResource PanelBase}" />
         <Setter Property="BorderBrush" Value="{DynamicResource AccentRed}" />
         <Setter Property="TextBlock.Foreground" Value="{DynamicResource AccentRed}" />
+        <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
     <Style Selector="Separator">
@@ -111,6 +114,7 @@
     </Style>
     <Style Selector="Button.Primary:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="#A23C3E"/>
+        <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
     <Style Selector="Button.Secondary">
@@ -125,10 +129,14 @@
         <Setter Property="Background" Value="#1A1A1A"/>
         <Setter Property="Foreground" Value="#DDD"/>
         <Setter Property="BorderBrush" Value="#333"/>
-        <Setter Property="CaretBrush" Value="#457B9D"/> <Setter Property="SelectionBrush" Value="#457B9D"/> <Style Selector="^:focus">
+        <Setter Property="CaretBrush" Value="#457B9D"/> 
+        <Setter Property="SelectionBrush" Value="#457B9D"/> 
+        <Style Selector="^:focus">
             <Setter Property="Foreground" Value="White"/>
             <Style Selector="^ /template/ Border#PART_BorderElement">
-                <Setter Property="Background" Value="#111"/> <Setter Property="BorderBrush" Value="#457B9D"/> <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Background" Value="#111"/> 
+                <Setter Property="BorderBrush" Value="#457B9D"/> 
+                <Setter Property="BorderThickness" Value="1"/>
             </Style>
         </Style>
             
@@ -157,5 +165,50 @@
     <Style Selector="Button.Link:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#BC4749"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+    
+    <Style Selector="Border.AgentCard">
+        <Setter Property="Background" Value="#CC050505"/>
+        <Setter Property="BorderBrush" Value="#444"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="15,10"/>
+        <Setter Property="CornerRadius" Value="2"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+            </Transitions>
+        </Setter>
+    </Style>
+
+    <Style Selector="Border.AgentCard:pointerover">
+        <Setter Property="BorderBrush" Value="#BC4749"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransform" Value="scale(1.02)"/>
+    </Style>
+
+    <Style Selector="TextBlock.AgentName">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Courier New"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+
+    <Style Selector="TextBlock.StatusText">
+        <Setter Property="Foreground" Value="#457B9D"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="LetterSpacing" Value="1"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style Selector="Ellipse.StatusDot">
+        <Style.Animations>
+            <Animation Duration="0:0:2" IterationCount="Infinite">
+                <KeyFrame KeyTime="0:0:0"><Setter Property="Opacity" Value="1"/></KeyFrame>
+                <KeyFrame KeyTime="0:0:1"><Setter Property="Opacity" Value="0.2"/></KeyFrame>
+                <KeyFrame KeyTime="0:0:2"><Setter Property="Opacity" Value="1"/></KeyFrame>
+            </Animation>
+        </Style.Animations>
     </Style>
 </Styles>

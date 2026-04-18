@@ -8,6 +8,7 @@
   "Menu_Info": "DATA LOGS",
   "Menu_Exit": "EXIT",
   "Menu_Logout": "LOG OUT" ,
+  "Menu_ActiveTxt": "UPLINK ACTIVE",
   "Settings_Title": "PROTOCOL: CONFIGURATION",
   "Settings_Audio_Header": "[ AUDIO SYSTEM ]",
   "Settings_MasterVolume": "MASTER VOLUME",
