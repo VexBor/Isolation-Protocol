@@ -4,6 +4,7 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using Isolation_Protocol.Services;
 using Isolation_Protocol.View;
 using Isolation_Protocol.Views;
 
@@ -18,6 +19,7 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        Localization.Instance.LoadLanguage("ua");
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 

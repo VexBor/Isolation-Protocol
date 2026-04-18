@@ -8,8 +8,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Isolation_Protocol.View"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Panel>
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:services="clr-namespace:Isolation_Protocol.Services"> <Panel>
         <Image Source="{Binding Image}" Stretch="UniformToFill" />
 
         <Border HorizontalAlignment="Left" Width="800">
@@ -27,6 +27,7 @@
             Margin="100,0,0,0"
             Spacing="20"
             VerticalAlignment="Center">
+            
             <TextBlock
                 FontSize="72"
                 FontWeight="Black"
@@ -37,19 +38,22 @@
             <Button
                 Classes="MenuBtn"
                 Command="{Binding StartGameCommand}"
-                Content="ПОЧАТИ" />
+                Content="{Binding [Menu_Start], Source={x:Static services:Localization.Instance}}" />
+            
             <Button
                 Classes="MenuBtn"
                 Command="{Binding OpenSettingsCommand}"
-                Content="НАЛАШТУВАННЯ" />
+                Content="{Binding [Menu_Settings], Source={x:Static services:Localization.Instance}}" />
+            
             <Button
                 Classes="MenuBtn"
                 Command="{Binding OpenInfoCommand}"
-                Content="ІНФОРМАЦІЯ" />
+                Content="{Binding [Menu_Info], Source={x:Static services:Localization.Instance}}" />
+            
             <Button
                 Classes="MenuBtn"
                 Command="{Binding ExitCommand}"
-                Content="ВИХІД" />
+                Content="{Binding [Menu_Exit], Source={x:Static services:Localization.Instance}}" />
         </StackPanel>
     </Panel>
 </UserControl>

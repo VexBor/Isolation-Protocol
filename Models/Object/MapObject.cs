@@ -7,7 +7,6 @@ namespace Isolation_Protocol.Models;
 public class MapObject : IInteractable
 {
     private IInteractable _interactableImplementation;
-    public string? Name { get; set; }
     public string? Tag { get; set; }
     public int Health { get; set; }
     public bool IsPassable { get; set; }

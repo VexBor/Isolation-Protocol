@@ -9,7 +9,6 @@ public class Stone : MapObject,  IInteractable
 {
     public Stone()
     {
-        Name = "Stone";
         IsPassable = false;
         Tag = "stone";
         Health = 100;

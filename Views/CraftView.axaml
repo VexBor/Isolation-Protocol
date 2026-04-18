@@ -9,14 +9,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:Isolation_Protocol.Models.Craft"
     xmlns:vm="clr-namespace:Isolation_Protocol.View"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:services="clr-namespace:Isolation_Protocol.Services">
 
-    <Grid Background="{DynamicResource GlobalBackground}" ColumnDefinitions="400, *">
+ <Grid Background="{DynamicResource GlobalBackground}" ColumnDefinitions="400, *">
 
         <ListBox
             Background="{DynamicResource PanelDark}"
-            BorderBrush="{DynamicResource BorderMain}"
-            BorderThickness="0,0,1,0"
             Grid.Column="0"
             ItemsSource="{Binding Recipes}"
             SelectedItem="{Binding SelectedRecipe}">
@@ -25,8 +24,7 @@
                     <TextBlock
                         Classes="BodyText"
                         Margin="10,5"
-                        Text="{Binding ResultItemName}" />
-                </DataTemplate>
+                        Text="{Binding DisplayName}" /> </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
@@ -40,12 +38,12 @@
                 <TextBlock
                     Classes="H1"
                     FontSize="42"
-                    Text="{Binding SelectedRecipe.ResultItemName}" />
+                    Text="{Binding SelectedRecipe.DisplayName}" />
 
                 <TextBlock
                     Classes="BodyText"
                     Opacity="0.7"
-                    Text="{Binding SelectedRecipe.Description}"
+                    Text="{Binding SelectedRecipe.DisplayDescription}"
                     TextWrapping="Wrap" />
 
                 <Separator />
@@ -54,7 +52,7 @@
                     Classes="SystemText"
                     FontWeight="Bold"
                     Foreground="{DynamicResource AccentRed}"
-                    Text="НЕОБХІДНІ КОМПОНЕНТИ ДЛЯ СИНТЕЗУ:" />
+                    Text="{Binding [Craft_Ingredients_Header], Source={x:Static services:Localization.Instance}}" />
 
                 <ItemsControl ItemsSource="{Binding SelectedRecipe.Ingredients}">
                     <ItemsControl.ItemTemplate>
@@ -63,27 +61,29 @@
                                 <TextBlock
                                     Classes="BodyText"
                                     Grid.Column="0"
-                                    Text="{Binding ItemName}" />
-                                <TextBlock
+                                    Text="{Binding DisplayName}" /> <TextBlock
                                     FontSize="16"
                                     FontWeight="Bold"
                                     Foreground="{DynamicResource AccentRed}"
                                     Grid.Column="1"
-                                    Text="{Binding Amount}" />
+                                    Margin="10,0,0,0"
+                                    Text="{Binding Amount, StringFormat='x{0}'}" />
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+
                 <TextBlock
                     FontSize="20"
                     FontWeight="Bold"
                     Foreground="{DynamicResource AccentRed}"
                     Margin="0,40,0,0"
                     Text="{Binding ErrorMessage}" />
+
                 <Button
                     Classes="ActionBtn"
                     Command="{Binding CraftItemCommand}"
-                    Content="ЗАПУСТИТИ ПРОТОКОЛ СИНТЕЗУ"
+                    Content="{Binding [Craft_Start_Btn], Source={x:Static services:Localization.Instance}}"
                     Height="60"
                     HorizontalAlignment="Stretch"
                     Margin="0,40,0,0" />
@@ -95,7 +95,7 @@
             Grid.Column="1"
             HorizontalAlignment="Center"
             IsVisible="{Binding SelectedRecipe, Converter={x:Static ObjectConverters.IsNull}}"
-            Text="ВИБЕРІТЬ РЕЦЕПТ У ТЕРМІНАЛІ"
+            Text="{Binding [Craft_Select_Hint], Source={x:Static services:Localization.Instance}}"
             VerticalAlignment="Center" />
     </Grid>
 </UserControl>

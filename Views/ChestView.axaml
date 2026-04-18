@@ -9,7 +9,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:Isolation_Protocol.Models"
     xmlns:viewModels1="clr-namespace:Isolation_Protocol.View"
+    xmlns:services="clr-namespace:Isolation_Protocol.Services"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
     <Border
         Background="#CC0D0D0D"
         BorderBrush="#333333"
@@ -26,7 +28,7 @@
                 Foreground="#BC4749"
                 HorizontalAlignment="Center"
                 Margin="0,0,0,5"
-                Text="СХОВИЩЕ" />
+                Text="{Binding [Chest_Title], Source={x:Static services:Localization.Instance}}" />
 
             <ItemsControl ItemsSource="{Binding Slots}">
                 <ItemsControl.ItemsPanel>
@@ -50,7 +52,7 @@
                             <Grid Classes="Slot">
                                 <Border Height="85" Width="85">
                                     <Panel>
-                                        <Image Margin="5" Source="{Binding Image}" />
+                                        <Image Margin="5" Source="{Binding Item.Image}" />
                                         <TextBlock
                                             HorizontalAlignment="Right"
                                             IsVisible="{Binding !IsEmpty}"
@@ -68,7 +70,7 @@
             <Button
                 Background="#22FFFFFF"
                 Command="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).CloseChestCommand}"
-                Content="ЗАКРИТИ"
+                Content="{Binding [Chest_Close], Source={x:Static services:Localization.Instance}}"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
                 Margin="0,10,0,0" />

@@ -10,7 +10,6 @@ public class Tree : MapObject, IInteractable
 {
     public Tree()
     {
-        Name = "Tree";
         IsPassable = false;
         Tag = "tree";
         Health = 100;

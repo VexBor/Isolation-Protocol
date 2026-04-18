@@ -13,7 +13,6 @@ public class Chest : MapObject, IInteractable
     
     public Chest()
     {
-        Name = "Скриня";
         IsPassable = false;
         Tag = "chest";
         Health = 500;

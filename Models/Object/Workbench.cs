@@ -9,7 +9,6 @@ public class Workbench : MapObject, IInteractable
 {
     public Workbench()
     {
-        Name = "Workbench";
         IsPassable = false;
         Tag = "workbench";
         Health = 500;

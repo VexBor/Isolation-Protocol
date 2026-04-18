@@ -8,7 +8,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels1="clr-namespace:Isolation_Protocol.View"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:Isolation_Protocol.Services">
     <Panel Background="#AA000000">
         <Border
             Background="#1A1A1A"
@@ -27,12 +28,12 @@
                     Foreground="#BC4749"
                     HorizontalAlignment="Center"
                     Margin="0,0,0,10"
-                    Text="ПАУЗА" />
+                    Text="{Binding [PauseTitle], Source={x:Static loc:Localization.Instance}}" />
 
                 <Button
                     Classes="MenuBtn"
                     Command="{Binding ResumeCommand}"
-                    Content="ПРОДОВЖИТИ"
+                    Content="{Binding [ResumeBtn], Source={x:Static loc:Localization.Instance}}"
                     HorizontalAlignment="Center" />
 
                 <Separator Background="#333333" Margin="0,5" />
@@ -40,14 +41,14 @@
                 <Button
                     Classes="MenuBtn"
                     Command="{Binding $parent[Window].((viewModels1:MainWindowViewModel)DataContext).ExitToMenuCommand}"
-                    Content="ВИЙТИ В МЕНЮ"
+                    Content="{Binding [ExitBtn], Source={x:Static loc:Localization.Instance}}"
                     HorizontalAlignment="Center" />
 
                 <Button
                     Background="#44BC4749"
                     Classes="MenuBtn"
                     Command="{Binding QuitGameCommand}"
-                    Content="ВИЙТИ НА РОБОЧИЙ СТІЛ"
+                    Content="{Binding [ExitOnTableBtn], Source={x:Static loc:Localization.Instance}}"
                     HorizontalAlignment="Center" />
             </StackPanel>
         </Border>

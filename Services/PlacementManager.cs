@@ -32,7 +32,9 @@ public partial class PlacementManager(InventoryViewModel inventory, GameMap map,
     
     public void ExecutePlacement(double mouseX, double mouseY)
     {
-        var slotItemTag = _inventory.Slots[_inventory.SelectedSlot].Item.Tag;
+        if(_inventory.Slots[_inventory.SelectedSlot].Item == null) return;
+        
+        var slotItemTag = _inventory.Slots[_inventory.SelectedSlot].Item!.Tag;
         
         if(_currentItemToPlace == null) return;
         

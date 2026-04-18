@@ -3,7 +3,8 @@
     x:DataType="vm:InfoViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:vm="clr-namespace:Isolation_Protocol.View"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:services="clr-namespace:Isolation_Protocol.Services">
 
     <Grid Background="{DynamicResource GlobalBackground}" RowDefinitions="Auto, *, Auto">
 
@@ -11,7 +12,7 @@
             Classes="H1"
             Grid.Row="0"
             Margin="60,50,0,0"
-            Text="ПРОТОКОЛ: СТАТУС СИСТЕМИ" />
+            Text="{Binding [Info_Title], Source={x:Static services:Localization.Instance}}" />
 
         <Border
             Classes="ContentPanel"
@@ -22,22 +23,26 @@
                 <StackPanel Margin="50,40" Spacing="40">
 
                     <StackPanel Spacing="10">
-                        <TextBlock Classes="H2" Text="[ ОБ'ЄКТ: ОСТРІВ «КЕНОТАФ» ]" />
+                        <TextBlock Classes="H2" Text="{Binding [Info_Object_Header], Source={x:Static services:Localization.Instance}}" />
                         <Separator HorizontalAlignment="Left" Width="200" />
-                        <TextBlock Classes="BodyText">
-                            <Run FontWeight="Bold" Foreground="#888">РІК: 2097. ОБ'ЄКТ: АРКА-6.</Run>
+                        <TextBlock Classes="BodyText" TextWrapping="Wrap">
+                            <Run FontWeight="Bold" Foreground="#888" 
+                                 Text="{Binding [Info_Lore_Timestamp], Source={x:Static services:Localization.Instance}}" />
                             <LineBreak /><LineBreak />
-                            Передісторія: Після «Великого Згасання» зв'язок з материком перервався.
-                            AEGIS активував протокол «Ізоляція»: периметр заміновано, розгорнуто поле радіомовчання.</TextBlock>
+                            <Run Text="{Binding [Info_Lore_Text1], Source={x:Static services:Localization.Instance}}" />
+                        </TextBlock>
                     </StackPanel>
 
                     <StackPanel Spacing="10">
-                        <TextBlock Classes="H2" Text="[ СТАН ОБ'ЄКТА ]" />
+                        <TextBlock Classes="H2" Text="{Binding [Info_Status_Header], Source={x:Static services:Localization.Instance}}" />
                         <Separator HorizontalAlignment="Left" Width="200" />
-                        <TextBlock Classes="BodyText">
-                            Природа поглинає базу. AEGIS ліквідує будь-яку ціль без чипа ідентифікації.<LineBreak /><LineBreak />
-                            <Run FontWeight="Bold" Foreground="{DynamicResource AccentRed}">⚠️ УВАГА:</Run>
-                            Екзокостюм розряджений. Директива: Вижити. Відновити живлення.</TextBlock>
+                        <TextBlock Classes="BodyText" TextWrapping="Wrap">
+                            <Run Text="{Binding [Info_Status_Text1], Source={x:Static services:Localization.Instance}}" />
+                            <LineBreak /><LineBreak />
+                            <Run FontWeight="Bold" Foreground="{DynamicResource AccentRed}" 
+                                 Text="{Binding [Info_Status_Warning], Source={x:Static services:Localization.Instance}}" />
+                            <Run Text="{Binding [Info_Status_Directive], Source={x:Static services:Localization.Instance}}" />
+                        </TextBlock>
                     </StackPanel>
 
                 </StackPanel>
@@ -45,10 +50,7 @@
         </Border>
 
         <Border Classes="FooterPanel" Grid.Row="2">
-            <StackPanel
-                HorizontalAlignment="Center"
-                Orientation="Horizontal"
-                Spacing="40">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="40">
 
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock
@@ -63,16 +65,15 @@
 
                 <TextBlock
                     Classes="SystemText"
-                    Text="LEAD DEVELOPER: ЯКИМ ВАДИМ [ARC-6 / SECTOR-3]"
+                    Text="DEVELOPER: YAKYM VADYM [ARC-6 / SECTOR-3]"
                     VerticalAlignment="Center" />
 
                 <Button
                     Classes="GhostBtn"
                     Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).OpenMenuCommand}"
-                    Content="НАЗАД"
+                    Content="{Binding [Settings_Back], Source={x:Static services:Localization.Instance}}"
                     Margin="100,0,0,0" />
             </StackPanel>
         </Border>
-
     </Grid>
 </UserControl>

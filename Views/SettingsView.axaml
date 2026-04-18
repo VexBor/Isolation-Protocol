@@ -3,15 +3,14 @@
     x:DataType="vm:SettingsViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:vm="clr-namespace:Isolation_Protocol.View"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <Grid Background="{DynamicResource GlobalBackground}" RowDefinitions="Auto, *, Auto">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:services="clr-namespace:Isolation_Protocol.Services"> <Grid Background="{DynamicResource GlobalBackground}" RowDefinitions="Auto, *, Auto">
 
         <TextBlock
             Classes="H1"
             Grid.Row="0"
             Margin="60,50,0,0"
-            Text="ПРОТОКОЛ: НАЛАШТУВАННЯ" />
+            Text="{Binding [Settings_Title], Source={x:Static services:Localization.Instance}}" />
 
         <Border
             Classes="ContentPanel"
@@ -22,14 +21,14 @@
                 <StackPanel Margin="50,40" Spacing="40">
 
                     <StackPanel Spacing="15">
-                        <TextBlock Classes="H2" Text="[ СИСТЕМА АУДІО ]" />
+                        <TextBlock Classes="H2" Text="{Binding [Settings_Audio_Header], Source={x:Static services:Localization.Instance}}" />
                         <Separator HorizontalAlignment="Left" Width="200" />
 
                         <Grid ColumnDefinitions="200, *, 60" Margin="0,10,0,0">
                             <TextBlock
                                 Classes="BodyText"
                                 Grid.Column="0"
-                                Text="ЗАГАЛЬНА ГУЧНІСТЬ"
+                                Text="{Binding [Settings_MasterVolume], Source={x:Static services:Localization.Instance}}"
                                 VerticalAlignment="Center" />
                             <Slider
                                 Grid.Column="1"
@@ -45,51 +44,26 @@
                                 Text="{Binding Settings.Volume, StringFormat='{}{0:0}%'}"
                                 VerticalAlignment="Center" />
                         </Grid>
-
-                        <Grid ColumnDefinitions="200, *, 60" Margin="0,10,0,0">
-                            <TextBlock
-                                Classes="BodyText"
-                                Grid.Column="0"
-                                Text="ЕФЕКТИ ТА МУЗИКА"
-                                VerticalAlignment="Center" />
-                            <Slider
-                                Grid.Column="1"
-                                Margin="10,0"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="{Binding Settings.MusicVolume}" />
-                            <TextBlock
-                                Classes="BodyText"
-                                Foreground="{DynamicResource AccentRed}"
-                                Grid.Column="2"
-                                HorizontalAlignment="Right"
-                                Text="{Binding Settings.MusicVolume, StringFormat='{}{0:0}%'}"
-                                VerticalAlignment="Center" />
-                        </Grid>
-                    </StackPanel>
+                        </StackPanel>
 
                     <StackPanel Spacing="15">
-                        <TextBlock Classes="H2" Text="[ ЛОКАЛІЗАЦІЯ ]" />
+                        <TextBlock Classes="H2" Text="{Binding [Settings_Loc_Header], Source={x:Static services:Localization.Instance}}" />
                         <Separator HorizontalAlignment="Left" Width="200" />
 
                         <Grid ColumnDefinitions="200, *" Margin="0,10,0,0">
                             <TextBlock
                                 Classes="BodyText"
                                 Grid.Column="0"
-                                Text="МОВА ІНТЕРФЕЙСУ"
+                                Text="{Binding [Settings_Language], Source={x:Static services:Localization.Instance}}"
                                 VerticalAlignment="Center" />
+                            
                             <ComboBox
                                 Grid.Column="1"
                                 HorizontalAlignment="Stretch"
                                 SelectedIndex="{Binding Settings.LanguageId}">
-                                <ComboBoxItem Content="Čeština" />
-                                <ComboBoxItem Content="Deutsch" />
-                                <ComboBoxItem Content="English" />
-                                <ComboBoxItem Content="Polski" />
-                                <ComboBoxItem Content="Português" />
-                                <ComboBoxItem Content="Slovenčina" />
-                                <ComboBoxItem Content="Українська" />
-                            </ComboBox>
+                                <ComboBoxItem Content="English" Tag="en" />
+                                <ComboBoxItem Content="Українська" Tag="ua" />
+                                </ComboBox>
                         </Grid>
                     </StackPanel>
 
@@ -98,18 +72,15 @@
         </Border>
 
         <Border Classes="FooterPanel" Grid.Row="2">
-            <StackPanel
-                HorizontalAlignment="Center"
-                Orientation="Horizontal"
-                Spacing="20">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="20">
                 <Button
                     Classes="ActionBtn"
                     Command="{Binding SaveSettingsCommand}"
-                    Content="ЗБЕРЕГТИ ЗМІНИ" />
+                    Content="{Binding [Settings_Save], Source={x:Static services:Localization.Instance}}" />
                 <Button
                     Classes="GhostBtn"
                     Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).OpenMenuCommand}"
-                    Content="НАЗАД" />
+                    Content="{Binding [Settings_Back], Source={x:Static services:Localization.Instance}}" />
             </StackPanel>
         </Border>
 

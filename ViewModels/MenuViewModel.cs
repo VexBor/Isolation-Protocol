@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -13,6 +14,7 @@ public partial class MenuViewModel : ViewModelBase
         new Uri(@"avares://Isolation Protocol/Assets/background.png")));
     
     private MainWindowViewModel _mainVM;
+    private SettingsViewModel _settingsVM = new();
 
     public MenuViewModel(MainWindowViewModel mainVM)
     {
@@ -20,15 +22,24 @@ public partial class MenuViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private void StartGame()
+    private async void StartGame()
     {
-        _mainVM.CurrentPage = new MapViewModel();
+        _mainVM.CurrentPage = new LoadingViewModel();
+
+        MapViewModel game = null;
+        
+        await Task.Run(async () =>
+        {
+            game = new MapViewModel();
+            await Task.Delay(1500);
+        });
+        _mainVM.CurrentPage = game;
     }
     
     [RelayCommand]
     private void OpenSettings()
     {
-        _mainVM.CurrentPage = new SettingsViewModel();
+        _mainVM.CurrentPage = _settingsVM;
     }
         
     [RelayCommand]

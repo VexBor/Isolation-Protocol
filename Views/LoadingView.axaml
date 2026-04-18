@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:Isolation_Protocol.Services"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Isolation_Protocol.Views.LoadingView"
+             Background="Black">
+    <UserControl.Styles>
+        <Style Selector="TextBlock.BlinkingText">
+            <Setter Property="Foreground" Value="#BC4749" /> <Style.Animations>
+                <Animation Duration="0:0:1.5" IterationCount="Infinite" Easing="SineEaseInOut">
+                    <KeyFrame KeyTime="0:0:0">
+                        <Setter Property="Opacity" Value="1.0"/>
+                    </KeyFrame>
+                    
+                    <KeyFrame KeyTime="0:0:0.75">
+                        <Setter Property="Opacity" Value="0.3"/>
+                    </KeyFrame>
+                    
+                    <KeyFrame KeyTime="0:0:1.5">
+                        <Setter Property="Opacity" Value="1.0"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+    </UserControl.Styles>
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="25">
+        
+        <TextBlock Classes="BlinkingText"
+                   Text="{Binding [Loading_Main], Source={x:Static services:Localization.Instance}}"
+                   FontSize="28" 
+                   FontWeight="Black" 
+                   LetterSpacing="5"
+                   HorizontalAlignment="Center"/>
+        
+        <Rectangle Fill="#333" Height="1" Width="400" HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="{Binding [Loading_Hint], Source={x:Static services:Localization.Instance}}"
+                   FontSize="14" 
+                   Opacity="0.6" 
+                   Foreground="#DDD"
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap"/>
+    </StackPanel>
+</UserControl>

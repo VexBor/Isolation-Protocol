@@ -14,16 +14,15 @@ public static class ItemRegistry
         _items["axe"] = new Item 
         {
             Tag = "axe",
-            Name = "Топор",
             ItemType = ItemType.Tool,
             Damage = 10,
             Durability = 100,
             MaxStack = 1,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/axe.png")
         };
+    
         _items["pickaxe"] = new Item
         {
-            Name = "Кайло",
             Tag = "pickaxe",
             ItemType = ItemType.Tool,
             Damage = 10,
@@ -31,35 +30,35 @@ public static class ItemRegistry
             MaxStack = 1,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/pickaxe.png")
         };
+    
         _items["stone"] = new Item
         {
-            ItemType = ItemType.Resource,
-            Name = "Камінь",
             Tag = "stone",
+            ItemType = ItemType.Resource,
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/StoneItem.png")
         };
+    
         _items["wood"] = new Item
         {
-            ItemType = ItemType.Resource,
-            Name = "Древисина",
             Tag = "wood",
+            ItemType = ItemType.Resource,
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/wood.png")
         };
+    
         _items["workbench"] = new Item
         {
-            ItemType = ItemType.Resource,
-            Name = "Верстат",
             Tag = "workbench",
+            ItemType = ItemType.Resource,
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/workbench.png")
         };
+    
         _items["chest"] = new Item
         {
-            ItemType = ItemType.Resource,
-            Name = "Скриня",
             Tag = "chest",
+            ItemType = ItemType.Resource,
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/chest.png")
         };
