@@ -9,7 +9,7 @@ namespace Isolation_Protocol.View;
 
 public partial class SettingsViewModel: ViewModelBase
 { 
-    public Settings? Settings { get; set; }
+    public static Settings? Settings { get; set; }
     
     private string _settingsFilePath = "Assets/settings.json";
 

@@ -23,7 +23,7 @@
                     <StackPanel Spacing="15">
                         <TextBlock Classes="H2" Text="{Binding [Settings_Audio_Header], Source={x:Static services:Localization.Instance}}" />
                         <Separator HorizontalAlignment="Left" Width="200" />
-
+            
                         <Grid ColumnDefinitions="200, *, 60" Margin="0,10,0,0">
                             <TextBlock
                                 Classes="BodyText"

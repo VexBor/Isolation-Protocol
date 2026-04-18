@@ -13,7 +13,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        CurrentPage = new MenuViewModel(this);
+        var st = new SettingsViewModel();
+        CurrentPage = new LoginViewModel(this);
     }
     
     [RelayCommand]

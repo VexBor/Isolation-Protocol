@@ -104,5 +104,58 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Opacity" Value="0.8" />
     </Style>
+    
 
+    <Style Selector="Button.Primary">
+        <Setter Property="Background" Value="#BC4749"/>
+    </Style>
+    <Style Selector="Button.Primary:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#A23C3E"/>
+    </Style>
+
+    <Style Selector="Button.Secondary">
+        <Setter Property="Background" Value="#457B9D"/>
+    </Style>
+    
+    <Style Selector="TextBox.TerminalInput:focus /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="#457B9D"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+    <Style Selector="TextBox.TerminalInput">
+        <Setter Property="Background" Value="#1A1A1A"/>
+        <Setter Property="Foreground" Value="#DDD"/>
+        <Setter Property="BorderBrush" Value="#333"/>
+        <Setter Property="CaretBrush" Value="#457B9D"/> <Setter Property="SelectionBrush" Value="#457B9D"/> <Style Selector="^:focus">
+            <Setter Property="Foreground" Value="White"/>
+            <Style Selector="^ /template/ Border#PART_BorderElement">
+                <Setter Property="Background" Value="#111"/> <Setter Property="BorderBrush" Value="#457B9D"/> <Setter Property="BorderThickness" Value="1"/>
+            </Style>
+        </Style>
+            
+        <Style Selector="^ /template/ TextBlock#PART_Watermark">
+            <Setter Property="Foreground" Value="#555"/>
+        </Style>
+    </Style>
+
+    <Style Selector="Button.TerminalButton">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style Selector="Button.Secondary">
+        <Setter Property="Background" Value="#BC4749"/>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style Selector="Button.Link">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="FontSize" Value="10"/>
+    </Style>
+    <Style Selector="Button.Link:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#BC4749"/>
+    </Style>
 </Styles>

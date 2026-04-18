@@ -52,6 +52,11 @@
             
             <Button
                 Classes="MenuBtn"
+                Command="{Binding LogoutCommand}"
+                Content="{Binding [Menu_Logout], Source={x:Static services:Localization.Instance}}" />
+            
+            <Button
+                Classes="MenuBtn"
                 Command="{Binding ExitCommand}"
                 Content="{Binding [Menu_Exit], Source={x:Static services:Localization.Instance}}" />
         </StackPanel>

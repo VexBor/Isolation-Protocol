@@ -37,22 +37,15 @@ public partial class CraftViewModel : ViewModelBase
 
     private void LoadRecipes()
     {
-        try
-        { 
-            var uri = new Uri("avares://Isolation Protocol/Assets/File/recipes.json");
+        var uri = new Uri("avares://Isolation Protocol/Assets/File/recipes.json");
     
-            using var stream = AssetLoader.Open(uri);
-            using var reader = new StreamReader(stream);
-            var json = reader.ReadToEnd();
+        using var stream = AssetLoader.Open(uri);
+        using var reader = new StreamReader(stream);
+        var json = reader.ReadToEnd();
 
-            var data = JsonSerializer.Deserialize<List<CraftRecipe>>(json);
+        var data = JsonSerializer.Deserialize<List<CraftRecipe>>(json);
 
-            if (data != null) Recipes = data;
-        }
-        catch (Exception ex)
-        {
-            ErrorMessage = ($"Помилка завантаження рецептів: {ex.Message}");
-        }
+        if (data != null) Recipes = data;
     }
 
     [RelayCommand]

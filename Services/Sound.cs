@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Isolation_Protocol.View;
 using NetCoreAudio;
 
 namespace Isolation_Protocol.Services;
@@ -8,8 +9,7 @@ namespace Isolation_Protocol.Services;
 public static class Sound
 {
     private static Player _sfxPlayer = new();
-    private static Player _musicPlayer = new();
-    private static string _basePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Sounds");
+    private static string _basePath = "Assets/Sounds";
     
     private static Dictionary<string, string> SoundMap = new()
     {
@@ -17,15 +17,19 @@ public static class Sound
         {"chest", "opened_chest.mp3"},
         {"tree", "hit_tree.mp3"},
         {"stone", "hit_stone.mp3"},
-        {"slot", "chance_slot.mp3"}
+        {"slot", "chance_slot.mp3"},
+        {"music", "fon_music.mp3"}
     };
     
     public static void PlaySfx(string tag)
     {
         if (SoundMap.TryGetValue(tag, out var fileName))
         {
-            string fullPath = Path.Combine(_basePath, fileName);
-            if (File.Exists(fullPath)) _sfxPlayer.Play(fullPath);
+            if (File.Exists(_basePath + $"/{fileName}"))
+            {
+                _sfxPlayer.SetVolume((byte)SettingsViewModel.Settings.Volume);
+                _sfxPlayer.Play(_basePath + $"/{fileName}");
+            }
         }
     }
 }

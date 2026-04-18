@@ -53,6 +53,14 @@ public partial class MenuViewModel : ViewModelBase
     }
     
     [RelayCommand]
+    private void Logout()
+    {
+        Sound.PlaySfx("click");
+        Authorize.CurrentUser = null;
+        _mainVM.CurrentPage = new LoginViewModel(_mainVM);
+    }
+    
+    [RelayCommand]
     private void Exit()
     {
         Sound.PlaySfx("click");

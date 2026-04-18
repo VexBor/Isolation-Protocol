@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Isolation_Protocol.View"
+             xmlns:services="clr-namespace:Isolation_Protocol.Services"
+             x:DataType="vm:RegisterViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Isolation_Protocol.Views.RegisterView">
+    <UserControl.Background>
+        <ImageBrush Source="avares://Isolation Protocol/Assets/background.png" Stretch="UniformToFill"/>
+    </UserControl.Background>
+    
+<Border BorderBrush="#333" BorderThickness="1" 
+            VerticalAlignment="Center" HorizontalAlignment="Center" 
+            Padding="30" Width="380" Background="#CC0F0F0F"> <StackPanel Spacing="15">
+            
+            <StackPanel Spacing="5">
+                <TextBlock
+                           Text="{Binding [Register_Title], Source={x:Static services:Localization.Instance}}"
+                           Foreground="#457B9D" 
+                           FontSize="16" FontWeight="Black" 
+                           HorizontalAlignment="Center"/>
+                <Rectangle Fill="#457B9D" Height="2" Width="40" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Spacing="10">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{Binding [Register_Login], Source={x:Static services:Localization.Instance}}" FontSize="10" Foreground="Gray" Margin="5,0"/>
+                    <TextBox Classes="TerminalInput" Watermark="VexBor" Text="{Binding Login}"/>
+                </StackPanel>
+                
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{Binding [Register_Email], Source={x:Static services:Localization.Instance}}" FontSize="10" Foreground="Gray" Margin="5,0"/>
+                    <TextBox Classes="TerminalInput" Watermark="vexbor@gmail.com" Text="{Binding Email}"/>
+                </StackPanel>
+                
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{Binding [Register_Password], Source={x:Static services:Localization.Instance}}" FontSize="10" Foreground="Gray" Margin="5,0"/>
+                    <TextBox Classes="TerminalInput" PasswordChar="●" Watermark="PASSWORD" Text="{Binding Password}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{Binding [Register_ConfirmPassword], Source={x:Static services:Localization.Instance}}" FontSize="10" Foreground="Gray" Margin="5,0"/>
+                    <TextBox Classes="TerminalInput" PasswordChar="●" Watermark="CONFIRM PASSWORD" Text="{Binding ConfirmPassword}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Spacing="10" Margin="0,10,0,0">
+                <Button Classes="TerminalButton Secondary" 
+                        Content="{Binding [Register_ConfirmBtn], Source={x:Static services:Localization.Instance}}"
+                        Command="{Binding RegisterCommand}"/>
+                
+                <Button Classes="Link" 
+                        HorizontalAlignment="Right"
+                        Content="{Binding [Register_OpenLogin], Source={x:Static services:Localization.Instance}}"
+                        Command="{Binding OpenLoginMenuCommand}"/>
+            </StackPanel>
+
+            <TextBlock Foreground="#E63946" FontSize="12" 
+                       HorizontalAlignment="Center" TextWrapping="Wrap"
+                       Text="{Binding ErrorMessage}"/>
+        </StackPanel>
+    </Border>
+</UserControl>

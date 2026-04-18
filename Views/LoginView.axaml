@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Isolation_Protocol.View"
+             xmlns:services="clr-namespace:Isolation_Protocol.Services"
+             x:DataType="vm:LoginViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Isolation_Protocol.Views.LoginView">
+    <UserControl.Background>
+        <ImageBrush Source="avares://Isolation Protocol/Assets/background.png" Stretch="UniformToFill"/>
+    </UserControl.Background>
+    <Border BorderBrush="#333" BorderThickness="1" 
+            VerticalAlignment="Center" HorizontalAlignment="Center" 
+            Padding="30" Width="350" Background="#0F0F0F">
+        <StackPanel Spacing="20">
+            <TextBlock Text="{Binding [Register_LoginTitleв ], Source={x:Static services:Localization.Instance}}" Foreground="#BC4749" 
+                       FontSize="18" FontWeight="Black" HorizontalAlignment="Center"/>
+
+            <StackPanel Spacing="12">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{Binding [Register_Login], Source={x:Static services:Localization.Instance}}" FontSize="10" Foreground="Gray" Margin="5,0"/>
+                    <TextBox Classes="TerminalInput" 
+                             Watermark="VexBor"
+                             Text="{Binding Username}"/>
+                </StackPanel>
+            
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{Binding [Register_Password], Source={x:Static services:Localization.Instance}}" FontSize="10" Foreground="Gray" Margin="5,0"/>
+                    <TextBox Classes="TerminalInput" 
+                             PasswordChar="●" Watermark="PASSWORD"
+                             Text="{Binding Password}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Spacing="10">
+                <Button Classes="TerminalButton Primary" 
+                        Content="{Binding [Register_LogIn], Source={x:Static services:Localization.Instance}}"
+                        Command="{Binding LoginCommand}"/>
+            
+                <Button Classes="Link" HorizontalAlignment="Right"
+                        Content="{Binding [Register_OpenRegister], Source={x:Static services:Localization.Instance}}"
+                        Command="{Binding OpenRegisterMenuCommand}" />
+            </StackPanel>
+
+            <TextBlock Foreground="#E63946"  Text="{Binding ErrorMessage}"
+                       FontSize="14" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Border>
+</UserControl>
