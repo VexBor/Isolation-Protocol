@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Isolation_Protocol.Interfaces;
+using Isolation_Protocol.Services;
 
 namespace Isolation_Protocol.Models;
 
@@ -21,6 +22,7 @@ public class Tree : MapObject, IInteractable
     {
         if (tool.Tag == "axe") 
         {
+            Sound.PlaySfx("tree");
             Health -= tool.Damage;
             if(Health <= 0) return true;
         }

@@ -1,10 +1,11 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Isolation_Protocol.Services;
 
 namespace Isolation_Protocol.View;
 
-public partial class EscapeMenuViewModel :  ObservableObject
+public partial class EscapeMenuViewModel :  ViewModelBase
 {
     [ObservableProperty]
     private bool _isPaused;
@@ -12,6 +13,7 @@ public partial class EscapeMenuViewModel :  ObservableObject
     [RelayCommand]
     public void TogglePause()
     {
+        Sound.PlaySfx("click");
         IsPaused = !IsPaused;
     }
 

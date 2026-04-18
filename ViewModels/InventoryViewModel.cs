@@ -106,6 +106,7 @@ public partial class InventoryViewModel: ViewModelBase
     [RelayCommand]
     public void SelectSlot(InventorySlot clickedSlot)
     {
+        Sound.PlaySfx("slot");
         if (InputHandler.IsShiftPressed())
         {
             TransferItem(clickedSlot);

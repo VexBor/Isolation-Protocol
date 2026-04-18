@@ -125,6 +125,7 @@ public partial class MapViewModel : ViewModelBase
 
         if (InputHandler.SelectedSlot() != null && InputHandler.SelectedSlot() != _inventory.SelectedSlot)
         {
+            Sound.PlaySfx("slot");
             _inventory.SelectedSlot = (int)InputHandler.SelectedSlot();
 
             foreach (InventorySlot slot in _inventory.Slots)
@@ -178,6 +179,7 @@ public partial class MapViewModel : ViewModelBase
         {
             if (cell.Object is Chest chest && !InputHandler.IsInteract())
             {
+                Sound.PlaySfx("chest");
                 CurrentChestInventory = chest.ChestInventory;
                 _inventory.TargetInventory = chest.ChestInventory;
                 chest.ChestInventory.TargetInventory = _inventory;
@@ -210,6 +212,7 @@ public partial class MapViewModel : ViewModelBase
     [RelayCommand]
     public void CloseChest()
     {
+        Sound.PlaySfx("click");
         CurrentChestInventory!.TargetInventory = null;
         CurrentChestInventory = null;
         _inventory.TargetInventory = null;

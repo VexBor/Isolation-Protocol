@@ -10,7 +10,8 @@
     xmlns:models="clr-namespace:Isolation_Protocol.Models"
     xmlns:viewModels1="clr-namespace:Isolation_Protocol.View"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Border
+    <Border 
+        Focusable="False"
         BorderThickness="0,2,0,0"
         CornerRadius="8,8,0,0"
         Height="200"

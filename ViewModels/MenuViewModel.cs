@@ -5,6 +5,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Isolation_Protocol.Services;
 
 namespace Isolation_Protocol.View;
 
@@ -24,6 +25,7 @@ public partial class MenuViewModel : ViewModelBase
     [RelayCommand]
     private async void StartGame()
     {
+        Sound.PlaySfx("click");
         _mainVM.CurrentPage = new LoadingViewModel();
 
         MapViewModel game = null;
@@ -39,18 +41,21 @@ public partial class MenuViewModel : ViewModelBase
     [RelayCommand]
     private void OpenSettings()
     {
+        Sound.PlaySfx("click");
         _mainVM.CurrentPage = _settingsVM;
     }
         
     [RelayCommand]
     private void OpenInfo()
     {
+        Sound.PlaySfx("click");
         _mainVM.CurrentPage = new InfoViewModel();
     }
     
     [RelayCommand]
     private void Exit()
     {
+        Sound.PlaySfx("click");
         Environment.Exit(0);
     }
 }

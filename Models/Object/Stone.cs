@@ -2,6 +2,7 @@ using System;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Isolation_Protocol.Interfaces;
+using Isolation_Protocol.Services;
 
 namespace Isolation_Protocol.Models;
 
@@ -20,6 +21,7 @@ public class Stone : MapObject,  IInteractable
     {
         if (tool.Tag == "pickaxe") 
         {
+            Sound.PlaySfx("stone");
             Health -= tool.Damage;
             if(Health <= 0) return true;
         }

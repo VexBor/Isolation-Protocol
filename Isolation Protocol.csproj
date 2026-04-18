@@ -8,7 +8,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**" />
+        <AvaloniaResource Include="Assets\**" Exclude="Assets\Sounds\**" />
+
+        <Content Include="Assets\Sounds\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
@@ -23,6 +27,7 @@
         </PackageReference>
         <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.3.0.6" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+        <PackageReference Include="NetCoreAudio" Version="2.0.1" />
         <PackageReference Include="ReactiveUI" Version="23.2.1" />
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
@@ -32,5 +37,9 @@
         <DependentUpon>InventoryView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Assets\Sounds\" />
     </ItemGroup>
 </Project>

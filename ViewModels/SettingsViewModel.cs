@@ -11,7 +11,7 @@ public partial class SettingsViewModel: ViewModelBase
 { 
     public Settings? Settings { get; set; }
     
-    private string _settingsFilePath = "settings.json";
+    private string _settingsFilePath = "Assets/settings.json";
 
     public SettingsViewModel()
     {
@@ -40,6 +40,7 @@ public partial class SettingsViewModel: ViewModelBase
     [RelayCommand]
     private void SaveSettings()
     {
+        Sound.PlaySfx("click");
         ApplyLanguage(Settings.LanguageId);
         var json = JsonSerializer.Serialize(Settings);
         File.WriteAllText(_settingsFilePath, json);

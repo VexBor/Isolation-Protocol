@@ -27,6 +27,7 @@
   "Craft_Select_Hint": "SELECT RECIPE IN THE TERMINAL",
   "Craft_Error_NoResources": "INSUFFICIENT SYSTEM RESOURCES",
   "Craft_Error_NoSpace": "CRITICAL ERROR: INVENTORY FULL",
+  "Craft_Error_NeedWorkBench": "WORKBENCH NEEDED",
   "Item_axe_Name": "Axe",
   "Item_axe_Desc": "Primitive axe. Suitable for wood harvesting.",
   "Item_pickaxe_Name": "Pickaxe",

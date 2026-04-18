@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Isolation_Protocol.Models;
 using Isolation_Protocol.Models.Craft;
+using Isolation_Protocol.Services;
 
 namespace Isolation_Protocol.View;
 
@@ -57,10 +58,11 @@ public partial class CraftViewModel : ViewModelBase
     [RelayCommand]
     private void CraftItem()
     {
+        Sound.PlaySfx("click");
         if (SelectedRecipe == null) return;
         if(!_inventory.EmptySlots(_selectedRecipe.ResultItemTag))
         {
-            ErrorMessage = "НЕ ВИСТАЧАЄ МІСЦЯ";
+            ErrorMessage = ErrorMessage = Localization.Instance["Craft_Error_NoSpace"];
             return;
         }
 
@@ -68,7 +70,7 @@ public partial class CraftViewModel : ViewModelBase
         {
             if (!_map.ObjectInVision("workbench"))
             {
-                 ErrorMessage = "ПОТРІБЕН ВЕРСТАТ";
+                 ErrorMessage = Localization.Instance["Craft_Error_NeedWorkBench"];
                  return;
             }
         }
@@ -77,7 +79,7 @@ public partial class CraftViewModel : ViewModelBase
         {
             if (_inventory.GetItemCount(ingredient.ItemTag) < ingredient.Amount)
             {
-               ErrorMessage = "НЕ ВИСТАЧАЄ РЕСУРСІВ";
+               ErrorMessage = Localization.Instance["Craft_Error_NoResources"];
                 return;
             }
         }
