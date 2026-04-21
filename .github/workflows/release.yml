@@ -9,6 +9,7 @@ jobs:
     name: Build for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false # Щоб помилка на одній ОС не зупиняла іншу
       matrix:
         include:
           - os: windows-latest
@@ -28,24 +29,24 @@ jobs:
         run: dotnet tool install -g vpk
 
       - name: Publish
-        run: dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -o ./publish -p:AssemblyName=IsolationProtocol
+        run: dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -o "./publish"
 
       - name: Pack with Velopack
         shell: bash
         run: |
           VERSION=${GITHUB_REF_NAME#v}
           
-          # Для Windows Velopack шукає .exe, для Linux - без розширення
+          # Визначаємо назву файлу залежно від ОС (враховуємо пробіл)
           if [ "${{ matrix.os }}" == "windows-latest" ]; then
-            EXE_NAME="IsolationProtocol.exe"
+            EXE_NAME="Isolation Protocol.exe"
           else
-            EXE_NAME="IsolationProtocol"
+            EXE_NAME="Isolation Protocol"
           fi
 
           vpk pack --packId "IsolationProtocol" \
                    --packVersion "$VERSION" \
                    --packTitle "Isolation Protocol" \
-                   --packDir ./publish \
+                   --packDir "./publish" \
                    --mainExe "$EXE_NAME"
 
       - name: Upload Release Assets
