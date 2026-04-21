@@ -1,38 +1,40 @@
-name: Publish Release
+name: Build Installers
 on:
   push:
     tags:
       - 'v*'
-
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest] # Додамо Mac пізніше, якщо треба
-    
+        include:
+          - os: windows-latest
+            rid: win-x64
+          - os: ubuntu-latest
+            rid: linux-x64
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0'
+          dotnet-version: '10.0' 
 
-      - name: Publish
-        run: dotnet publish -c Release -r ${{ matrix.os == 'windows-latest' && 'win-x64' || 'linux-x64' }} --self-contained -p:PublishSingleFile=true -o ./dist
+      - name: Install Velopack CLI
+        run: dotnet tool install -g vpk
 
-      - name: Zip (Windows)
-        if: matrix.os == 'windows-latest'
-        run: Compress-Archive -Path ./dist/* -DestinationPath ./Isolation-Protocol-Win64.zip
+      - name: Publish App
+        run: dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -o ./publish
 
-      - name: Tar (Linux)
-        if: matrix.os == 'ubuntu-latest'
-        run: tar -czvf Isolation-Protocol-Linux.tar.gz -C ./dist .
+      - name: Create Installer
+        run: |
+          vpk pack --id "IsolationProtocol" \
+                   --version "${{ github.ref_name }}" \
+                   --packDir ./publish \
+                   --mainExe "IsolationProtocol.exe" # Для Linux просто "IsolationProtocol"
 
-      - name: Upload to Release
+      - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            *.zip
-            *.tar.gz
+          files: ./releases/*
