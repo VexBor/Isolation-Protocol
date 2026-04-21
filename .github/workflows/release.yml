@@ -1,40 +1,46 @@
-name: Build Installers
+name: Build and Release
 on:
   push:
     tags:
       - 'v*'
+
 jobs:
   build:
+    name: Build for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         include:
           - os: windows-latest
             rid: win-x64
+            artifact: IsolationProtocol-Setup.exe
           - os: ubuntu-latest
             rid: linux-x64
-    runs-on: ${{ matrix.os }}
+            artifact: IsolationProtocol.AppImage
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0' 
+          dotnet-version: 10.0
 
       - name: Install Velopack CLI
         run: dotnet tool install -g vpk
-
-      - name: Publish App
+      - name: Publish
         run: dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -o ./publish
 
-      - name: Create Installer
+      - name: Pack with Velopack
         run: |
           vpk pack --id "IsolationProtocol" \
                    --version "${{ github.ref_name }}" \
                    --packDir ./publish \
-                   --mainExe "IsolationProtocol.exe" # Для Linux просто "IsolationProtocol"
+                   --mainExe "IsolationProtocol.exe"
 
-      - name: Upload to GitHub Release
+      - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
         with:
-          files: ./releases/*
+          files: |
+            ./releases/*.exe
+            ./releases/*.AppImage
