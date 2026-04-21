@@ -13,10 +13,8 @@ jobs:
         include:
           - os: windows-latest
             rid: win-x64
-            artifact: IsolationProtocol-Setup.exe
           - os: ubuntu-latest
             rid: linux-x64
-            artifact: IsolationProtocol.AppImage
 
     steps:
       - uses: actions/checkout@v4
@@ -24,17 +22,19 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0
+          dotnet-version: 8.0
 
       - name: Install Velopack CLI
         run: dotnet tool install -g vpk
+
       - name: Publish
         run: dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -o ./publish
 
       - name: Pack with Velopack
         run: |
-          vpk pack --id "IsolationProtocol" \
-                   --version "${{ github.ref_name }}" \
+          vpk pack --packId "IsolationProtocol" \
+                   --packVersion "${{ github.ref_name | replace('v', '') }}" \
+                   --packTitle "Isolation Protocol" \
                    --packDir ./publish \
                    --mainExe "IsolationProtocol.exe"
 
@@ -44,3 +44,4 @@ jobs:
           files: |
             ./releases/*.exe
             ./releases/*.AppImage
+            ./releases/*.zip
