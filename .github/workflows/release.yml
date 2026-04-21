@@ -22,7 +22,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0
+          dotnet-version: 8.0
 
       - name: Install Velopack CLI
         run: dotnet tool install -g vpk
@@ -33,18 +33,25 @@ jobs:
       - name: Pack with Velopack
         shell: bash
         run: |
-          # Видаляємо символ 'v' з назви тегу для Velopack
+          # Перетворюємо v1.0.7 -> 1.0.7
           VERSION=${GITHUB_REF_NAME#v}
+          
+          MAIN_EXE=$(ls ./publish | grep -E '(\.exe|[^.]+)$' | head -n 1)
+          
+          echo "Detected Main Exe: $MAIN_EXE"
+          
           vpk pack --packId "IsolationProtocol" \
                    --packVersion "$VERSION" \
                    --packTitle "Isolation Protocol" \
                    --packDir ./publish \
-                   --mainExe "IsolationProtocol.exe"
+                   --mainExe "$MAIN_EXE"
 
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             ./releases/*.exe
             ./releases/*.AppImage
             ./releases/*.zip
+            ./releases/*.pkg
