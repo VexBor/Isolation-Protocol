@@ -22,7 +22,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0
+          dotnet-version: 10.0
 
       - name: Install Velopack CLI
         run: dotnet tool install -g vpk
@@ -31,9 +31,12 @@ jobs:
         run: dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -o ./publish
 
       - name: Pack with Velopack
+        shell: bash
         run: |
+          # Видаляємо символ 'v' з назви тегу для Velopack
+          VERSION=${GITHUB_REF_NAME#v}
           vpk pack --packId "IsolationProtocol" \
-                   --packVersion "${{ github.ref_name | replace('v', '') }}" \
+                   --packVersion "$VERSION" \
                    --packTitle "Isolation Protocol" \
                    --packDir ./publish \
                    --mainExe "IsolationProtocol.exe"
