@@ -1,0 +1,38 @@
+name: Publish Release
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest] # Додамо Mac пізніше, якщо треба
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0'
+
+      - name: Publish
+        run: dotnet publish -c Release -r ${{ matrix.os == 'windows-latest' && 'win-x64' || 'linux-x64' }} --self-contained -p:PublishSingleFile=true -o ./dist
+
+      - name: Zip (Windows)
+        if: matrix.os == 'windows-latest'
+        run: Compress-Archive -Path ./dist/* -DestinationPath ./Isolation-Protocol-Win64.zip
+
+      - name: Tar (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: tar -czvf Isolation-Protocol-Linux.tar.gz -C ./dist .
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.zip
+            *.tar.gz
