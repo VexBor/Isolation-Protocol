@@ -28,30 +28,30 @@ jobs:
         run: dotnet tool install -g vpk
 
       - name: Publish
-        run: dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -o ./publish
+        run: dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -o ./publish -p:AssemblyName=IsolationProtocol
 
       - name: Pack with Velopack
         shell: bash
         run: |
-          # Перетворюємо v1.0.7 -> 1.0.7
           VERSION=${GITHUB_REF_NAME#v}
           
-          MAIN_EXE=$(ls ./publish | grep -E '(\.exe|[^.]+)$' | head -n 1)
-          
-          echo "Detected Main Exe: $MAIN_EXE"
-          
+          # Для Windows Velopack шукає .exe, для Linux - без розширення
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            EXE_NAME="IsolationProtocol.exe"
+          else
+            EXE_NAME="IsolationProtocol"
+          fi
+
           vpk pack --packId "IsolationProtocol" \
                    --packVersion "$VERSION" \
                    --packTitle "Isolation Protocol" \
                    --packDir ./publish \
-                   --mainExe "$MAIN_EXE"
+                   --mainExe "$EXE_NAME"
 
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             ./releases/*.exe
             ./releases/*.AppImage
             ./releases/*.zip
-            ./releases/*.pkg
