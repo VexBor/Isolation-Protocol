@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Threading;
@@ -45,8 +46,6 @@ public partial class MapViewModel : ViewModelBase
     private Stopwatch _stopwatch = new Stopwatch();
     private DropLogic _drop;
     private double _lastTickElapsed;
-    private bool _isReloadet = true;
-    private double _reloadTime = 1;
 
     public MapViewModel()
     {
@@ -59,6 +58,9 @@ public partial class MapViewModel : ViewModelBase
         _drop = new DropLogic(_inventory);
         _placementManager = new PlacementManager(_inventory, _map, Renderer);
         OpenInventory = _inventory;
+        
+        InputHandler.OnMouseClick += (mouseButton) => TryInteract(mouseButton);
+        InputHandler.OnSelectSlot += (s) => ChanceSlot(s);
         
         _inventory.AddItem(ItemRegistry.CreateItem("axe"), 1);
         _inventory.AddItem(ItemRegistry.CreateItem("pickaxe"), 1);
@@ -80,6 +82,7 @@ public partial class MapViewModel : ViewModelBase
     
     private void OnRender()
     {
+        InputHandler.SelectedSlot();
         double currentTickElapsed = _stopwatch.Elapsed.TotalSeconds;
             
         double deltaTime = currentTickElapsed - _lastTickElapsed;
@@ -91,51 +94,6 @@ public partial class MapViewModel : ViewModelBase
         
         _physicsEngine.Update(Player, _map, vector,deltaTime);
         ScrollPos = _camera.Update(Player.X, Player.Y, _viewWidth, _viewHeight, _map.Width, _map.Height, _map.TileSize);
-        
-        if (InputHandler.IsInteract() || InputHandler.OpenChest())
-        {
-            int gridX = (int)(Player.X / _map.TileSize);
-            int gridY = (int)(Player.Y / _map.TileSize);
-            
-            MapCell cell = null;
-            
-            if (_map.GetCell(gridX + 1, gridY).Object != null) cell = _map.GetCell(gridX + 1, gridY);
-            else if (_map.GetCell(gridX - 1, gridY).Object != null) cell =_map.GetCell(gridX - 1, gridY);
-            else if (_map.GetCell(gridX, gridY + 1).Object != null) cell =_map.GetCell(gridX, gridY + 1);
-            else if (_map.GetCell(gridX, gridY - 1).Object != null) cell =_map.GetCell(gridX, gridY - 1);
-            else if (_map.GetCell(gridX - 1, gridY - 1).Object != null) cell =_map.GetCell(gridX - 1, gridY - 1);
-            else if (_map.GetCell(gridX + 1, gridY + 1).Object != null) cell =_map.GetCell(gridX + 1, gridY + 1);
-            else if (_map.GetCell(gridX + 1, gridY - 1).Object != null) cell =_map.GetCell(gridX + 1, gridY - 1);
-            else if (_map.GetCell(gridX - 1, gridY + 1).Object != null) cell =_map.GetCell(gridX - 1, gridY + 1);
-            
-            if(cell == null) return;
-            
-            InteractWithCell(cell);
-        }
-
-        if (!_isReloadet)
-        {
-            _reloadTime -= deltaTime;
-            if (_reloadTime <= 0)
-            {
-                _isReloadet = true;
-                _reloadTime = 1;
-            }
-        }
-
-        if (InputHandler.SelectedSlot() != null && InputHandler.SelectedSlot() != _inventory.SelectedSlot)
-        {
-            Sound.PlaySfx("slot");
-            _inventory.SelectedSlot = (int)InputHandler.SelectedSlot();
-
-            foreach (InventorySlot slot in _inventory.Slots)
-            {
-                slot.IsSelected = false;
-            }
-
-            _inventory.Slots[_inventory.SelectedSlot].IsSelected = true;
-            _placementManager.StopPlacement();
-        }
         
         if (_inventory.Slots[_inventory.SelectedSlot].Item != null &&  ObjectFactory.CreateWorldObject(_inventory.Slots[_inventory.SelectedSlot].Item.Tag) != null && _placementManager.IsPlacing == false)
         {
@@ -152,14 +110,21 @@ public partial class MapViewModel : ViewModelBase
             else
             {
                 OpenInventory = _inventory;
-                CraftOpened = null;
-            }
+                CraftOpened = null; }
         }
 
         if (InputHandler.Escape())
         {
+            Sound.PlaySfx("click");
+            if (CraftOpened != null)
+            {
+                OpenInventory = _inventory;
+                CraftOpened = null;
+                return;
+            }
+            
             _escapeMenu.TogglePause();
-
+            
             if (_escapeMenu.IsPaused)
             {
                 _stopwatch.Stop();
@@ -172,29 +137,58 @@ public partial class MapViewModel : ViewModelBase
             }
         }
     }
+
+    private void TryInteract(MouseButton mouseButton)
+    {
+        int gridX = (int)(Player.X / _map.TileSize);
+        int gridY = (int)(Player.Y / _map.TileSize);
+
+        MapCell? bestCell = null;
+        float minDistance = float.MaxValue;
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0) continue; 
+                
+                var cell = _map.GetCell(gridX + x, gridY + y);
+                if (cell?.Object == null) continue;
+
+                float dist = Vector2.Distance(new Vector2(Player.X, Player.Y), new Vector2(cell.Object.X, cell.Object.Y));
+            
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    bestCell = cell;
+                }
+            }
+        }
+
+        if (bestCell != null)
+        {
+            if (mouseButton == MouseButton.Left) InteractWithCell(bestCell);
+            else if (mouseButton == MouseButton.Right) InteractWithObject(bestCell);
+        }
+    }
     
-    private void InteractWithCell(MapCell cell)
+    private async Task InteractWithCell(MapCell cell)
     {
         if (cell.Object is IInteractable interactable)
         {
-            if (cell.Object is Chest chest && !InputHandler.IsInteract())
-            {
-                Sound.PlaySfx("chest");
-                CurrentChestInventory = chest.ChestInventory;
-                _inventory.TargetInventory = chest.ChestInventory;
-                chest.ChestInventory.TargetInventory = _inventory;
-                
-                return;
-            }
-            
             Item tool;
             if(_inventory.Slots[_inventory.SelectedSlot].Item is Item item) tool = item;
             else return;
             
-            if(!_isReloadet) return;
+            tool.Durability--;
+            
             if (interactable.OnInteract(tool))
             {
-                tool.Durability--;
+                if (tool.Durability <= 0)
+                {
+                    _inventory.RemoveItem(item.Tag, 1);
+                    return;
+                }
                 
                 if (cell.Object.VisualElement.Parent is Canvas parent)
                 {
@@ -204,8 +198,46 @@ public partial class MapViewModel : ViewModelBase
                 cell.Object.VisualElement = null;
                 cell.Object = null;
                 _drop.Drop(interactable);
-                _isReloadet = false;
             }
+        }
+    }
+
+    private void InteractWithObject(MapCell cell)
+    {
+        if (cell.Object is IInteractable interactable)
+        {
+            if (cell.Object is Chest chest)
+            {
+                Sound.PlaySfx("chest");
+                CurrentChestInventory = chest.ChestInventory;
+                _inventory.TargetInventory = chest.ChestInventory;
+                chest.ChestInventory.TargetInventory = _inventory;
+            }
+            
+            if (cell.Object is Workbench workbench)
+            {
+                Sound.PlaySfx("click");
+                CraftOpened = _craft;
+                OpenInventory = null;
+            }
+        }
+    }
+
+    private void ChanceSlot(int? selectSlot)
+    {
+        if(selectSlot == null) return;
+        if (selectSlot != _inventory.SelectedSlot)
+        {
+            Sound.PlaySfx("slot");
+            _inventory.SelectedSlot = (int)selectSlot;
+
+            foreach (InventorySlot slot in _inventory.Slots)
+            {
+                slot.IsSelected = false;
+            }
+
+            _inventory.Slots[_inventory.SelectedSlot].IsSelected = true;
+            _placementManager.StopPlacement();
         }
     }
     

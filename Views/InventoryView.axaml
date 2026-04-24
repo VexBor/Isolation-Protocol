@@ -9,7 +9,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:Isolation_Protocol.Models"
     xmlns:viewModels1="clr-namespace:Isolation_Protocol.View"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Focusable="False">
     <Border 
         Focusable="False"
         BorderThickness="0,2,0,0"
@@ -17,7 +18,7 @@
         Height="200"
         Margin="10,0,10,0"
         VerticalAlignment="Bottom">
-        <Grid ColumnDefinitions="200, *, 300" Margin="10">
+        <Grid ColumnDefinitions="200, *, 300" Margin="10" Focusable="False">
 
             <Grid
                 Grid.Column="0"

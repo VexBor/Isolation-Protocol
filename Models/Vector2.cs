@@ -25,4 +25,11 @@ public readonly struct Vector2
     // Множення та додавання векторів
     public static Vector2 operator +(Vector2 a, Vector2 b) => new Vector2(a.X + b.X, a.Y + b.Y);
     public static Vector2 operator *(Vector2 a, double scalar) => new Vector2(a.X * scalar, a.Y * scalar);
+    
+    public static float Distance(Vector2 v1, Vector2 v2)
+    {
+        double dx = v1.X - v2.X;
+        double dy = v1.Y - v2.Y;
+        return (float)Math.Sqrt(dx * dx + dy * dy);
+    }
 }

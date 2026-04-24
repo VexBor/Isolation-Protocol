@@ -12,12 +12,23 @@ namespace Isolation_Protocol.Services;
 
 public static class Authorize
 {
-    public static User CurrentUser;
+    public static User? CurrentUser = null;
     
     private static string _filePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Data/User.json");
+    private static string _currentUserPath = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Data/UserData.json");
     private static Random _random = new Random();
     private static List<User>? _users = new List<User>();
 
+    public static void Initialize()
+    {
+        if (File.Exists(_currentUserPath))
+        {
+            var json = File.ReadAllText(_currentUserPath);
+        
+            CurrentUser = JsonSerializer.Deserialize<User>(json);    
+        }
+    }
+    
     public static bool Login(string username, string password)
     {
         if (!File.Exists(_filePath)) return false;
@@ -34,7 +45,8 @@ public static class Authorize
         
         if(user != null)
         {
-            CurrentUser = user; 
+            CurrentUser = user;
+            File.WriteAllText(_currentUserPath, JsonSerializer.Serialize(CurrentUser));
             return true;
         }
         return false;
@@ -54,6 +66,7 @@ public static class Authorize
         CurrentUser = newUser;
         _users.Add(newUser);
         File.WriteAllText(_filePath, JsonSerializer.Serialize(_users));
+        File.WriteAllText(_currentUserPath, JsonSerializer.Serialize(CurrentUser));
     }
     
     public static bool FindUser(string username, string email)
@@ -62,4 +75,6 @@ public static class Authorize
         if(user == null) return false;
         return true;
     }
+
+    public static User? GetCurrentUser() =>  CurrentUser;
 }

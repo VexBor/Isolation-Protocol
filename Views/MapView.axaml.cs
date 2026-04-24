@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Isolation_Protocol.Services;
 using Isolation_Protocol.View;
+using MouseButton = Isolation_Protocol.Services.MouseButton;
 
 namespace Isolation_Protocol.Views;
 
@@ -19,6 +20,7 @@ public partial class MapView : UserControl
             if (DataContext is MapViewModel vm)
             {
                 vm.Renderer.Render(this.GameCanvas);
+                UIHelper.Init(this.GameCanvas);
             }
         };
     }
@@ -42,6 +44,15 @@ public partial class MapView : UserControl
             if (DataContext is MapViewModel vm)
             {
                 vm.PlacementManager.ExecutePlacement(point.X, point.Y);
+                InputHandler.SafeInvoke(MouseButton.Left);
+            }
+        }
+        
+        if (e.GetCurrentPoint(sender as Control).Properties.IsRightButtonPressed)
+        {
+            if (DataContext is MapViewModel vm)
+            {
+                InputHandler.SafeInvoke(MouseButton.Right);
             }
         }
     }

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Isolation_Protocol.Interfaces;
@@ -8,7 +9,8 @@ public class MapObject : IInteractable
 {
     private IInteractable _interactableImplementation;
     public string? Tag { get; set; }
-    public int Health { get; set; }
+    public float Health { get; set; }
+    public float MaxHealth { get; set; }
     public bool IsPassable { get; set; }
     public IImage? Image { get; set; }
     

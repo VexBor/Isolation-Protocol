@@ -1,13 +1,21 @@
 using System.Collections.Generic;
 using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Media;
 using Isolation_Protocol.Models;
 
 namespace Isolation_Protocol.Services;
 
-public class MapRenderer(GameMap map)
+public class MapRenderer
 {
     private Canvas _canvas;
+    private GameMap map;
+    
+    public MapRenderer(GameMap m)
+    {
+        map = m;
+    }
     
     public void Render(Canvas? canvas)
     {
@@ -49,7 +57,9 @@ public class MapRenderer(GameMap map)
         Canvas.SetLeft(image, obj.X * map.TileSize - map.TileSize * 0.25);
         if(obj is Tree) Canvas.SetTop(image, obj.Y * map.TileSize - map.TileSize);
         else Canvas.SetTop(image, obj.Y * map.TileSize - 0.5 * map.TileSize);
-
+        
+        var barPos = new Point(obj.X * 40 - 25, obj.Y * 40 - 40);
+        
         obj.VisualElement = image;
         _canvas.Children.Add(image);
     }

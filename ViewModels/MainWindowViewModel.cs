@@ -14,7 +14,10 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel()
     {
         var st = new SettingsViewModel();
-        CurrentPage = new LoginViewModel(this);
+        Authorize.Initialize();
+        
+        if(Authorize.GetCurrentUser() == null) CurrentPage = new LoginViewModel(this);
+        else CurrentPage = new MenuViewModel(this);
     }
     
     [RelayCommand]
