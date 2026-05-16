@@ -10,22 +10,20 @@ namespace Isolation_Protocol.Models;
 
 public class Chest : MapObject, IInteractable
 {
-    public InventoryViewModel ChestInventory { get; }
-    
     public Chest()
     {
         IsPassable = false;
         Tag = "chest";
         Health = 250f;
+        TextureId = "chest";
         MaxHealth = 250f;
         Drop = new ResourceDrop(ItemRegistry.CreateItem("chest")!, 1, 1);
-        Image = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/chest.png")));
         ChestInventory = new InventoryViewModel(9);
     }
     
-    public bool OnInteract(Item? tool)
+    public override bool OnInteract(Item? tool)
     {
-        if (tool.Tag == "axe") 
+        if (tool.Tag == "axe" && ChestInventory.IsEmpty()) 
         {
             Sound.PlaySfx("tree");
             Health -= tool.Damage;

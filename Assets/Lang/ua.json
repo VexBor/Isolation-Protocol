@@ -3,8 +3,9 @@
   "ResumeBtn": "ПРОДОВЖИТИ",
   "ExitBtn": "ВИЙТИ В МЕНЮ",
   "ExitOnTableBtn": "ВИЙТИ НА РОБОЧИЙ СТІЛ",
-  "Menu_Start": "ПОЧАТИ",
+  "Menu_Start": "НОВА ГРА",
   "Menu_Settings": "НАЛАШТУВАННЯ",
+  "Menu_LoadGame": "ЗАВАНТАЖИТИ ГРУ",
   "Menu_Info": "ІНФОРМАЦІЯ",
   "Menu_Exit": "ВИХІД",
   "Menu_ActiveTxt": "ЗВ'ЯЗОК: ONLINE",
@@ -63,5 +64,15 @@
   "Register_ValidationEmailError": "ПОМИЛКА: НЕКОРЕКТНА АДРЕСА ЕЛ. ПОШТИ",
   "Register_ValidationPasswordError": "КРИТИЧНО: КЛЮЧ МАЄ МІСТИТИ ВІД 8 СИМВОЛІВ",
   "Register_PasswordError": "ПОМИЛКА: КЛЮЧІ ДОСТУПУ НЕ ЗБІГАЮТЬСЯ",
-  "Register_Error": "ВІДМОВА: АГЕНТ ВЖЕ ЗАРЕЄСТРОВАНИЙ"
+  "Register_Error": "ВІДМОВА: АГЕНТ ВЖЕ ЗАРЕЄСТРОВАНИЙ",
+  "Repair_Header": "СИСТЕМИ ЕВАКУАЦІЇ",
+  "Repair_Critical": "КРИТИЧНА ПОМИЛКА",
+  "Repair_Ready": "СИСТЕМА ФУНКЦІОНУЄ",
+  "Module_Engine": "ГОЛОВНИЙ ДВИГУН",
+  "Module_Comms": "МОДУЛЬ ЗВ'ЯЗКУ",
+  "Module_Oxygen": "ГЕНЕРАТОР КИСНЮ",
+  "Req_Engine": "Металобрухт: 10, Паливо: 2",
+  "Req_Comms": "Мідний дріт: 5, Мікросхема: 1",
+  "Req_Oxygen": "Гумові трубки: 4, Фільтр: 2",
+  "Repair_Btn": "Полагодити"
 }

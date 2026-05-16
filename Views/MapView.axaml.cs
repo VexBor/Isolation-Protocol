@@ -19,7 +19,8 @@ public partial class MapView : UserControl
         {
             if (DataContext is MapViewModel vm)
             {
-                vm.Renderer.Render(this.GameCanvas);
+                vm.Renderer.Init(this.GameCanvas);
+                vm.Renderer.Render();
                 UIHelper.Init(this.GameCanvas);
             }
         };

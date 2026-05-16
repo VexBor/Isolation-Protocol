@@ -14,13 +14,13 @@ public class Tree : MapObject, IInteractable
     {
         IsPassable = false;
         Tag = "tree";
+        TextureId = "tree";
         Health = 100f;
         MaxHealth = 100f;
-        Image = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/tree.png")));
         Drop = new ResourceDrop(ItemRegistry.CreateItem("wood"), 2, 5);
     }
     
-    public bool OnInteract(Item? tool)
+    public override bool OnInteract(Item? tool)
     {
         if (tool.Tag == "axe") 
         {

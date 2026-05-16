@@ -36,7 +36,25 @@ public partial class MenuViewModel : ViewModelBase
         await Task.Run(async () =>
         {
             game = new MapViewModel();
-            await Task.Delay(1500);
+            game.LoadGame();
+            await Task.Delay(2000);
+        });
+        _mainVM.CurrentPage = game;
+    }
+    
+    [RelayCommand]
+    private async void StartNewGame()
+    {
+        Sound.PlaySfx("click");
+        _mainVM.CurrentPage = new LoadingViewModel();
+
+        MapViewModel game = null;
+        
+        await Task.Run(async () =>
+        {
+            game = new MapViewModel();
+            game.NewGame();
+            await Task.Delay(2000);
         });
         _mainVM.CurrentPage = game;
     }

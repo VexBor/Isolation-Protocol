@@ -9,7 +9,6 @@ namespace Isolation_Protocol.Services;
 public partial class PlacementManager(InventoryViewModel inventory, GameMap map, MapRenderer mapRenderer) : ObservableObject
 {
     private InventoryViewModel _inventory =  inventory;
-    private GameMap _map =  map;
     private MapRenderer _mapRenderer = mapRenderer;
     
     [ObservableProperty]
@@ -46,10 +45,10 @@ public partial class PlacementManager(InventoryViewModel inventory, GameMap map,
         
         if (!IsPlacing || _currentItemToPlace == null) return;
         
-        int gx = (int)(mouseX / _map.TileSize); 
-        int gy = (int)(mouseY / _map.TileSize);
+        int gx = (int)(mouseX / map.TileSize); 
+        int gy = (int)(mouseY / map.TileSize);
 
-        if (!_map.CanPlaceAt(gx, gy)) return;
+        if (!map.CanPlaceAt(gx, gy)) return;
 
         int count = _inventory.GetItemCount(_currentItemToPlace.Tag);
         if (count <= 0)
@@ -69,7 +68,7 @@ public partial class PlacementManager(InventoryViewModel inventory, GameMap map,
         mapObject.Y = y;
         
         _mapRenderer.DrawObject(mapObject);
-        _map.AddObject(mapObject, x,y);
+        map.AddObject(mapObject, x,y);
         
         _inventory.RemoveItem(_currentItemToPlace.Tag, 1);
 
@@ -85,13 +84,13 @@ public partial class PlacementManager(InventoryViewModel inventory, GameMap map,
 
     public void UpdatePreview(int x, int y)
     {
-        int tileX = (x / _map.TileSize);
-        int tileY = (y / _map.TileSize);
+        int tileX = (x / map.TileSize);
+        int tileY = (y / map.TileSize);
         
-        PreviewX = x - (int)(0.5 * _map.TileSize);
-        PreviewY = y - (int)(0.5 * _map.TileSize);
+        PreviewX = x - (int)(0.5 * map.TileSize);
+        PreviewY = y - (int)(0.5 * map.TileSize);
 
-        if (_map.CanPlaceAt(tileX, tileY)) Opacity = 0.5;
+        if (map.CanPlaceAt(tileX, tileY)) Opacity = 0.5;
         else Opacity = 0;
     }
 }

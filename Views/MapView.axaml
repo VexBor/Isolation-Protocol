@@ -25,6 +25,9 @@
         <DataTemplate DataType="{x:Type viewModels1:EscapeMenuViewModel}">
             <views:EscapeMenuView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels1:RepairViewModel}">
+            <views:RepairView />
+        </DataTemplate>
     </UserControl.DataTemplates>
 
     <UserControl.Styles>
@@ -52,7 +55,8 @@
                     CornerRadius="4"
                     Height="{Binding Player.Height}"
                     Width="{Binding Player.Width}"
-                    ZIndex="5">
+                    ZIndex="5"
+                    x:Name="Player">
                     <Border.Effect>
                         <DropShadowEffect
                             BlurRadius="10"
@@ -68,7 +72,8 @@
                     MaxWidth="40"
                     Opacity="{Binding PlacementManager.Opacity}"
                     Source="{Binding PlacementManager.PreviewIcon}"
-                    ZIndex="20" />
+                    ZIndex="20"
+                    x:Name="Placement"/>
             </Canvas>
         </ScrollViewer>
 
@@ -77,5 +82,6 @@
         <ContentControl Content="{Binding CraftOpened}" />
         <ContentControl Content="{Binding EscapeMenu}" IsVisible="{Binding EscapeMenu.IsPaused}" />
         <ContentControl Content="{Binding OpenInventory}" />
+        <ContentControl Content="{Binding SelectedRepair}" />
     </Grid>
 </UserControl>

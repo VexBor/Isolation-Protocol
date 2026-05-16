@@ -13,13 +13,13 @@ public class Workbench : MapObject, IInteractable
     {
         IsPassable = false;
         Tag = "workbench";
+        TextureId = "workbench";
         Health = 250f;
         MaxHealth = 250f;
         Drop = new ResourceDrop(ItemRegistry.CreateItem("workbench"), 1, 1);
-        Image = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/workbench.png")));
     }
     
-    public bool OnInteract(Item? tool)
+    public override bool OnInteract(Item? tool)
     {
         if (tool.Tag == "axe") 
         {

@@ -10,7 +10,7 @@ public class GameMap(int width, int height, Player player)
     public int TileSize { get; } = 40;
     public int Width { get; } = width;
     public int Height { get; } = height;
-    public MapCell[,] Map { get; } = new MapCell[width, height];
+    public MapCell[,] Map { get; set; } = new MapCell[width, height];
 
     private Player _player = player;
 
@@ -37,16 +37,18 @@ public class GameMap(int width, int height, Player player)
                 // "Притискаємо" шум до країв
                 double mask = Math.Clamp((maxDist - dist) / maxDist, 0, 1);
                 double finalHeight = noiseValue * mask;
-
+                
+                Map[x, y].X = x;
+                Map[x, y].Y = y;
+                
                 // 3. Перетворюємо висоту в типи тайлів
                 if (finalHeight < 0.1) Map[x, y].Type = CellType.Water;      // Глибока вода
-                else if (finalHeight < 0.2) Map[x, y].Type = CellType.Sand;   // Пляж
+                else if (finalHeight < 0.2)
+                    Map[x, y].Type = CellType.Sand; // Пляж
                 else if (finalHeight < 0.7)
                 {
                     double temp = rand.NextDouble();
                     Map[x, y].Type = CellType.Floor; // Трава/земля
-                    Map[x, y].X = x;
-                    Map[x, y].Y = y;
                     
                     if (temp < 0.1) Map[x, y].Object = new Tree();
                     else if (temp < 0.12) Map[x, y].Object = new Stone();
@@ -54,6 +56,11 @@ public class GameMap(int width, int height, Player player)
                 else Map[x, y].Type = CellType.Wall;                         // Скелі/гори
             }
         }
+
+        Vector2 rocketPos = GetRandomSafeSpawnPoint();
+        Map[(int)rocketPos.X / TileSize, (int)rocketPos.Y / TileSize].Object = new Rocket();
+        Vector2 cavePos = GetRandomSafeSpawnPoint();
+        Map[(int)cavePos.X / TileSize, (int)cavePos.Y / TileSize].Object = new Cave();
     }
     
     public MapCell GetCell(int x, int y)
@@ -79,7 +86,7 @@ public class GameMap(int width, int height, Player player)
             int x = rand.Next(0, Width);
             int y = rand.Next(0, Height);
 
-            if (Map[x, y].Type == CellType.Floor && Map[x, y].Object == null)
+            if (Map[x, y].Type == CellType.Floor || Map[x, y].Type == CellType.CaveFloor && Map[x, y].Object == null && Map[x, y].IsWalkable)
             {
                 safeX = x * TileSize;
                 safeY = y * TileSize;
@@ -93,10 +100,15 @@ public class GameMap(int width, int height, Player player)
     public bool CanPlaceAt(int x, int y)
     {
         if (GetCell(x, y).Object != null) return false;
-        if((int)(player.X / TileSize) ==  x && (int) (player.Y / TileSize) == y) return false;
-        if((int)(player.X / TileSize) >=  x + 3 || (int) (player.Y / TileSize) >= y + 3) return false;
-        if((int)(player.X / TileSize) <=  x - 3 || (int) (player.Y / TileSize) <= y - 3) return false;
+        if((int)(_player.X / TileSize) ==  x && (int) (_player.Y / TileSize) == y) return false;
+        if((int)(_player.X / TileSize) >=  x + 3 || (int) (_player.Y / TileSize) >= y + 3) return false;
+        if((int)(_player.X / TileSize) <=  x - 3 || (int) (_player.Y / TileSize) <= y - 3) return false;
         return true;
+    }
+
+    public void SetPlayer(Player player)
+    {
+        _player = player;
     }
 
     public bool ObjectInVision(string objectTag)

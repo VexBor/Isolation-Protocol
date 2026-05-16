@@ -5,7 +5,7 @@ using Isolation_Protocol.Services;
 
 namespace Isolation_Protocol.View;
 
-public partial class EscapeMenuViewModel :  ViewModelBase
+public partial class EscapeMenuViewModel(MapViewModel vm) :  ViewModelBase
 {
     [ObservableProperty]
     private bool _isPaused;
@@ -26,6 +26,7 @@ public partial class EscapeMenuViewModel :  ViewModelBase
     [RelayCommand]
     public void QuitGame()
     {
+        vm.SaveGame();
         Environment.Exit(0);
     } 
 }

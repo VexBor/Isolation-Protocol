@@ -16,6 +16,7 @@ public static class ItemRegistry
             Tag = "axe",
             ItemType = ItemType.Tool,
             Damage = 10,
+            ImageId = "axe",
             Durability = 100,
             MaxStack = 1,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/axe.png")
@@ -27,6 +28,7 @@ public static class ItemRegistry
             ItemType = ItemType.Tool,
             Damage = 10,
             Durability = 100,
+            ImageId = "pickaxe",
             MaxStack = 1,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/pickaxe.png")
         };
@@ -35,6 +37,7 @@ public static class ItemRegistry
         {
             Tag = "stone",
             ItemType = ItemType.Resource,
+            ImageId = "StoneItem",
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/StoneItem.png")
         };
@@ -43,6 +46,7 @@ public static class ItemRegistry
         {
             Tag = "wood",
             ItemType = ItemType.Resource,
+            ImageId = "wood",
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/wood.png")
         };
@@ -51,6 +55,7 @@ public static class ItemRegistry
         {
             Tag = "workbench",
             ItemType = ItemType.Resource,
+            ImageId = "workbench",
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/workbench.png")
         };
@@ -59,6 +64,7 @@ public static class ItemRegistry
         {
             Tag = "chest",
             ItemType = ItemType.Resource,
+            ImageId = "chest",
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/chest.png")
         };

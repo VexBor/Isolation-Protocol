@@ -26,4 +26,15 @@
     <Style Selector="Border.Water">
         <Setter Property="Background" Value="#1B4965" />
     </Style>
+    <Style Selector="Border.CaveWall">
+        <Setter Property="Background" Value="#1B263B" />
+        <Setter Property="BorderBrush" Value="#0D1B2A" />
+        <Setter Property="BorderThickness" Value="1.5" />
+        <Setter Property="CornerRadius" Value="2" />
+    </Style>
+
+    <Style Selector="Border.CaveFloor">
+        <Setter Property="Background" Value="#4E596F" />
+        <Setter Property="Opacity" Value="0.9" />
+    </Style>
 </Styles>

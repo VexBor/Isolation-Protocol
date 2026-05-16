@@ -14,12 +14,12 @@ public class Stone : MapObject,  IInteractable
         IsPassable = false;
         Tag = "stone";
         Health = 100f;
+        TextureId = "Stone1";
         MaxHealth = 100f;
         Drop = new ResourceDrop(ItemRegistry.CreateItem("stone"), 2, 5);
-        Image = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/Stone1.png")));
     }
     
-    public bool OnInteract(Item? tool)
+    public override bool OnInteract(Item? tool)
     {
         if (tool.Tag == "pickaxe") 
         {

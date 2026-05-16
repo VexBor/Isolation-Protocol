@@ -150,6 +150,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="10"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="DarkOliveGreen"/>
     </Style>
 
     <Style Selector="Button.Secondary">
@@ -210,5 +211,58 @@
                 <KeyFrame KeyTime="0:0:2"><Setter Property="Opacity" Value="1"/></KeyFrame>
             </Animation>
         </Style.Animations>
+    </Style>
+
+<Style Selector="Border.TerminalBorder">
+        <Setter Property="Background" Value="#E60A0A0A"/>
+        <Setter Property="BorderBrush" Value="#444444"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BoxShadow" Value="0 0 15 3 #10000000"/>
+    </Style>
+
+    <Style Selector="TextBlock.AegisHeader">
+        <Setter Property="Foreground" Value="#BC4749"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="LetterSpacing" Value="1.5"/>
+    </Style>
+
+    <Style Selector="TextBlock.TerminalText">
+        <Setter Property="Foreground" Value="#A0A0A0"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+
+    <Style Selector="Button.TerminalButton">
+        <Setter Property="Background" Value="#222222"/>
+        <Setter Property="BorderBrush" Value="#BC4749"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"/>
+                <BrushTransition Property="Background" Duration="0:0:0.2"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    <Style Selector="Button.TerminalButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#BC4749"/>
+        <Setter Property="BorderBrush" Value="#FF6B6B"/>
+        <Setter Property="TextBlock.Foreground" Value="White"/>
+    </Style>
+    
+    <Style Selector="Button.TerminalButton:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.95)"/>
+    </Style>
+
+    <Style Selector="ListBoxItem">
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="BorderBrush" Value="#1AFFFFFF"/>
+    </Style>
+
+    <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="#15BC4749"/>
+        <Setter Property="TextBlock.Foreground" Value="#BC4749"/>
+        <Setter Property="BorderBrush" Value="#BC4749"/>
     </Style>
 </Styles>

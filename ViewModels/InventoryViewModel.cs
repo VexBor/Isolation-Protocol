@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using Avalonia.Controls;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Isolation_Protocol.Models;
 using Isolation_Protocol.Services;
+using Newtonsoft.Json;
 
 namespace Isolation_Protocol.View;
 
+[JsonObject(MemberSerialization.OptIn)]
 public partial class InventoryViewModel: ViewModelBase
 {
     [ObservableProperty]
     private InventoryViewModel? _targetInventory;
     
+    [JsonProperty]
     public List<InventorySlot> Slots { get; set; } = new List<InventorySlot>();
     public int SelectedSlot { get; set; }
     
@@ -24,10 +29,12 @@ public partial class InventoryViewModel: ViewModelBase
         {
             Slots.Add(new InventorySlot());
         }
-        
-        Slots[0].IsSelected = true;
-    }
     
+        if (Slots.Count > 0)
+        {
+            Slots[0].IsSelected = true;
+        }
+    }
     public bool AddItem(Item newItem, int amount)
     {
         if(newItem == null) return false;
@@ -63,6 +70,31 @@ public partial class InventoryViewModel: ViewModelBase
         return true;
     }
 
+    public void InitImage()
+    {
+        foreach (var obj in Slots)
+        {
+            if(obj.Item == null) continue;
+            if (obj.Item.Image == null)
+            {
+                obj.Item.Image = new Bitmap(AssetLoader.Open(new Uri($"avares://Isolation Protocol/Assets/{obj.Item.ImageId}.png")));
+                obj.Image = obj.Item.Image;
+            }
+        }
+    }
+
+    public bool IsEmpty()
+    {
+        bool empty = true;
+        foreach (var slot in Slots)
+        {
+            if (!slot.IsEmpty)
+                empty = false;
+        }
+
+        return empty;
+    }
+    
     public bool RemoveItem(string itemTag, int amount)
     {
         InventorySlot? slot;

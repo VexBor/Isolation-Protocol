@@ -44,7 +44,7 @@ public class UIHelper
 
         _canvas.Children.Add(background);
         
-        await Task.Delay(1000);
+        await Task.Delay(1300);
         _canvas.Children.Remove(background);
     }
 }

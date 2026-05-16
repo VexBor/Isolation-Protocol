@@ -11,16 +11,16 @@ public class DropLogic
 
     public DropLogic(InventoryViewModel inventory) => _inventory = inventory;
 
-    public void Drop(IInteractable source)
+    public void Drop(MapObject source)
     {
-        if (source is MapObject obj)
+        if (source != null)
         {
-            if(obj.Drop == null) return;
+            if(source.Drop == null) return;
             
-            int amount = Random.Shared.Next(obj.Drop.MinAmount, obj.Drop.MaxAmount + 1);
+            int amount = Random.Shared.Next(source.Drop.MinAmount, source.Drop.MaxAmount + 1);
             if (amount > 0)
             {
-                _inventory.AddItem(obj.Drop.DropItem, amount);
+                _inventory.AddItem(source.Drop.DropItem, amount);
             }
         }
     }

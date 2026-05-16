@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:Isolation_Protocol.Services"
+             xmlns:view="clr-namespace:Isolation_Protocol.View"
+             xmlns:views="clr-namespace:Isolation_Protocol.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Isolation_Protocol.Views.RepairView"
+             x:DataType="view:RepairViewModel">
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="{x:Type view:InventoryViewModel}">
+            <views:ChestView />
+        </DataTemplate>
+    </UserControl.DataTemplates>
+    
+    <Border Classes="TerminalBorder" Width="600" Height="400">
+        <Grid ColumnDefinitions="2*, 3*">
+            <StackPanel Grid.Column="0" Background="#111">
+                <TextBlock Text="Aegis" 
+                           Classes="AegisHeader" 
+                           Margin="15,15,15,10"/>
+            
+                <ListBox ItemsSource="{Binding ModuleName}" 
+                         Background="Transparent"
+                         BorderThickness="0"
+                         SelectionMode="AlwaysSelected">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Classes="TerminalText"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Spacing="12" Margin="20,15">
+                <TextBlock Text="Resurse 123..." MaxLines="5"></TextBlock>
+                <ContentControl Content="{Binding Inventory}"></ContentControl>
+                <Button Content="{Binding Source={x:Static services:Localization.Instance}, Path=[Repair_Btn]}" 
+                        Classes="TerminalButton"
+                        HorizontalAlignment="Stretch" 
+                        Command="{Binding RepairCommand}"
+                        Margin="0,20,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

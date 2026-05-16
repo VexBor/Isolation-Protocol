@@ -66,8 +66,12 @@
 
             <Button
                 Classes="MenuBtn"
-                Command="{Binding StartGameCommand}"
+                Command="{Binding StartNewGameCommand}"
                 Content="{Binding [Menu_Start], Source={x:Static services:Localization.Instance}}" />
+            <Button
+                Classes="MenuBtn"
+                Command="{Binding StartGameCommand}"
+                Content="{Binding [Menu_LoadGame], Source={x:Static services:Localization.Instance}}" />
             
             <Button
                 Classes="MenuBtn"
