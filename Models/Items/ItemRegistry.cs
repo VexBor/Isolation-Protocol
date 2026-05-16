@@ -32,6 +32,28 @@ public static class ItemRegistry
             MaxStack = 1,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/pickaxe.png")
         };
+        
+        _items["pickaxe_stone"] = new Item
+        {
+            Tag = "pickaxe_stone",
+            ItemType = ItemType.Tool,
+            Damage = 20,
+            Durability = 100,
+            ImageId = "pickaxeStone",
+            MaxStack = 1,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/pickaxeStone.png")
+        };
+        
+        _items["pickaxe_iron"] = new Item
+        {
+            Tag = "pickaxe_iron",
+            ItemType = ItemType.Tool,
+            Damage = 25,
+            Durability = 100,
+            ImageId = "pickaxeIron",
+            MaxStack = 1,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/pickaxeIron.png")
+        };
     
         _items["stone"] = new Item
         {
@@ -67,6 +89,33 @@ public static class ItemRegistry
             ImageId = "chest",
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/chest.png")
+        };
+
+        _items["iron"] = new Item
+        {
+            Tag = "iron",
+            ItemType = ItemType.Resource,
+            ImageId = "ironIngot",
+            MaxStack = 32,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/ironIngot.png")
+        };
+        
+        _items["gold"] = new Item
+        {
+            Tag = "gold",
+            ItemType = ItemType.Resource,
+            ImageId = "goldIngot",
+            MaxStack = 32,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/goldIngot.png")
+        };
+        
+        _items["emerald"] = new Item
+        {
+            Tag = "emerald",
+            ItemType = ItemType.Resource,
+            ImageId = "emeraldIngot",
+            MaxStack = 32,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/emeraldIngot.png")
         };
     }
 

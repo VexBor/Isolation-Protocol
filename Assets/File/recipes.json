@@ -44,5 +44,29 @@
       { "ItemTag": "wood", "ItemName": "Древисина", "Amount": 1 },
       { "ItemTag": "stone", "ItemName": "Камінь", "Amount": 1 }
     ]
+  },
+  {
+    "ResultItemTag": "pickaxe_stone",
+    "ResultItemName": "Камяне кайло",
+    "Description": "Кайло",
+    "NeedWorkBench": true,
+    "CraftTime": 5,
+    "Amount": 1,
+    "Ingredients": [
+      { "ItemTag": "wood", "ItemName": "Древисина", "Amount": 5 },
+      { "ItemTag": "stone", "ItemName": "Камінь", "Amount": 5 }
+    ]
+  },
+  {
+    "ResultItemTag": "pickaxe_iron",
+    "ResultItemName": "Металеве кайло",
+    "Description": "Кайло",
+    "NeedWorkBench": true,
+    "CraftTime": 5,
+    "Amount": 1,
+    "Ingredients": [
+      { "ItemTag": "wood", "ItemName": "Древисина", "Amount": 5 },
+      { "ItemTag": "iron", "ItemName": "Камінь", "Amount": 5 }
+    ]
   }
 ]

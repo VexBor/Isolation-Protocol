@@ -1,27 +1,23 @@
-using System;
 using Avalonia;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
-using Isolation_Protocol.Interfaces;
 using Isolation_Protocol.Services;
 
 namespace Isolation_Protocol.Models;
 
-public class Stone : MapObject,  IInteractable
+public class IronOre : MapObject
 {
-    public Stone()
+    public IronOre()
     {
         IsPassable = false;
-        Tag = "stone";
+        Tag = "ironOre";
         Health = 100f;
-        TextureId = "Stone1";
+        TextureId = "ironOre";
         MaxHealth = 100f;
-        Drop = new ResourceDrop(ItemRegistry.CreateItem("stone"), 2, 5);
+        Drop = new ResourceDrop(ItemRegistry.CreateItem("iron"), 2, 5);
     }
     
     public override bool OnInteract(Item? tool)
     {
-        if (tool.Tag.Contains("pickaxe")) 
+        if (tool.Tag == "pickaxe_stone") 
         {
             Sound.PlaySfx("stone");
             Health -= tool.Damage;

@@ -34,6 +34,34 @@ public class CaveMap(int width, int height, Player player) : GameMap(width, heig
                 placed++;
             }
         }
+        
+        int oreCount = (int)(totalCells * 0.05);
+
+        placed = 0;
+        while (placed < oreCount)
+        {
+            int x = _rand.Next(1, width - 1);
+            int y = _rand.Next(1, height - 1);
+
+            if (Map[x, y].Type == CellType.CaveWall)
+            {
+                Map[x,y].Type = CellType.CaveFloor;
+                int oreType = _rand.Next(1, 4);
+                switch (oreType)
+                {
+                    case 1:
+                        Map[x,y].Object = new  IronOre();
+                        break;
+                    case 2:
+                        Map[x,y].Object = new GoldOre();
+                        break;
+                    case 3:
+                        Map[x,y].Object = new EmeraldOre();
+                        break;
+                }
+                placed++;
+            }
+        }
 
         for (int x = 0; x < width; x++)
         {
@@ -45,7 +73,7 @@ public class CaveMap(int width, int height, Player player) : GameMap(width, heig
                     Map[x, y].Type = CellType.CaveWall;
             }
         }
-
+        
         spawnX = GetRandomSafeSpawnPoint().X;
         spawnY = GetRandomSafeSpawnPoint().Y;
         

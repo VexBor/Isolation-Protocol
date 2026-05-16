@@ -67,6 +67,9 @@ public class MapRenderer
         foreach (MapObject obj in objectsToDraw) {
             if(obj.Tag == "chest") DrawObject(obj);
             else if(obj.Tag == "workbench") DrawObject(obj);
+            else if(obj.Tag == "emeraldOre") DrawObject(obj);
+            else if(obj.Tag == "ironOre") DrawObject(obj);
+            else if(obj.Tag == "goldOre") DrawObject(obj);
             else DrawOre(obj);
         }
     }

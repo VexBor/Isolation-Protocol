@@ -57,7 +57,6 @@ public partial class MapViewModel : ViewModelBase
 
     public void Init()
     {
-        ItemRegistry.Initialize();
         _stopwatch.Start();
         _escapeMenu = new EscapeMenuViewModel(this);
         _activeMap = _map;
@@ -151,7 +150,8 @@ public partial class MapViewModel : ViewModelBase
     }
 
     public void NewGame()
-    {
+    {       
+        ItemRegistry.Initialize();
         _map = new GameMap(100,100, Player);
         _map.InitializeMap();
         
@@ -172,6 +172,7 @@ public partial class MapViewModel : ViewModelBase
     
     public void LoadGame()
     {
+        ItemRegistry.Initialize();
         _map = Save.GetSaveMap();
         Player = Save.GetSavePlayer();
         _caveMap = Save.GetSaveCaveMap();
