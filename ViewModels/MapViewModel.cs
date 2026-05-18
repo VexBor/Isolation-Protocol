@@ -68,8 +68,7 @@ public partial class MapViewModel : ViewModelBase
         _craft = new CraftViewModel(_inventory, _activeMap);
         _drop = new DropLogic(_inventory);
         _placementManager = new PlacementManager(_inventory, _activeMap, Renderer);
-        OpenInventory = _inventory;
-        _repair = new  RepairViewModel(_inventory);
+        OpenInventory = _inventory;        
         
         InputHandler.OnMouseClick += (mouseButton) => TryInteract(mouseButton);
         InputHandler.OnSelectSlot += (s) => ChanceSlot(s);
@@ -158,6 +157,8 @@ public partial class MapViewModel : ViewModelBase
                 OpenInventory = _inventory;
             }
         }
+        
+        if(Player.Stamina <= 0 && Player.Hunger < 20) NewGame();
     }
 
     public void NewGame()
@@ -173,6 +174,8 @@ public partial class MapViewModel : ViewModelBase
         Player.X = spawnPos.X;
         Player.Y = spawnPos.Y;
         
+        _repair = new  RepairViewModel(_inventory);
+        
         Init();
         
         _inventory.AddItem(ItemRegistry.CreateItem("axe"), 1);
@@ -186,9 +189,15 @@ public partial class MapViewModel : ViewModelBase
         ItemRegistry.Initialize();
         _map = Save.GetSaveMap();
         Player = Save.GetSavePlayer();
-        _caveMap = Save.GetSaveCaveMap();
         _inventory = Save.GetSaveInventory();
         _inventory.InitImage();
+        
+        _repair = new  RepairViewModel(_inventory);
+        _repair.Repaired = Save.GetModuleStatus();
+        for(int i = 0; i < _repair.Repaired.Length; i++)
+            _repair.Module[i].IsRepaired = _repair.Repaired[i];
+        
+        _caveMap = Save.GetSaveCaveMap();
         
         foreach (var cell in _map.Map)
         {
@@ -207,6 +216,10 @@ public partial class MapViewModel : ViewModelBase
         
         Renderer.SwitchMap(_activeMap); 
         Renderer.Render();
+        
+        //_inventory.AddItem(ItemRegistry.CreateItem("gold"), 10);
+       // _inventory.AddItem(ItemRegistry.CreateItem("motor"), 1);
+       // _inventory.AddItem(ItemRegistry.CreateItem("emerald"), 10);
     }
 
     public void SaveGame()
@@ -215,6 +228,7 @@ public partial class MapViewModel : ViewModelBase
         Save.SavePlayer(Player);
         Save.SaveCave(_caveMap);
         Save.SaveInventory(_inventory);
+        Save.SaveModuleStatus(_repair.Repaired);
     }
     
     private void TryInteract(MouseButton mouseButton)
@@ -305,6 +319,7 @@ public partial class MapViewModel : ViewModelBase
             if (cell.Object is Rocket rocket)
             {
                 SelectedRepair = _repair;
+                _repair.SetRocket(rocket);
                 Sound.PlaySfx("click");
             }
 

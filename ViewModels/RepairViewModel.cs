@@ -1,6 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Avalonia.Controls;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Isolation_Protocol.Models;
@@ -16,7 +21,8 @@ public partial class RepairViewModel : ViewModelBase
 
     private readonly string[] _moduleKeys = { "Module_Engine", "Module_Hull" };
     private readonly string[] _reqKeys = { "Req_Engine_Detailed", "Req_Hull_Detailed" };
-    private readonly bool[] _repaired = { false, false };
+    
+    public bool[] Repaired = { false, false };
 
     [ObservableProperty]
     private ObservableCollection<RepairModule> _module;
@@ -30,11 +36,14 @@ public partial class RepairViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(StatusText))]
     [NotifyPropertyChangedFor(nameof(IsCurrentModuleRepaired))]
     private int _selectedIndex = 0;
+    
+    private Rocket _rocket;
 
     public string CurrentModuleName => _loc[_moduleKeys[SelectedIndex]];
-    public string StatusText => _repaired[SelectedIndex] ? "READY" : _loc["Repair_Critical"];
-    public string RequirementsText => _repaired[SelectedIndex] ? _loc["Repair_Ready"] : _loc[_reqKeys[SelectedIndex]];
-    public bool IsCurrentModuleRepaired => _repaired[SelectedIndex];
+    public string StatusText => Repaired[SelectedIndex] ? "READY" : _loc["Repair_Critical"];
+    public string RequirementsText => Repaired[SelectedIndex] ? _loc["Repair_Ready"] : _loc[_reqKeys[SelectedIndex]];
+    public bool IsCurrentModuleRepaired => Repaired[SelectedIndex];
+    public bool CanLaunch => Module.All(m => m.IsRepaired);
     
     private InventoryViewModel _inventory;
 
@@ -45,6 +54,14 @@ public partial class RepairViewModel : ViewModelBase
         {
             new("Module_Engine", new() { new("motor", 1), new("emerald", 10), new("gold", 10) }),
             new("Module_Hull", new() { new("iron_plate", 7), new("gold_plate", 3), new("wood", 20) })
+        };
+
+        PropertyChanged += (sender, args) =>
+        {
+            if (args.PropertyName == nameof(CanLaunch))
+            {
+                ChanceRocketSprite();
+            }
         };
     }
 
@@ -69,10 +86,36 @@ public partial class RepairViewModel : ViewModelBase
         
         ErrorMessage = string.Empty;
         _module[SelectedIndex].IsRepaired = true;
-        _repaired[SelectedIndex] = true;
+        Repaired[SelectedIndex] = true;
         
         OnPropertyChanged(nameof(StatusText));
         OnPropertyChanged(nameof(RequirementsText));
         OnPropertyChanged(nameof(IsCurrentModuleRepaired));
+        OnPropertyChanged(nameof(CanLaunch));
+    }
+    
+    [RelayCommand]
+    public void LaunchRocket()
+    {
+
+    }
+
+    public void SetRocket(Rocket rocket)
+    {
+        _rocket = rocket;
+    }
+
+    public void ChanceRocketSprite()
+    {
+        if (_rocket.VisualElement.Parent is Canvas parent)
+        {
+            parent.Children.Remove(_rocket.VisualElement);
+            var image = new Image() { Source = new Bitmap(AssetLoader.Open(new Uri($"avares://Isolation Protocol/Assets/roket.png"))), Width = 40 * 1.5, Height = 40 * 2, ZIndex = 6};
+            
+            Canvas.SetLeft(image, _rocket.X * 40);
+            Canvas.SetTop(image, _rocket.Y * 40);
+            _rocket.VisualElement = image;
+            parent.Children.Add(_rocket.VisualElement);
+        }
     }
 }

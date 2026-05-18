@@ -49,6 +49,21 @@ public static class Save
         File.WriteAllText(path + _currentSaveName + "inventory.json", data);
     }
 
+    public static void SaveModuleStatus(bool[] moduleStatus)
+    {
+        if (!Directory.Exists(path + _currentSaveName))
+            Directory.CreateDirectory(path + _currentSaveName);
+        
+        var data = JsonConvert.SerializeObject(moduleStatus);
+        File.WriteAllText(path + _currentSaveName + "modulestatus.json", data);
+    }
+
+    public static bool[] GetModuleStatus()
+    {
+        var data = File.ReadAllText(path + _currentSaveName + "modulestatus.json");
+        return JsonConvert.DeserializeObject<bool[]>(data);
+    }
+    
     public static InventoryViewModel GetSaveInventory()
     {
         var data = File.ReadAllText(path + _currentSaveName + "inventory.json");
@@ -169,6 +184,8 @@ public static class Save
         }
         return map;
     }
+
+
 
     public static Player GetSavePlayer()
     {

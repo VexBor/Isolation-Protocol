@@ -17,5 +17,14 @@
     "Ingredients": [
       { "ItemTag": "iron", "ItemName": "", "Amount": 5 }
     ]
+  },
+  {
+    "ResultItemTag": "gold_plate",
+    "NeedWorkBench": false,
+    "CraftTime": 5,
+    "Amount": 1,
+    "Ingredients": [
+      { "ItemTag": "gold", "ItemName": "", "Amount": 5 }
+    ]
   }
 ]

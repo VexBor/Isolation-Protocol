@@ -55,6 +55,18 @@
                         Command="{Binding RepairCommand}"
                         IsVisible="{Binding !IsCurrentModuleRepaired}"
                         Margin="0,20,0,0"/>
+                <Button Content="ЗАПУСТИТИ СИСТЕМИ ЕВАКУАЦІЇ" 
+                        Classes="TerminalButton"
+                        Background="#2A4736"
+                        BorderBrush="#457B9D"
+                        Foreground="#A3E2C9"
+                        FontWeight="Bold"
+                        FontSize="16"
+                        HorizontalAlignment="Stretch" 
+                        Height="50"
+                        Command="{Binding LaunchRocketCommand}"
+                        IsVisible="{Binding CanLaunch}"
+                        Margin="0,20,0,0"/>
             </StackPanel>
         </Grid>
     </Border>

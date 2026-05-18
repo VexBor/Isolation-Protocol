@@ -133,6 +133,14 @@ public static class ItemRegistry
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/ironPlate.png")
         };
+        _items["gold_plate"] = new Item
+        {
+            Tag = "gold_plate",
+            ItemType = ItemType.Resource,
+            ImageId = "goldPlate",
+            MaxStack = 32,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/goldPlate.png")
+        };
         _items["motor"] = new Item
         {
             Tag = "motor",

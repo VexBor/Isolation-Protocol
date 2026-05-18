@@ -89,6 +89,9 @@
   "Desc_Pickaxe": "Used for mining gold ore and emerald ore. Highly effective against hard rock faces.",
   "Req_Anvil_Pickaxe": "Iron Ingot: 5\nWood: 5",
   "Craft_iron_plate": "IRON PLATE",
-  "Desc_Plate": "Used for rocket repair.",
-  "Req_Anvil_Plate": "Iron Ingot: 5"
+  "Desc_Plate": "Used for crafts and rocker repair.",
+  "Req_Anvil_Plate": "Iron ingot: 5",
+  "Craft_gold_plate": "GOLD PLATE",
+  "Desc_Gold_plate": "Used for crafts and rocker repair.",
+  "Req_Anvil_Gold_plate": "Gold ingot: 5"
 }

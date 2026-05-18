@@ -23,15 +23,16 @@ public partial class AnvilViewModel : ViewModelBase
     private readonly InventoryViewModel _inventory;
     private readonly Localization _loc = Localization.Instance;
 
-    private readonly string[] _recipeKeys = { "Craft_pickaxe_iron", "Craft_iron_plate"};
-    private readonly string[] _descKeys = { "Desc_Pickaxe", "Desc_Plate" };
-    private readonly string[] _reqKeys = { "Req_Anvil_Pickaxe", "Req_Anvil_Plate" };
+    private readonly string[] _recipeKeys = { "Craft_pickaxe_iron", "Craft_iron_plate", "Craft_gold_plate"};
+    private readonly string[] _descKeys = { "Desc_Pickaxe", "Desc_Plate", "Desc_Gold_plate" };
+    private readonly string[] _reqKeys = { "Req_Anvil_Pickaxe", "Req_Anvil_Plate",  "Req_Anvil_Gold_plate" };
 
     private readonly string _craftPath = "avares://Isolation Protocol/Assets/File/anvilRecipes.json";
         
     private readonly string[] _imagePaths = {
         "avares://Isolation Protocol/Assets/pickaxeIron.png",
-        "avares://Isolation Protocol/Assets/ironPlate.png"
+        "avares://Isolation Protocol/Assets/ironPlate.png",
+        "avares://Isolation Protocol/Assets/goldPlate.png"
     };
     
     private List<CraftRecipe> _recipes;
