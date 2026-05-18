@@ -74,5 +74,16 @@
   "Req_Engine": "Scrap Metal: 10, Fuel: 2",
   "Req_Comms": "Copper Wire: 5, Microchip: 1",
   "Req_Oxygen": "Rubber Tubes: 4, Filter: 2",
-  "Repair_Btn": "Repair"
+  "Repair_Btn": "Repair",
+
+  "Anvil_Header": "FORGING STATION",
+  "Anvil_Desc_Label": "DESIGNATION:",
+  "Anvil_Materials_Label": "REQUIRED MATERIALS:",
+  "Anvil_Craft_Btn": "CRAFT OBJECT",
+  "Craft_pickaxe_iron": "IRON PICKAXE",
+  "Desc_Pickaxe": "Used for mining gold ore and emerald ore. Highly effective against hard rock faces.",
+  "Req_Anvil_Pickaxe": "Iron Ingot: 5\nWood: 5",
+  "Craft_iron_plate": "IRON PLATE",
+  "Desc_Plate": "Used for rocket repair.",
+  "Req_Anvil_Plate": "Iron Ingot: 5"
 }

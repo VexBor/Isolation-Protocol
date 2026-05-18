@@ -1,0 +1,21 @@
+[
+  {
+    "ResultItemTag": "pickaxe_iron",
+    "NeedWorkBench": false,
+    "CraftTime": 5,
+    "Amount": 1,
+    "Ingredients": [
+      { "ItemTag": "iron", "ItemName": "", "Amount": 5 },
+      { "ItemTag": "wood", "ItemName": "", "Amount": 5 }
+    ]
+  },
+  {
+    "ResultItemTag": "iron_plate",
+    "NeedWorkBench": false,
+    "CraftTime": 5,
+    "Amount": 1,
+    "Ingredients": [
+      { "ItemTag": "iron", "ItemName": "", "Amount": 5 }
+    ]
+  }
+]

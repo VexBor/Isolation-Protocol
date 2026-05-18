@@ -112,6 +112,13 @@ public static class Save
                         Y = cell.Object.Y
                     };
                     break;
+                case "anvil":
+                    cell.Object = new Anvil()
+                    {
+                        X = cell.Object.X,
+                        Y = cell.Object.Y
+                    };
+                    break;
             }
         }
         
@@ -121,7 +128,46 @@ public static class Save
     public static CaveMap GetSaveCaveMap()
     {
         var data = File.ReadAllText(path + _currentSaveName + "cave.json");
-        return JsonConvert.DeserializeObject<CaveMap>(data);
+        var map = JsonConvert.DeserializeObject<CaveMap>(data);
+        foreach (var cell in map.Map)
+        {
+            if(cell.Object == null) continue;
+            switch (cell.Object.Tag)
+            {
+                case "ironOre":
+                    cell.Object = new IronOre()
+                    {
+                        X = cell.Object.X,
+                        Y = cell.Object.Y,
+                        Health = cell.Object.Health
+                    };
+                    break;
+                case "goldOre":
+                    cell.Object = new GoldOre()
+                    {
+                        X = cell.Object.X,
+                        Y = cell.Object.Y,
+                        Health = cell.Object.Health
+                    };
+                    break;
+                case "emeraldOre":
+                    cell.Object = new EmeraldOre()
+                    {
+                        X = cell.Object.X,
+                        Y = cell.Object.Y,
+                        Health = cell.Object.Health
+                    };
+                    break;
+                case "cave":
+                    cell.Object = new Cave()
+                    {
+                        X = cell.Object.X,
+                        Y = cell.Object.Y
+                    };
+                    break;
+            }
+        }
+        return map;
     }
 
     public static Player GetSavePlayer()

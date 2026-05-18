@@ -117,6 +117,22 @@ public static class ItemRegistry
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/emeraldIngot.png")
         };
+        _items["anvil"] = new Item
+        {
+            Tag = "anvil",
+            ItemType = ItemType.Resource,
+            ImageId = "anvil",
+            MaxStack = 32,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/anvil.png")
+        };
+        _items["iron_plate"] = new Item
+        {
+            Tag = "iron_plate",
+            ItemType = ItemType.Resource,
+            ImageId = "ironPlate",
+            MaxStack = 32,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/ironPlate.png")
+        };
     }
 
     public static Item? CreateItem(string tag) 

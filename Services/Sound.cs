@@ -18,7 +18,7 @@ public static class Sound
         {"tree", "hit_tree.mp3"},
         {"stone", "hit_stone.mp3"},
         {"slot", "chance_slot.mp3"},
-        {"music", "fon_music.mp3"}
+        {"anvil_clank", "anvil_clank.mp3"}
     };
     
     public static void PlaySfx(string tag)

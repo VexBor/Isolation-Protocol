@@ -8,12 +8,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Isolation_Protocol.Views.RepairView"
              x:DataType="view:RepairViewModel">
-    <UserControl.DataTemplates>
-        <DataTemplate DataType="{x:Type view:InventoryViewModel}">
-            <views:ChestView />
-        </DataTemplate>
-    </UserControl.DataTemplates>
-    
+
     <Border Classes="TerminalBorder" Width="600" Height="400">
         <Grid ColumnDefinitions="2*, 3*">
             <StackPanel Grid.Column="0" Background="#111">
@@ -35,7 +30,6 @@
 
             <StackPanel Grid.Column="1" Spacing="12" Margin="20,15">
                 <TextBlock Text="Resurse 123..." MaxLines="5"></TextBlock>
-                <ContentControl Content="{Binding Inventory}"></ContentControl>
                 <Button Content="{Binding Source={x:Static services:Localization.Instance}, Path=[Repair_Btn]}" 
                         Classes="TerminalButton"
                         HorizontalAlignment="Stretch" 

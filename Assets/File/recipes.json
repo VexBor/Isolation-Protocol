@@ -1,8 +1,6 @@
 [
   {
     "ResultItemTag": "axe",
-    "ResultItemName": "Сокира",
-    "Description": "Примітивна сокира для видобутку деревини.",
     "NeedWorkBench": false,
     "Amount": 1,
     "CraftTime": 5,
@@ -12,8 +10,6 @@
   },
   {
     "ResultItemTag": "pickaxe",
-    "ResultItemName": "Кайло",
-    "Description": "Примітивне кайло для видобутку камня.",
     "NeedWorkBench": false,
     "CraftTime": 5,
     "Amount": 1,
@@ -23,8 +19,6 @@
   },
   {
     "ResultItemTag": "workbench",
-    "ResultItemName": "Верстат",
-    "Description": "Верстат, використовується для крафтів.",
     "NeedWorkBench": false,
     "CraftTime": 5,
     "Amount": 1,
@@ -35,8 +29,6 @@
   },
   {
     "ResultItemTag": "chest",
-    "ResultItemName": "Скриня",
-    "Description": "Скриня, корисна якщо не вистачає місця.",
     "NeedWorkBench": true,
     "CraftTime": 5,
     "Amount": 1,
@@ -47,8 +39,6 @@
   },
   {
     "ResultItemTag": "pickaxe_stone",
-    "ResultItemName": "Камяне кайло",
-    "Description": "Кайло",
     "NeedWorkBench": true,
     "CraftTime": 5,
     "Amount": 1,
@@ -58,15 +48,12 @@
     ]
   },
   {
-    "ResultItemTag": "pickaxe_iron",
-    "ResultItemName": "Металеве кайло",
-    "Description": "Кайло",
+    "ResultItemTag": "anvil",
     "NeedWorkBench": true,
     "CraftTime": 5,
     "Amount": 1,
     "Ingredients": [
-      { "ItemTag": "wood", "ItemName": "Древисина", "Amount": 5 },
-      { "ItemTag": "iron", "ItemName": "Камінь", "Amount": 5 }
+      { "ItemTag": "iron", "ItemName": "", "Amount": 5 }
     ]
   }
 ]

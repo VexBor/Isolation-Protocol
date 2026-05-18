@@ -17,7 +17,7 @@ public class IronOre : MapObject
     
     public override bool OnInteract(Item? tool)
     {
-        if (tool.Tag == "pickaxe_stone") 
+        if (tool.Tag == "pickaxe_stone" ||  tool.Tag == "pickaxe_iron") 
         {
             Sound.PlaySfx("stone");
             Health -= tool.Damage;

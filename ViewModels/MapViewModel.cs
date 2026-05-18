@@ -44,6 +44,8 @@ public partial class MapViewModel : ViewModelBase
     [ObservableProperty]
     private RepairViewModel? _selectedRepair;
     
+    [ObservableProperty]
+    private AnvilViewModel _anvil;
 
     private PhysicsEngine _physicsEngine = new PhysicsEngine();
     private GameMap _map { get; set; }
@@ -53,6 +55,7 @@ public partial class MapViewModel : ViewModelBase
     private Camera _camera = new Camera();
     private Stopwatch _stopwatch = new Stopwatch();
     private DropLogic _drop;
+
     private double _lastTickElapsed;
 
     public void Init()
@@ -125,6 +128,12 @@ public partial class MapViewModel : ViewModelBase
             if (_currentChestInventory != null)
             {
                 CloseChest();
+                return;
+            }
+
+            if (Anvil != null)
+            {
+                Anvil = null;
                 return;
             }
             
@@ -300,6 +309,12 @@ public partial class MapViewModel : ViewModelBase
             if (cell.Object is Cave cave)
             {
                 ChanceMap();
+                Sound.PlaySfx("click");
+            }
+
+            if (cell.Object is Anvil anvil)
+            {
+                Anvil = new AnvilViewModel(_inventory);
                 Sound.PlaySfx("click");
             }
         }

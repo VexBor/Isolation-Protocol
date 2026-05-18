@@ -8,6 +8,7 @@ public static class ObjectFactory
         {
             "chest" => new Chest(),
             "workbench" => new Workbench(),
+            "anvil"  => new Anvil(),
             _ => null
         };
     }
