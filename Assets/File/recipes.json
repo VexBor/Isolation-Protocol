@@ -55,5 +55,17 @@
     "Ingredients": [
       { "ItemTag": "iron", "ItemName": "", "Amount": 5 }
     ]
+  },
+  {
+    "ResultItemTag": "motor",
+    "NeedWorkBench": true,
+    "CraftTime": 5,
+    "Amount": 1,
+    "Ingredients": [
+      { "ItemTag": "iron", "ItemName": "", "Amount": 7 },
+      { "ItemTag": "iron_plate", "ItemName": "", "Amount": 3 },
+      { "ItemTag": "gold_plate", "ItemName": "", "Amount": 3 },
+      { "ItemTag": "emerald", "ItemName": "", "Amount": 15 }
+    ]
   }
 ]

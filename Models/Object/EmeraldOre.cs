@@ -11,7 +11,7 @@ public class EmeraldOre : MapObject
         Tag = "emeraldOre";
         Health = 200f;
         TextureId = "emeraldOre";
-        MaxHealth = 100f;
+        MaxHealth = 200f;
         Drop = new ResourceDrop(ItemRegistry.CreateItem("emerald"), 2, 5);
     }
     

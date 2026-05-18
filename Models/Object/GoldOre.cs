@@ -11,7 +11,7 @@ public class GoldOre : MapObject
         Tag = "goldOre";
         Health = 150f;
         TextureId = "goldOre";
-        MaxHealth = 100f;
+        MaxHealth = 150f;
         Drop = new ResourceDrop(ItemRegistry.CreateItem("gold"), 2, 5);
     }
     

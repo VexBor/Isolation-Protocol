@@ -55,6 +55,7 @@ public partial class MapViewModel : ViewModelBase
     private Camera _camera = new Camera();
     private Stopwatch _stopwatch = new Stopwatch();
     private DropLogic _drop;
+    private RepairViewModel _repair;
 
     private double _lastTickElapsed;
 
@@ -68,6 +69,7 @@ public partial class MapViewModel : ViewModelBase
         _drop = new DropLogic(_inventory);
         _placementManager = new PlacementManager(_inventory, _activeMap, Renderer);
         OpenInventory = _inventory;
+        _repair = new  RepairViewModel(_inventory);
         
         InputHandler.OnMouseClick += (mouseButton) => TryInteract(mouseButton);
         InputHandler.OnSelectSlot += (s) => ChanceSlot(s);
@@ -302,7 +304,7 @@ public partial class MapViewModel : ViewModelBase
             
             if (cell.Object is Rocket rocket)
             {
-                SelectedRepair = new RepairViewModel();
+                SelectedRepair = _repair;
                 Sound.PlaySfx("click");
             }
 

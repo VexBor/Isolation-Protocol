@@ -4,19 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:services="clr-namespace:Isolation_Protocol.Services"
              xmlns:view="clr-namespace:Isolation_Protocol.View"
-             xmlns:views="clr-namespace:Isolation_Protocol.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Isolation_Protocol.Views.RepairView"
              x:DataType="view:RepairViewModel">
 
     <Border Classes="TerminalBorder" Width="600" Height="400">
         <Grid ColumnDefinitions="2*, 3*">
+            
             <StackPanel Grid.Column="0" Background="#111">
-                <TextBlock Text="Aegis" 
+                <TextBlock Text="AEGIS REPAIR" 
                            Classes="AegisHeader" 
                            Margin="15,15,15,10"/>
             
-                <ListBox ItemsSource="{Binding ModuleName}" 
+                <ListBox ItemsSource="{Binding Module}" 
+                         SelectedIndex="{Binding SelectedIndex}"
                          Background="Transparent"
                          BorderThickness="0"
                          SelectionMode="AlwaysSelected">
@@ -29,11 +30,30 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Spacing="12" Margin="20,15">
-                <TextBlock Text="Resurse 123..." MaxLines="5"></TextBlock>
+                
+                <TextBlock Text="{Binding CurrentModuleName}" 
+                           FontSize="18" 
+                           Classes="AegisHeader"/>
+                
+                <TextBlock Text="{Binding StatusText}" 
+                           Classes="TerminalText" 
+                           FontWeight="Bold"/>
+
+                <Border Background="#05FFFFFF" Padding="10" CornerRadius="2">
+                    <TextBlock Text="{Binding RequirementsText}" 
+                               Classes="TerminalText" 
+                               TextWrapping="Wrap"
+                               FontFamily="Courier New"/>
+                </Border>
+                <TextBlock Foreground="Brown" 
+                           Padding="10"  
+                           Text="{Binding ErrorMessage}" 
+                           FontSize="16"/>
                 <Button Content="{Binding Source={x:Static services:Localization.Instance}, Path=[Repair_Btn]}" 
                         Classes="TerminalButton"
                         HorizontalAlignment="Stretch" 
                         Command="{Binding RepairCommand}"
+                        IsVisible="{Binding !IsCurrentModuleRepaired}"
                         Margin="0,20,0,0"/>
             </StackPanel>
         </Grid>
