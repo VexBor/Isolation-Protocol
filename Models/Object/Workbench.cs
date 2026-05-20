@@ -16,7 +16,10 @@ public class Workbench : MapObject, IInteractable
         TextureId = "workbench";
         Health = 250f;
         MaxHealth = 250f;
-        Drop = new ResourceDrop(ItemRegistry.CreateItem("workbench"), 1, 1);
+        Drop =
+        [
+            new ResourceDrop(ItemRegistry.CreateItem("workbench"), 1, 1)
+        ];
     }
     
     public override bool OnInteract(Item? tool)

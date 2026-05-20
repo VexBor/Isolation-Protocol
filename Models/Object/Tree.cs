@@ -17,12 +17,16 @@ public class Tree : MapObject, IInteractable
         TextureId = "tree";
         Health = 100f;
         MaxHealth = 100f;
-        Drop = new ResourceDrop(ItemRegistry.CreateItem("wood"), 2, 5);
+        Drop =
+        [
+            new ResourceDrop(ItemRegistry.CreateItem("wood"), 2, 5),
+            new ResourceDrop(ItemRegistry.CreateItem("apple"), 0, 2)
+        ];
     }
     
     public override bool OnInteract(Item? tool)
     {
-        if (tool.Tag == "axe") 
+        if (tool.Tag.Contains(tool.Tag)) 
         {
             Sound.PlaySfx("tree");
             Health -= tool.Damage;

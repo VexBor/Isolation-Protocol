@@ -25,7 +25,6 @@ public partial class MapViewModel : ViewModelBase
     public MapRenderer Renderer { get; set; }
     private double _viewWidth = 1920;
     private double _viewHeight = 1080;
-    private Point _oldPlayerPos;
     
     private InventoryViewModel _inventory = new(6);
     
@@ -46,6 +45,9 @@ public partial class MapViewModel : ViewModelBase
     
     [ObservableProperty]
     private AnvilViewModel _anvil;
+    
+    [ObservableProperty]
+    private VictoryViewModel _victoryMenu;
 
     private PhysicsEngine _physicsEngine = new PhysicsEngine();
     private GameMap _map { get; set; }
@@ -58,27 +60,28 @@ public partial class MapViewModel : ViewModelBase
     private RepairViewModel _repair;
 
     private double _lastTickElapsed;
-
+    private DispatcherTimer _timer;
+    
     public void Init()
     {
         _stopwatch.Start();
         _escapeMenu = new EscapeMenuViewModel(this);
-        _activeMap = _map;
         Renderer = new MapRenderer(_activeMap);
         _craft = new CraftViewModel(_inventory, _activeMap);
         _drop = new DropLogic(_inventory);
         _placementManager = new PlacementManager(_inventory, _activeMap, Renderer);
-        OpenInventory = _inventory;        
+        OpenInventory = _inventory;
+        _repair.StartRocket += WinGame;
         
         InputHandler.OnMouseClick += (mouseButton) => TryInteract(mouseButton);
         InputHandler.OnSelectSlot += (s) => ChanceSlot(s);
 
-        var timer = new DispatcherTimer(DispatcherPriority.Render)
+        _timer = new DispatcherTimer(DispatcherPriority.Render)
         {
             Interval = TimeSpan.FromMilliseconds(16)
         };
-        timer.Tick += (s, e) => OnRender();
-        timer.Start();
+        _timer.Tick += (s, e) => OnRender();
+        _timer.Start();
     } 
     
     private void OnRender()
@@ -106,40 +109,56 @@ public partial class MapViewModel : ViewModelBase
             if (CraftOpened == null)
             {
                 CraftOpened = _craft;
+                _stopwatch.Stop();
                 OpenInventory = null;
             }
             else
             {
+                _stopwatch.Start();
                 OpenInventory = _inventory;
                 CraftOpened = null;
             }
         }
 
+        if (InputHandler.PressedQ() && InputHandler.IsShiftPressed())
+        {
+            _inventory.RemoveItemForSlot(_inventory.SelectedSlot);
+        }
+
         if (InputHandler.Escape())
         {
             SaveGame();
+            Logs.Save();
             Sound.PlaySfx("click");
             if (CraftOpened != null)
             {
                 OpenInventory = _inventory;
                 CraftOpened = null;
+                Logs.Add($"player close craft menu");
+                _stopwatch.Start();
                 return;
             }
 
             if (_currentChestInventory != null)
             {
+                _stopwatch.Start();
+                Logs.Add($"player close chest");
                 CloseChest();
                 return;
             }
 
             if (Anvil != null)
             {
+                _stopwatch.Start();
+                Logs.Add($"player close anvil");
                 Anvil = null;
                 return;
             }
             
             if (SelectedRepair != null)
             {
+                _stopwatch.Start();
+                Logs.Add($"player close repair menu");
                 SelectedRepair = null;
                 return;
             }
@@ -149,21 +168,30 @@ public partial class MapViewModel : ViewModelBase
             if (_escapeMenu.IsPaused)
             {
                 _stopwatch.Stop();
+                Logs.Add($"player open escape menu");
                 OpenInventory = null;
             }
             else
             {
                 _stopwatch.Start();
+                Logs.Add($"player close escape menu");
                 OpenInventory = _inventory;
             }
         }
         
-        if(Player.Stamina <= 0 && Player.Hunger < 20) NewGame();
+        if(Player.Stamina <= 0 && _physicsEngine.isWater)
+        {
+            Vector2 spawnPos = _map.GetRandomSafeSpawnPoint();
+            Player.X = spawnPos.X;
+            Player.Y = spawnPos.Y;
+        }
     }
 
     public void NewGame()
     {       
         ItemRegistry.Initialize();
+        Player = new();
+        _inventory = new(6);
         _map = new GameMap(100,100, Player);
         _map.InitializeMap();
         
@@ -175,13 +203,16 @@ public partial class MapViewModel : ViewModelBase
         Player.Y = spawnPos.Y;
         
         _repair = new  RepairViewModel(_inventory);
-        
+        _activeMap = _map;
         Init();
         
+        Renderer.SwitchMap(_activeMap); 
+        Renderer.Render();
+        
         _inventory.AddItem(ItemRegistry.CreateItem("axe"), 1);
-        _inventory.AddItem(ItemRegistry.CreateItem("pickaxe"), 1);
-        _inventory.AddItem(ItemRegistry.CreateItem("workbench"), 20);
-        _inventory.AddItem(ItemRegistry.CreateItem("chest"), 20);
+    //    _inventory.AddItem(ItemRegistry.CreateItem("pickaxe"), 1);
+      //  _inventory.AddItem(ItemRegistry.CreateItem("workbench"), 20);
+      //  _inventory.AddItem(ItemRegistry.CreateItem("chest"), 20);
     }
     
     public void LoadGame()
@@ -199,6 +230,9 @@ public partial class MapViewModel : ViewModelBase
         
         _caveMap = Save.GetSaveCaveMap();
         
+        _inventory.SelectSlot(_inventory.Slots[0]);
+        _inventory.SelectedSlot = 0;
+        
         foreach (var cell in _map.Map)
         {
             if(cell.Object == null) continue;
@@ -211,15 +245,16 @@ public partial class MapViewModel : ViewModelBase
         _map.SetPlayer(Player);
         _caveMap.SetPlayer(Player);
         
-        _activeMap = _map;
+        if(Player.isCurrentMapCave ) _activeMap = _caveMap;
+        else _activeMap = _map;
         Init();
         
         Renderer.SwitchMap(_activeMap); 
         Renderer.Render();
         
-        //_inventory.AddItem(ItemRegistry.CreateItem("gold"), 10);
-       // _inventory.AddItem(ItemRegistry.CreateItem("motor"), 1);
-       // _inventory.AddItem(ItemRegistry.CreateItem("emerald"), 10);
+        _inventory.AddItem(ItemRegistry.CreateItem("axe_stone"), 1);
+        _inventory.AddItem(ItemRegistry.CreateItem("axe_iron"), 1);
+        _inventory.AddItem(ItemRegistry.CreateItem("anvil"), 1);
     }
 
     public void SaveGame()
@@ -229,6 +264,14 @@ public partial class MapViewModel : ViewModelBase
         Save.SaveCave(_caveMap);
         Save.SaveInventory(_inventory);
         Save.SaveModuleStatus(_repair.Repaired);
+    }
+
+    public void WinGame()
+    {
+        SelectedRepair = null;
+        _stopwatch.Stop();
+        _timer.Stop();
+        VictoryMenu = new VictoryViewModel();
     }
     
     private void TryInteract(MouseButton mouseButton)
@@ -258,13 +301,18 @@ public partial class MapViewModel : ViewModelBase
             }
         }
 
+        if (mouseButton == MouseButton.Right &&  _inventory.Slots[_inventory.SelectedSlot].Item != null &&_inventory.Slots[_inventory.SelectedSlot].Item.Tag == "apple" && Player.Hunger < 100)
+        {
+            Player.Hunger += 10;
+            _inventory.RemoveItem(_inventory.Slots[_inventory.SelectedSlot].Item.Tag, 1);
+            Logs.Add("player eat apple");
+            return;
+        }
+        
         if (bestCell != null)
         {
             if (mouseButton == MouseButton.Left) InteractWithCell(bestCell);
-            else if (mouseButton == MouseButton.Right)
-            {
-                InteractWithObject(bestCell);
-            }
+            else if (mouseButton == MouseButton.Right) InteractWithObject(bestCell);
         }
     }
     
@@ -276,8 +324,11 @@ public partial class MapViewModel : ViewModelBase
             if(_inventory.Slots[_inventory.SelectedSlot].Item is Item item) tool = item;
             else return;
             
+            if(Player.Stamina < 5) return;
+            
             tool.Durability--;
-
+            Player.Stamina -= 1;
+            
             var interact = cell.Object;
             
             if (interact.OnInteract(tool))
@@ -290,6 +341,8 @@ public partial class MapViewModel : ViewModelBase
                     parent.Children.Remove(interact.VisualElement);
                 }
                 _drop.Drop(interact);
+                
+                Logs.Add($"player destroyed {interact.Tag}");
                 
                 cell.Object.VisualElement = null;
                 cell.Object = null;
@@ -306,6 +359,7 @@ public partial class MapViewModel : ViewModelBase
                 Sound.PlaySfx("chest");
                 CurrentChestInventory = chest.ChestInventory;
                 _inventory.TargetInventory = chest.ChestInventory;
+                _stopwatch.Stop();
                 chest.ChestInventory.TargetInventory = _inventory;
             }
             
@@ -313,12 +367,14 @@ public partial class MapViewModel : ViewModelBase
             {
                 Sound.PlaySfx("click");
                 CraftOpened = _craft;
+                _stopwatch.Stop();
                 OpenInventory = null;
             }
             
             if (cell.Object is Rocket rocket)
             {
                 SelectedRepair = _repair;
+                _stopwatch.Stop();
                 _repair.SetRocket(rocket);
                 Sound.PlaySfx("click");
             }
@@ -331,9 +387,11 @@ public partial class MapViewModel : ViewModelBase
 
             if (cell.Object is Anvil anvil)
             {
+                _stopwatch.Stop();
                 Anvil = new AnvilViewModel(_inventory);
                 Sound.PlaySfx("click");
             }
+            Logs.Add($"player open {cell.Object.Tag}");
         }
     }
 
@@ -342,18 +400,22 @@ public partial class MapViewModel : ViewModelBase
         if (_activeMap == _map)
         {
             Renderer.SwitchMap(_caveMap);
-            _oldPlayerPos = new Point(Player.X, Player.Y);
+            Player.oldPlayerPos = new Point(Player.X, Player.Y);
             Player.X = _caveMap.spawnX;
             Player.Y = _caveMap.spawnY;
             _activeMap = _caveMap;
             Renderer.Render();
+            Logs.Add($"player go to cave");
+            Player.isCurrentMapCave = true;
         }
         else
         {
             Renderer.SwitchMap(_map);
             _activeMap = _map;
-            Player.X = _oldPlayerPos.X;
-            Player.Y = _oldPlayerPos.Y;
+            Player.X = Player.oldPlayerPos.X;
+            Player.Y = Player.oldPlayerPos.Y;
+            Player.isCurrentMapCave = false;
+            Logs.Add($"player go to world");
             Renderer.Render();
         }
     }
@@ -372,6 +434,7 @@ public partial class MapViewModel : ViewModelBase
             }
 
             _inventory.Slots[_inventory.SelectedSlot].IsSelected = true;
+            Logs.Add($"player select slot number {_inventory.SelectedSlot}");
             _placementManager.StopPlacement();
         }
     }
@@ -379,7 +442,9 @@ public partial class MapViewModel : ViewModelBase
     [RelayCommand]
     public void CloseChest()
     {
+        _stopwatch.Start();
         Sound.PlaySfx("click");
+        Logs.Add($"player close chest");
         CurrentChestInventory!.TargetInventory = null;
         CurrentChestInventory = null;
         _inventory.TargetInventory = null;

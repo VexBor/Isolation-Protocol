@@ -12,7 +12,10 @@ public class GoldOre : MapObject
         Health = 150f;
         TextureId = "goldOre";
         MaxHealth = 150f;
-        Drop = new ResourceDrop(ItemRegistry.CreateItem("gold"), 2, 5);
+        Drop = 
+        [
+            new ResourceDrop(ItemRegistry.CreateItem("gold"), 2, 5)
+        ];
     }
     
     public override bool OnInteract(Item? tool)

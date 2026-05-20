@@ -73,6 +73,16 @@ public static class InputHandler
         }
         return false;
     }
+
+    public static bool PressedQ()
+    {
+        if (IsKeyDown(Key.Q))
+        {
+            RegisterKeyUp(Key.Q);
+            return true;
+        }
+        return false;
+    }
     
     public static bool Escape()
     {

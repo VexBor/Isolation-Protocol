@@ -117,6 +117,14 @@ public partial class InventoryViewModel: ViewModelBase
         return false;
     }
 
+    public void RemoveItemForSlot(int slotNumber)
+    {
+        Slots[slotNumber].IsEmpty = true;
+        Slots[slotNumber].Count = 0;
+        Slots[slotNumber].Image = null;
+        Slots[slotNumber].Item = null;
+    }
+
     public bool EmptySlots(string tag)
     {
         var slot = Slots.FirstOrDefault(s => s.Item != null && s.Item.Tag == tag && s.Count < s.Item.MaxStack || s.IsEmpty);

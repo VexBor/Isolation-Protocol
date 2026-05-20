@@ -33,8 +33,18 @@
     "CraftTime": 5,
     "Amount": 1,
     "Ingredients": [
-      { "ItemTag": "wood", "ItemName": "Древисина", "Amount": 1 },
-      { "ItemTag": "stone", "ItemName": "Камінь", "Amount": 1 }
+      { "ItemTag": "wood", "ItemName": "Древисина", "Amount": 7 },
+      { "ItemTag": "stone", "ItemName": "Камінь", "Amount": 2 }
+    ]
+  },
+  {
+    "ResultItemTag": "axe_stone",
+    "NeedWorkBench": false,
+    "Amount": 1,
+    "CraftTime": 5,
+    "Ingredients": [
+      { "ItemTag": "wood", "ItemName": "Древисина","Amount": 5 },
+      { "ItemTag": "stone", "ItemName": "Камінь", "Amount": 5 }
     ]
   },
   {

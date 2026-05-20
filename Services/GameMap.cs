@@ -25,23 +25,19 @@ public class GameMap(int width, int height, Player player)
             for (int y = 0; y < height; y++)
             {
                 Map[x, y] = new MapCell(CellType.Floor);
-                // 1. Отримуємо значення шуму Перліна (від 0 до 1)
                 double noiseValue = Math.Abs(Perlin2D(x * scale + seed, y * scale + seed));
 
-                // 2. Накладаємо маску острова (відстань від центру)
                 double centerX = width / 2.0;
                 double centerY = height / 2.0;
                 double dist = Math.Sqrt(Math.Pow(x - centerX, 2) + Math.Pow(y - centerY, 2));
                 double maxDist = Math.Min(width, height) / 2.2; // Радіус суходолу
 
-                // "Притискаємо" шум до країв
                 double mask = Math.Clamp((maxDist - dist) / maxDist, 0, 1);
                 double finalHeight = noiseValue * mask;
                 
                 Map[x, y].X = x;
                 Map[x, y].Y = y;
                 
-                // 3. Перетворюємо висоту в типи тайлів
                 if (finalHeight < 0.1) Map[x, y].Type = CellType.Water;      // Глибока вода
                 else if (finalHeight < 0.2)
                     Map[x, y].Type = CellType.Sand; // Пляж
@@ -56,7 +52,17 @@ public class GameMap(int width, int height, Player player)
                 else Map[x, y].Type = CellType.Wall;                         // Скелі/гори
             }
         }
-
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if(x == 0 || x == width - 1)
+                    Map[x, y].Type = CellType.CaveWall;
+                if(y == 0 || y == height - 1)
+                    Map[x, y].Type = CellType.CaveWall;
+            }
+        }
+        
         Vector2 rocketPos = GetRandomSafeSpawnPoint();
         Map[(int)rocketPos.X / TileSize, (int)rocketPos.Y / TileSize].Object = new Rocket();
         Vector2 cavePos = GetRandomSafeSpawnPoint();
@@ -86,7 +92,7 @@ public class GameMap(int width, int height, Player player)
             int x = rand.Next(0, Width);
             int y = rand.Next(0, Height);
 
-            if (Map[x, y].Type == CellType.Floor || Map[x, y].Type == CellType.CaveFloor && Map[x, y].Object == null && Map[x, y].IsWalkable)
+            if (Map[x, y].Type == CellType.Floor || Map[x, y].Type == CellType.CaveFloor && (Map[x, y].Object == null && Map[x, y].IsWalkable))
             {
                 safeX = x * TileSize;
                 safeY = y * TileSize;

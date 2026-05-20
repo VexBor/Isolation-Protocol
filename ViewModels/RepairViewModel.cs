@@ -16,6 +16,8 @@ namespace Isolation_Protocol.View;
 
 public partial class RepairViewModel : ViewModelBase
 {
+    public Action StartRocket;
+    
     public InventoryViewModel Inventory { get; } = new(6);
     private readonly Localization _loc = Localization.Instance;
 
@@ -97,7 +99,7 @@ public partial class RepairViewModel : ViewModelBase
     [RelayCommand]
     public void LaunchRocket()
     {
-
+        StartRocket.Invoke();
     }
 
     public void SetRocket(Rocket rocket)

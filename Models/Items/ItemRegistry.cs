@@ -21,6 +21,28 @@ public static class ItemRegistry
             MaxStack = 1,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/axe.png")
         };
+        
+        _items["axe_stone"] = new Item 
+        {
+            Tag = "axe_stone",
+            ItemType = ItemType.Tool,
+            Damage = 15,
+            ImageId = "axeStone",
+            Durability = 150,
+            MaxStack = 1,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/axeStone.png")
+        };
+        
+        _items["axe_iron"] = new Item 
+        {
+            Tag = "axe_iron",
+            ItemType = ItemType.Tool,
+            Damage = 20,
+            ImageId = "axeIron",
+            Durability = 200,
+            MaxStack = 1,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/axeIron.png")
+        };
     
         _items["pickaxe"] = new Item
         {
@@ -38,7 +60,7 @@ public static class ItemRegistry
             Tag = "pickaxe_stone",
             ItemType = ItemType.Tool,
             Damage = 20,
-            Durability = 100,
+            Durability = 150,
             ImageId = "pickaxeStone",
             MaxStack = 1,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/pickaxeStone.png")
@@ -49,7 +71,7 @@ public static class ItemRegistry
             Tag = "pickaxe_iron",
             ItemType = ItemType.Tool,
             Damage = 25,
-            Durability = 100,
+            Durability = 250,
             ImageId = "pickaxeIron",
             MaxStack = 1,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/pickaxeIron.png")
@@ -148,6 +170,14 @@ public static class ItemRegistry
             ImageId = "motor",
             MaxStack = 32,
             Image = LoadBitmap("avares://Isolation Protocol/Assets/motor.png")
+        };
+        _items["apple"] = new Item
+        {
+            Tag = "apple",
+            ItemType = ItemType.Resource,
+            ImageId = "apple",
+            MaxStack = 32,
+            Image = LoadBitmap("avares://Isolation Protocol/Assets/apple.png")
         };
     }
 

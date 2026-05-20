@@ -10,6 +10,7 @@
   "Menu_Logout": "LOG OUT" ,
   "Menu_LoadGame": "LOAD GAME",
   "Menu_ActiveTxt": "UPLINK ACTIVE",
+  "Menu_Guide": "GUIDE",
   "Settings_Title": "PROTOCOL: CONFIGURATION",
   "Settings_Audio_Header": "[ AUDIO SYSTEM ]",
   "Settings_MasterVolume": "MASTER VOLUME",
@@ -46,6 +47,7 @@
   "Item_chest_Name": "Storage Container",
   "Item_chest_Desc": "Secure unit for your belongings.",
   "Item_pickaxe_stone_Name": "Stone pickaxe",
+  "Item_axe_stone_Name": "Stone axe",
   "Item_anvil_Name": "Anvil",
   "Item_motor_Name": "Engine Motor",
   "Item_iron_Name": "Iron ingot",
@@ -93,5 +95,20 @@
   "Req_Anvil_Plate": "Iron ingot: 5",
   "Craft_gold_plate": "GOLD PLATE",
   "Desc_Gold_plate": "Used for crafts and rocker repair.",
-  "Req_Anvil_Gold_plate": "Gold ingot: 5"
+  "Req_Anvil_Gold_plate": "Gold ingot: 5",
+  "Craft_axe_iron": "IRON AXE",
+  "Desc_Axe": "Used for mining tree.",
+  "Req_Anvil_Axe": "Iron Ingot: 5\nWood: 5",
+
+  "Victory_Title": "EVACUATION SUCCESSFUL",
+  "Victory_Log": "AEGIS SYSTEMS: ONLINE.\nENGINE CORE: STABLE.\nHYPERJUMP: EXECUTED.\n\nConnection to planetary base severed.\nIsolation Protocol terminated.\nYou survived.",
+  "Victory_Exit_Btn": "MAIN MENU",
+
+  "Guide_Header": "AEGIS DATABASE",
+  "Guide_Controls_Title": "SYSTEM CONTROLS",
+  "Guide_Controls_Text": "[W] [A] [S] [D] — Character Movement\n[R] — Open Crafting Menu\n[LMB] — Use Tool\n[ESC] — System Menu / Exit",
+  "Guide_Interact_Title": "ENVIRONMENT INTERACTION",
+  "Guide_Interact_Text": "Approach an object and press [RMB] to open a loot container or use the Forging Station.\n\nTo gather resources, select the appropriate tool (pickaxe or axe) in your inventory and hold [LMB] over an ore vein or tree.",
+  "Guide_UI_Title": "INDICATORS",
+  "Guide_UI_Text": "• Red: Health status.\n• Blue: Energy level.\n• Brown: Satiety level.\n\nMonitor these indicators closely. Allowing any of them to reach a critical point will lead to inevitable death."
 }

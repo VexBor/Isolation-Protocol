@@ -24,20 +24,35 @@
                 Grid.Column="0"
                 Margin="0,0,10,0"
                 RowDefinitions="*, Auto, Auto, Auto">
-                <ProgressBar
-                    Classes="HpBar"
-                    Grid.Row="1"
-                    Value="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).Player.Health}" />
-
-                <ProgressBar
-                    Classes="HungerBar"
-                    Grid.Row="2"
-                    Value="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).Player.Hunger}" />
-
-                <ProgressBar
-                    Classes="StaminaBar"
-                    Grid.Row="3"
-                    Value="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).Player.Stamina}" />
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock Foreground="Red" 
+                               Margin="0,0,-14,0"
+                               FontSize="30" 
+                               ZIndex="1">♥</TextBlock>
+                    <ProgressBar
+                        Classes="HpBar"
+                        CornerRadius="20"
+                        Value="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).Player.Health}" />
+                </StackPanel>
+                
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <TextBlock Margin="0,0,-15,0"
+                               FontSize="26" 
+                               ZIndex="1">🍖</TextBlock>
+                    <ProgressBar
+                        Classes="HungerBar"
+                        Value="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).Player.Hunger}" />
+                </StackPanel>
+                
+                <StackPanel Grid.Row="3" Orientation="Horizontal">
+                    <TextBlock  
+                               Margin="0,0,-15,0"
+                               FontSize="25" 
+                               ZIndex="1">⚡</TextBlock>
+                    <ProgressBar
+                        Classes="StaminaBar"
+                        Value="{Binding $parent[UserControl;1].((viewModels1:MapViewModel)DataContext).Player.Stamina}" />
+                </StackPanel>
             </Grid>
 
             <ItemsControl Grid.Column="2" ItemsSource="{Binding Slots}">

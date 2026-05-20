@@ -16,7 +16,10 @@ public class Stone : MapObject,  IInteractable
         Health = 100f;
         TextureId = "Stone1";
         MaxHealth = 100f;
-        Drop = new ResourceDrop(ItemRegistry.CreateItem("stone"), 2, 5);
+        Drop = 
+        [
+            new ResourceDrop(ItemRegistry.CreateItem("stone"), 2, 5)
+        ];
     }
     
     public override bool OnInteract(Item? tool)

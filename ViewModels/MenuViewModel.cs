@@ -23,6 +23,7 @@ public partial class MenuViewModel : ViewModelBase
     public MenuViewModel(MainWindowViewModel mainVM)
     {
         _mainVM = mainVM;
+        Logs.Init();
     }
 
     [RelayCommand]
@@ -30,7 +31,9 @@ public partial class MenuViewModel : ViewModelBase
     {
         Sound.PlaySfx("click");
         _mainVM.CurrentPage = new LoadingViewModel();
-
+        Logs.Add("player start game");
+        Logs.Save();
+        
         MapViewModel game = null;
         
         await Task.Run(async () =>
@@ -47,6 +50,8 @@ public partial class MenuViewModel : ViewModelBase
     {
         Sound.PlaySfx("click");
         _mainVM.CurrentPage = new LoadingViewModel();
+        Logs.Add("player start new game");
+        Logs.Save();
 
         MapViewModel game = null;
         
@@ -62,13 +67,26 @@ public partial class MenuViewModel : ViewModelBase
     [RelayCommand]
     private void OpenSettings()
     {
+        Logs.Add("player open settings");
+        Logs.Save();
         Sound.PlaySfx("click");
         _mainVM.CurrentPage = _settingsVM;
+    }
+    
+    [RelayCommand]
+    private void OpenGuide()
+    {
+        Logs.Add("player open guide");
+        Logs.Save();
+        Sound.PlaySfx("click");
+        _mainVM.CurrentPage = new GuideViewModel();
     }
         
     [RelayCommand]
     private void OpenInfo()
     {
+        Logs.Add("player open info");
+        Logs.Save();
         Sound.PlaySfx("click");
         _mainVM.CurrentPage = new InfoViewModel();
     }
@@ -77,6 +95,7 @@ public partial class MenuViewModel : ViewModelBase
     private void Logout()
     {
         Sound.PlaySfx("click");
+        Logs.Add("player logout");
         Authorize.CurrentUser = null;
         _mainVM.CurrentPage = new LoginViewModel(_mainVM);
     }
@@ -85,6 +104,8 @@ public partial class MenuViewModel : ViewModelBase
     private void Exit()
     {
         Sound.PlaySfx("click");
+        Logs.Add("player exit game");
+        Logs.Save();
         Environment.Exit(0);
     }
 }

@@ -21,12 +21,15 @@ public partial class EscapeMenuViewModel(MapViewModel vm) :  ViewModelBase
     public void Resume()
     {
         IsPaused = false;
+        Logs.Add("player resume game");
     } 
 
     [RelayCommand]
     public void QuitGame()
     {
         vm.SaveGame();
+        Logs.Add("player quit game");
+        Logs.Save();
         Environment.Exit(0);
     } 
 }

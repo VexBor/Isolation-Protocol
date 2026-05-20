@@ -1,3 +1,4 @@
+using Avalonia;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ReactiveUI;
 
@@ -19,6 +20,9 @@ public partial class Player : ObservableObject
     
     [ObservableProperty]
     private double _hunger = 100;
+
+    public bool isCurrentMapCave = false;
+    public Point oldPlayerPos;
     
     public int Height { get; set; } = 20;
     public int Width { get; set; } = 20;

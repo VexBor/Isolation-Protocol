@@ -31,6 +31,9 @@
         <DataTemplate DataType="{x:Type viewModels1:AnvilViewModel}">
             <views:AnvilView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels1:VictoryViewModel}">
+            <views:VictoryView />
+        </DataTemplate>
     </UserControl.DataTemplates>
 
     <UserControl.Styles>
@@ -79,7 +82,7 @@
                     x:Name="Placement"/>
             </Canvas>
         </ScrollViewer>
-
+        
         <!--  Інший візуал  -->
         <views:ChestView DataContext="{Binding CurrentChestInventory}" IsVisible="{Binding !!$parent[UserControl].((viewModels1:MapViewModel)DataContext).CurrentChestInventory}" />
         <ContentControl Content="{Binding CraftOpened}" />
@@ -87,5 +90,6 @@
         <ContentControl Content="{Binding OpenInventory}" />
         <ContentControl Content="{Binding SelectedRepair}" />
         <ContentControl Content="{Binding Anvil}" />
+        <ContentControl Content="{Binding VictoryMenu}" />
     </Grid>
 </UserControl>

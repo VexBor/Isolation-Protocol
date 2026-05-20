@@ -1,0 +1,77 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:Isolation_Protocol.Services"
+             xmlns:vm="clr-namespace:Isolation_Protocol.View"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Isolation_Protocol.Views.GuideView">
+    <Grid Background="{DynamicResource GlobalBackground}" RowDefinitions="Auto, *, Auto">
+
+        <TextBlock
+            Classes="H1"
+            Grid.Row="0"
+            Margin="60,50,0,0"
+            Text="{Binding [Guide_Header], Source={x:Static services:Localization.Instance}}" />
+
+        <Border
+            Classes="ContentPanel"
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            MinWidth="800">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Margin="50,40" Spacing="40">
+
+                    <StackPanel Spacing="10">
+                        <TextBlock Classes="H2" Text="{Binding [Guide_Controls_Title], Source={x:Static services:Localization.Instance}}" />
+                        <Separator HorizontalAlignment="Left" Width="200" />
+                        <TextBlock Classes="BodyText" TextWrapping="Wrap" 
+                                   Text="{Binding [Guide_Controls_Text], Source={x:Static services:Localization.Instance}}" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="10">
+                        <TextBlock Classes="H2" Text="{Binding [Guide_Interact_Title], Source={x:Static services:Localization.Instance}}" />
+                        <Separator HorizontalAlignment="Left" Width="200" />
+                        <TextBlock Classes="BodyText" TextWrapping="Wrap" 
+                                   Text="{Binding [Guide_Interact_Text], Source={x:Static services:Localization.Instance}}" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="10">
+                        <TextBlock Classes="H2" Text="{Binding [Guide_UI_Title], Source={x:Static services:Localization.Instance}}" />
+                        <Separator HorizontalAlignment="Left" Width="200" />
+                        <TextBlock Classes="BodyText" TextWrapping="Wrap" 
+                                   Text="{Binding [Guide_UI_Text], Source={x:Static services:Localization.Instance}}" />
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <Border Classes="FooterPanel" Grid.Row="2">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="40">
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock
+                        Classes="SystemText"
+                        FontWeight="Bold"
+                        Foreground="{DynamicResource AccentRed}"
+                        Text="AEGIS DATABASE v1.0" />
+                    <TextBlock Classes="SystemText" Text="ENGINE: AVALONIA UI (C# / .NET 8)" />
+                </StackPanel>
+
+                <Separator Classes="Vertical" />
+
+                <TextBlock
+                    Classes="SystemText"
+                    Text="DEVELOPER: YAKYM VADYM [ARC-6 / SECTOR-3]"
+                    VerticalAlignment="Center" />
+
+                <Button
+                    Classes="GhostBtn"
+                    Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).OpenMenuCommand}"
+                    Content="{Binding [Settings_Back], Source={x:Static services:Localization.Instance}}"
+                    Margin="100,0,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -17,7 +17,10 @@ public class Chest : MapObject, IInteractable
         Health = 250f;
         TextureId = "chest";
         MaxHealth = 250f;
-        Drop = new ResourceDrop(ItemRegistry.CreateItem("chest")!, 1, 1);
+        Drop =  
+        [
+            new ResourceDrop(ItemRegistry.CreateItem("chest")!, 1, 1)
+        ];
         ChestInventory = new InventoryViewModel(9);
     }
     

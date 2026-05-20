@@ -12,7 +12,10 @@ public class EmeraldOre : MapObject
         Health = 200f;
         TextureId = "emeraldOre";
         MaxHealth = 200f;
-        Drop = new ResourceDrop(ItemRegistry.CreateItem("emerald"), 2, 5);
+        Drop =
+        [
+            new ResourceDrop(ItemRegistry.CreateItem("emerald"), 2, 5)
+        ];
     }
     
     public override bool OnInteract(Item? tool)

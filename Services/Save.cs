@@ -1,5 +1,7 @@
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.JavaScript;
 using System.Text.Json;
 using Isolation_Protocol.Models;
 using Isolation_Protocol.View;
@@ -12,6 +14,8 @@ public static class Save
     private static string _currentSaveName = "Default/";
     private static string path = "Assets/Data/World/";
 
+    public static bool Exist => Directory.Exists(path + _currentSaveName);
+    
     public static void SaveMap(GameMap map)
     {
         if (!Directory.Exists(path + _currentSaveName))
@@ -126,6 +130,7 @@ public static class Save
                         X = cell.Object.X,
                         Y = cell.Object.Y
                     };
+                    if(GetModuleStatus().All(m => m)) cell.Object.TextureId = "roket";
                     break;
                 case "anvil":
                     cell.Object = new Anvil()
@@ -184,8 +189,6 @@ public static class Save
         }
         return map;
     }
-
-
 
     public static Player GetSavePlayer()
     {

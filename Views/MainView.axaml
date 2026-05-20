@@ -71,12 +71,18 @@
             <Button
                 Classes="MenuBtn"
                 Command="{Binding StartGameCommand}"
-                Content="{Binding [Menu_LoadGame], Source={x:Static services:Localization.Instance}}" />
+                Content="{Binding [Menu_LoadGame], Source={x:Static services:Localization.Instance}}"
+                IsEnabled="{x:Static services:Save.Exist}"/>
             
             <Button
                 Classes="MenuBtn"
                 Command="{Binding OpenSettingsCommand}"
                 Content="{Binding [Menu_Settings], Source={x:Static services:Localization.Instance}}" />
+            
+            <Button
+                Classes="MenuBtn"
+                Command="{Binding OpenGuideCommand}"
+                Content="{Binding [Menu_Guide], Source={x:Static services:Localization.Instance}}" />
             
             <Button
                 Classes="MenuBtn"

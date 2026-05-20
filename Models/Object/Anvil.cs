@@ -17,7 +17,10 @@ public class Anvil : MapObject, IInteractable
         Health = 250f;
         TextureId = "anvil";
         MaxHealth = 250f;
-        Drop = new ResourceDrop(ItemRegistry.CreateItem("")!, 1, 1);
+        Drop =
+        [
+            new ResourceDrop(ItemRegistry.CreateItem("")!, 1, 1)
+        ];
     }
     
     public override bool OnInteract(Item? tool)

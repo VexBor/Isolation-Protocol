@@ -83,6 +83,7 @@ public partial class CraftViewModel : ViewModelBase
         }
         
         ErrorMessage = string.Empty;
+        Logs.Add($"player craft {SelectedRecipe.ResultItemTag}");
         _inventory.AddItem(ItemRegistry.CreateItem(SelectedRecipe.ResultItemTag),1);
 
     }

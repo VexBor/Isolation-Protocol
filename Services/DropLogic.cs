@@ -16,11 +16,14 @@ public class DropLogic
         if (source != null)
         {
             if(source.Drop == null) return;
-            
-            int amount = Random.Shared.Next(source.Drop.MinAmount, source.Drop.MaxAmount + 1);
-            if (amount > 0)
+
+            foreach (var drop in source.Drop)
             {
-                _inventory.AddItem(source.Drop.DropItem, amount);
+                int amount = Random.Shared.Next(drop.MinAmount, drop.MaxAmount + 1);
+                if (amount > 0)
+                {
+                    _inventory.AddItem(drop.DropItem, amount);
+                }
             }
         }
     }

@@ -17,7 +17,7 @@ public class MapObject : IInteractable
     public bool IsPassable { get; set; }
     public string TextureId { get; set; }
     [JsonIgnore] public Image? VisualElement { get; set; }
-    public ResourceDrop? Drop { get; set; }
+    public ResourceDrop[]? Drop { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
     public InventoryViewModel? ChestInventory { get; set; }
