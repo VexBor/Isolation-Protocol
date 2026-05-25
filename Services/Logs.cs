@@ -32,4 +32,9 @@ public static class Logs
     {
         File.WriteAllText(_path, JsonSerializer.Serialize(_logs));
     }
+
+    public static string Get()
+    {
+        return string.Join(Environment.NewLine, _logs);
+    }
 }

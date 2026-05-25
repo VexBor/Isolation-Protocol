@@ -61,7 +61,8 @@ public static class Authorize
             Id = _random.Next(),
             Username = username,
             Password = hashedPassword,
-            Email = email
+            Email = email,
+            IsAdmin = false
         };
         CurrentUser = newUser;
         _users.Add(newUser);

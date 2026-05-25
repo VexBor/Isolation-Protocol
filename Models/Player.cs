@@ -1,6 +1,5 @@
 using Avalonia;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ReactiveUI;
 
 namespace Isolation_Protocol.Models;
 

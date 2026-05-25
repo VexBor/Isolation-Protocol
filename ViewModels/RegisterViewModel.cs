@@ -59,6 +59,7 @@ public partial class RegisterViewModel(MainWindowViewModel viewModel) : ViewMode
         
         Authorize.Register(Login, Password, Email);        
         ErrorMessage = string.Empty;
+        Logs.Add("create new account");
         _mvMain.CurrentPage = new MenuViewModel(_mvMain);
     }
     

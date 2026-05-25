@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Reflection.Metadata;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -47,8 +48,12 @@ public partial class MapViewModel : ViewModelBase
     private AnvilViewModel _anvil;
     
     [ObservableProperty]
-    private VictoryViewModel _victoryMenu;
-
+    private VictoryViewModel _victoryMenu;    
+    
+    [ObservableProperty]
+    private DevPanelViewModel _devPanel;
+    
+    private User _user = Authorize.GetCurrentUser();
     private PhysicsEngine _physicsEngine = new PhysicsEngine();
     private GameMap _map { get; set; }
     private CaveMap _caveMap;
@@ -61,6 +66,8 @@ public partial class MapViewModel : ViewModelBase
 
     private double _lastTickElapsed;
     private DispatcherTimer _timer;
+    
+    public bool IsUserAmin => _user.IsAdmin;
     
     public void Init()
     {
@@ -162,6 +169,13 @@ public partial class MapViewModel : ViewModelBase
                 SelectedRepair = null;
                 return;
             }
+
+            if (DevPanel != null)
+            {
+                Logs.Add($"player close dev menu");
+                DevPanel = null;
+                return;
+            }
             
             _escapeMenu.TogglePause();
             
@@ -210,9 +224,6 @@ public partial class MapViewModel : ViewModelBase
         Renderer.Render();
         
         _inventory.AddItem(ItemRegistry.CreateItem("axe"), 1);
-    //    _inventory.AddItem(ItemRegistry.CreateItem("pickaxe"), 1);
-      //  _inventory.AddItem(ItemRegistry.CreateItem("workbench"), 20);
-      //  _inventory.AddItem(ItemRegistry.CreateItem("chest"), 20);
     }
     
     public void LoadGame()
@@ -251,10 +262,6 @@ public partial class MapViewModel : ViewModelBase
         
         Renderer.SwitchMap(_activeMap); 
         Renderer.Render();
-        
-        _inventory.AddItem(ItemRegistry.CreateItem("axe_stone"), 1);
-        _inventory.AddItem(ItemRegistry.CreateItem("axe_iron"), 1);
-        _inventory.AddItem(ItemRegistry.CreateItem("anvil"), 1);
     }
 
     public void SaveGame()
@@ -448,5 +455,23 @@ public partial class MapViewModel : ViewModelBase
         CurrentChestInventory!.TargetInventory = null;
         CurrentChestInventory = null;
         _inventory.TargetInventory = null;
+    }
+
+    [RelayCommand]
+    public void OpenDevPanel()
+    {
+        DevPanel = new(_inventory, Player);
+        Logs.Add($"player open dev panel");
+        Sound.PlaySfx("click");
+        
+    }
+
+    [RelayCommand]
+    public void CloseDevPanel()
+    {
+        DevPanel = null;
+        Logs.Add($"player close dev panel");
+        Sound.PlaySfx("click");
+        
     }
 }

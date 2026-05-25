@@ -1,0 +1,83 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Isolation_Protocol.View"
+             xmlns:services="clr-namespace:Isolation_Protocol.Services"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:DevPanelViewModel"
+             x:Class="Isolation_Protocol.Views.DevPanelView">
+    <Grid Background="{DynamicResource GlobalBackground}" RowDefinitions="Auto, *, Auto">
+
+        <TextBlock
+            Classes="H1"
+            Grid.Row="0"
+            Margin="60,50,0,0"
+            Foreground="{DynamicResource AccentRed}"
+            Text="{Binding [DevPanel_Title], Source={x:Static services:Localization.Instance}}" />
+        <Border
+            Classes="ContentPanel"
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            MinWidth="800"
+            Margin="50,40">
+            
+            <TabControl Background="Transparent">
+                
+                <TabItem Header="{Binding [DevPanel_FirstTab], Source={x:Static services:Localization.Instance}}" FontSize="18" Foreground="#888">
+                    <StackPanel Spacing="30" Margin="0,20,0,0">
+                        
+                        <TextBlock Classes="H2" Text="{Binding [DevPanel_FirstTabTitle], Source={x:Static services:Localization.Instance}}" />
+                        <Separator HorizontalAlignment="Left" Width="200" />
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="15">
+                            <ComboBox ItemsSource="{Binding AvailableItems}" 
+                                      SelectedItem="{Binding SelectedItem}"
+                                      Width="250" Height="40" />
+                            
+                            <NumericUpDown Value="{Binding SpawnAmount}" 
+                                           Minimum="1" Maximum="999" 
+                                           Width="120" Height="40" 
+                                           FormatString="0"/>
+                            
+                            <Button Classes="GhostBtn" Content="{Binding [DevPanel_SpawnButton], Source={x:Static services:Localization.Instance}}" 
+                                    Command="{Binding SpawnItemCommand}" 
+                                    Foreground="{DynamicResource AccentRed}" 
+                                    BorderBrush="{DynamicResource AccentRed}"/>
+                        </StackPanel>
+
+                        <Separator HorizontalAlignment="Left" Width="200" />
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="15">
+                            <Button Classes="GhostBtn" 
+                                    Content="{Binding [DevPanel_Restore_Stats], Source={x:Static services:Localization.Instance}}"
+                                    Command="{Binding RestoreStatsCommand}" />
+                        </StackPanel>
+                        
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="{Binding [DevPanel_SecondTabTitle], Source={x:Static services:Localization.Instance}}" FontSize="18" Foreground="#888">
+                        <Border Background="#0A0A0A" BorderBrush="#333" BorderThickness="1" Padding="15">
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <TextBlock Text="{Binding SystemLogs}" 
+                                           Classes="TerminalText" 
+                                           Foreground="#A0A0A0" 
+                                           TextWrapping="Wrap"
+                                           FontFamily="Courier New"/>
+                            </ScrollViewer>
+                        </Border>
+                </TabItem>
+            </TabControl>
+        </Border>
+
+        <Border Classes="FooterPanel" Grid.Row="2">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="40">
+                <Separator Classes="Vertical" />
+                <Button Classes="GhostBtn"
+                        Command="{Binding $parent[UserControl;1].((vm:MapViewModel)DataContext).CloseDevPanelCommand}"
+                        Content="{Binding [DevPanel_CloseButton], Source={x:Static services:Localization.Instance}}"
+                        Margin="100,0,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

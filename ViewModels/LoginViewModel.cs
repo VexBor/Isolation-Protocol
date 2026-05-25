@@ -25,7 +25,8 @@ public partial class LoginViewModel(MainWindowViewModel viewModel) : ViewModelBa
         bool s = Authorize.Login(_username, _password);
         if (s == true)
         {
-            _mainVM.CurrentPage = new MenuViewModel(_mainVM);
+            _mainVM.CurrentPage = new MenuViewModel(_mainVM); 
+            Logs.Add("login in account");
         }
         else
             ErrorMessage = Localization.Instance["Register_LoginError"];;

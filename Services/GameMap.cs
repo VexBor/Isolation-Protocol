@@ -92,7 +92,7 @@ public class GameMap(int width, int height, Player player)
             int x = rand.Next(0, Width);
             int y = rand.Next(0, Height);
 
-            if (Map[x, y].Type == CellType.Floor || Map[x, y].Type == CellType.CaveFloor && (Map[x, y].Object == null && Map[x, y].IsWalkable))
+            if ((Map[x, y].Type == CellType.Floor || Map[x, y].Type == CellType.CaveFloor) && Map[x, y].Object == null && Map[x, y].IsWalkable)
             {
                 safeX = x * TileSize;
                 safeY = y * TileSize;

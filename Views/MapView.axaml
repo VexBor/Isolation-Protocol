@@ -34,6 +34,9 @@
         <DataTemplate DataType="{x:Type viewModels1:VictoryViewModel}">
             <views:VictoryView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels1:DevPanelViewModel}">
+            <views:DevPanelView />
+        </DataTemplate>
     </UserControl.DataTemplates>
 
     <UserControl.Styles>
@@ -83,6 +86,14 @@
             </Canvas>
         </ScrollViewer>
         
+        <Button Content="DevMenu" 
+                IsVisible="{Binding IsUserAmin}"
+                Command="{Binding OpenDevPanelCommand}"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Classes="TerminalButton"
+                Margin="20"/>
+        
         <!--  Інший візуал  -->
         <views:ChestView DataContext="{Binding CurrentChestInventory}" IsVisible="{Binding !!$parent[UserControl].((viewModels1:MapViewModel)DataContext).CurrentChestInventory}" />
         <ContentControl Content="{Binding CraftOpened}" />
@@ -91,5 +102,6 @@
         <ContentControl Content="{Binding SelectedRepair}" />
         <ContentControl Content="{Binding Anvil}" />
         <ContentControl Content="{Binding VictoryMenu}" />
+        <ContentControl Content="{Binding DevPanel}" />
     </Grid>
 </UserControl>

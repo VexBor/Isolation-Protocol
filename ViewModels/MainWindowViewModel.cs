@@ -1,5 +1,4 @@
-﻿using System.Reactive.PlatformServices;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Isolation_Protocol.Models;
 using Isolation_Protocol.Services;

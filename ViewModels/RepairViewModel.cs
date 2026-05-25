@@ -60,7 +60,7 @@ public partial class RepairViewModel : ViewModelBase
 
         PropertyChanged += (sender, args) =>
         {
-            if (args.PropertyName == nameof(CanLaunch))
+            if (args.PropertyName == nameof(CanLaunch) && CanLaunch)
             {
                 ChanceRocketSprite();
             }

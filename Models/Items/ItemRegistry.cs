@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
@@ -188,4 +189,14 @@ public static class ItemRegistry
 
     private static Bitmap LoadBitmap(string uri) 
         => new Bitmap(AssetLoader.Open(new Uri(uri)));
+
+    public static string[] GetAllItemTag()
+    {
+        List<string> tags = new();
+        foreach (var item in _items)
+        {
+            tags.Add(_items[item.Key].Tag);
+        }
+        return tags.ToArray();
+    }
 }
