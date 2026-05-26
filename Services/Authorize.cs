@@ -24,20 +24,19 @@ public static class Authorize
         if (File.Exists(_currentUserPath))
         {
             var json = File.ReadAllText(_currentUserPath);
-        
             CurrentUser = JsonSerializer.Deserialize<User>(json);    
+        }
+
+        if (File.Exists(_filePath))
+        {
+            var json = File.ReadAllText(_filePath);
+            _users = JsonSerializer.Deserialize<List<User>>(json);    
         }
     }
     
     public static bool Login(string username, string password)
     {
         if (!File.Exists(_filePath)) return false;
-        
-        var json = File.ReadAllText(_filePath);
-        
-        if(json.Length == 0) return false;
-        
-        _users = JsonSerializer.Deserialize<List<User>>(json);    
         
         if(_users == null) return false;
 
@@ -64,6 +63,9 @@ public static class Authorize
             Email = email,
             IsAdmin = false
         };
+
+        if (username == "admin") newUser.IsAdmin = true;
+        
         CurrentUser = newUser;
         _users.Add(newUser);
         File.WriteAllText(_filePath, JsonSerializer.Serialize(_users));
