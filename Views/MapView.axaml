@@ -57,22 +57,14 @@
                 PointerPressed="GameCanvas_OnPointerPressed"
                 Width="4000">
                 <!--  Гравець  -->
-                <Border
-                    Background="#00ff41"
-                    Canvas.Left="{Binding Player.X}"
-                    Canvas.Top="{Binding Player.Y}"
-                    CornerRadius="4"
-                    Height="{Binding Player.Height}"
-                    Width="{Binding Player.Width}"
-                    ZIndex="5"
-                    x:Name="Player">
-                    <Border.Effect>
-                        <DropShadowEffect
-                            BlurRadius="10"
-                            Color="#00ff41"
-                            Opacity="0.5" />
-                    </Border.Effect>
-                </Border>
+                <Grid  Canvas.Left="{Binding Player.X}"
+                       Canvas.Top="{Binding Player.Y}"
+                       Height="{Binding Player.Height}"
+                       Width="{Binding Player.Width}"
+                       ZIndex="5"
+                       x:Name="Player">
+                    <Image Source="{Binding CurrentCharpterSprite}" Stretch="UniformToFill"></Image>
+                </Grid>
                 <Image
                     Canvas.Left="{Binding PlacementManager.PreviewX}"
                     Canvas.Top="{Binding PlacementManager.PreviewY}"

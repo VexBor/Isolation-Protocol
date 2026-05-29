@@ -14,7 +14,7 @@ public class MapRenderer
 {
     private Canvas _canvas;
     private GameMap map;
-    private Border _player;
+    private Grid _player;
     private Image _placement;
     
     public MapRenderer(GameMap m)
@@ -33,7 +33,7 @@ public class MapRenderer
 
         foreach (var child in _canvas.Children)
         {
-            if (child is Border bord && bord.Name == "Player") _player =  bord;
+            if (child is Grid bord && bord.Name == "Player") _player =  bord;
             if (child is Image img && img.Name == "Placement") _placement = img;
         }
         

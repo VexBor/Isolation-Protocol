@@ -5,6 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -46,6 +49,9 @@ public partial class MapViewModel : ViewModelBase
     
     [ObservableProperty]
     private AnvilViewModel _anvil;
+
+    [ObservableProperty] 
+    private IImage _currentCharpterSprite = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/charpter.png")));
     
     [ObservableProperty]
     private VictoryViewModel _victoryMenu;    
@@ -105,7 +111,11 @@ public partial class MapViewModel : ViewModelBase
         
         _physicsEngine.Update(Player, _activeMap, vector,deltaTime);
         ScrollPos = _camera.Update(Player.X, Player.Y, _viewWidth, _viewHeight, _activeMap.Width, _activeMap.Height, _activeMap.TileSize);
-        
+        if (vector.X > 0) CurrentCharpterSprite = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/charpterRight.png")));
+        else if (vector.X < 0) CurrentCharpterSprite = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/charpterLeft.png")));
+        else if (vector.Y > 0) CurrentCharpterSprite = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/charpterDown.png")));
+        else if (vector.Y < 0)CurrentCharpterSprite = new Bitmap(AssetLoader.Open(new Uri("avares://Isolation Protocol/Assets/charpter.png")));
+
         if (_inventory.Slots[_inventory.SelectedSlot].Item != null &&  ObjectFactory.CreateWorldObject(_inventory.Slots[_inventory.SelectedSlot].Item.Tag) != null && _placementManager.IsPlacing == false && _activeMap == _map)
         {
             _placementManager.StartPlacement(ItemRegistry.CreateItem(_inventory.Slots[_inventory.SelectedSlot].Item.Tag));
