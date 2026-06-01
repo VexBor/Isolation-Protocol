@@ -113,7 +113,7 @@
   "Guide_UI_Text": "• Red: Health status.\n• Blue: Energy level.\n• Brown: Satiety level.\n\nMonitor these indicators closely. Allowing any of them to reach a critical point will lead to inevitable death.",
   
   "DevPanel_Restore_Stats": "Restore all stats",
-  "DevPanel_Title": "SYSTEM OVERRIDE // DEV MODE",
+  "DevPanel_Title": "DEV MODE",
   "DevPanel_FirstTab": "SPAWNER / STATS",
   "DevPanel_FirstTabTitle": "SPAWNER",
   "DevPanel_SpawnButton": "SPAWN ITEM",

@@ -18,7 +18,7 @@ public class GameMap(int width, int height, Player player)
     {
         Random rand = new Random();
         double seed = rand.NextDouble() * 1000;
-        double scale = 0.07; // Масштаб шуму (чим менше, тим більші острови)
+        double scale = 0.07; // Масштаб шуму
 
         for (int x = 0; x < width; x++)
         {
