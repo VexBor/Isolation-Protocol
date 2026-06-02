@@ -51,7 +51,7 @@ jobs:
                    --mainExe "$EXE_NAME"
 
       - name: Upload Release Assets
-        uses: softprops/action-gh-release@v2 # Оновив версію екшена
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             releases/**/*.exe

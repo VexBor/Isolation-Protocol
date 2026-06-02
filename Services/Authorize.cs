@@ -26,12 +26,16 @@ public static class Authorize
             var json = File.ReadAllText(_currentUserPath);
             CurrentUser = JsonSerializer.Deserialize<User>(json);    
         }
+        else 
+            File.WriteAllText(_currentUserPath, "{}");
 
         if (File.Exists(_filePath))
         {
             var json = File.ReadAllText(_filePath);
             _users = JsonSerializer.Deserialize<List<User>>(json);    
         }
+        else 
+            File.WriteAllText(_filePath, "{}");
     }
     
     public static bool Login(string username, string password)
