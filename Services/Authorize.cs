@@ -68,7 +68,7 @@ public static class Authorize
             IsAdmin = false
         };
 
-        if (username == "admin") newUser.IsAdmin = true;
+        if (username == "administrator") newUser.IsAdmin = true;
         
         CurrentUser = newUser;
         _users.Add(newUser);
